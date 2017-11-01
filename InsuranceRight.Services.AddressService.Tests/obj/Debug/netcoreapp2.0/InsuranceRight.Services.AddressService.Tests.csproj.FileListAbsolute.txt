@@ -1,0 +1,16 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.pdb

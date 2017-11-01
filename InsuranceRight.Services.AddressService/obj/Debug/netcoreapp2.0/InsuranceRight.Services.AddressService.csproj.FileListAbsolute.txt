@@ -1,0 +1,11 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.pdb

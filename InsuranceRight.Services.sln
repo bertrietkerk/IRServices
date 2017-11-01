@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.AddressService", "InsuranceRight.Services.AddressService\InsuranceRight.Services.AddressService.csproj", "{A2E09FE5-F075-424E-A04B-DBB788C2F941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.AddressService.Tests", "InsuranceRight.Services.AddressService.Tests\InsuranceRight.Services.AddressService.Tests.csproj", "{E4296332-48FA-4FCC-A729-D00FD7482066}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2E09FE5-F075-424E-A04B-DBB788C2F941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2E09FE5-F075-424E-A04B-DBB788C2F941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2E09FE5-F075-424E-A04B-DBB788C2F941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2E09FE5-F075-424E-A04B-DBB788C2F941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4296332-48FA-4FCC-A729-D00FD7482066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4296332-48FA-4FCC-A729-D00FD7482066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4296332-48FA-4FCC-A729-D00FD7482066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4296332-48FA-4FCC-A729-D00FD7482066}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9927EAFE-3C8B-4144-9CA2-78B3336EF184}
+	EndGlobalSection
+EndGlobal
