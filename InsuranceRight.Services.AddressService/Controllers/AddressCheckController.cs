@@ -41,16 +41,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
             var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber);
             if (address == null)
             {
-                address = new Address()
-                {
-                    ZipCode = zipcode,
-                    HouseNumber = housenumber
-                };
-                // return as JSON
-                var returnJson = JsonConvert.SerializeObject(address, Formatting.Indented);
-                //string[] returnObject = new string[] { zipcode, housenumber };
-                var request = Request;
-                return NotFound(request);
+                return NotFound();
             }
 
             return new JsonResult(address);
@@ -63,15 +54,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
             var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber, extension);
             if (address == null)
             {
-                address = new Address()
-                {
-                    ZipCode = zipcode,
-                    HouseNumber = housenumber,
-                    HouseNumberExtension = extension
-                }; 
-                // return as JSON
-                var returnJson = JsonConvert.SerializeObject(address, Formatting.Indented);
-                return NotFound(returnJson);
+                return NotFound();
             }
 
             return new JsonResult(address);
