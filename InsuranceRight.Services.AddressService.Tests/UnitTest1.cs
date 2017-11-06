@@ -7,16 +7,21 @@ namespace InsuranceRight.Services.AddressService.Tests
     [TestClass]
     public class UnitTest1
     {
-        private readonly AddressCheck _addressChecker = new AddressCheck();
-//        private readonly List<string> ValidZipCodes = new List<string>() { "1111AA", "2222BB", "3333CC", "4444DD", "5555EE" };
+        private readonly IAddressCheck _addressChecker;
 
+        public UnitTest1()
+        {
+            var dataProvider = new DataProvider();
+            _addressChecker = new AddressCheck(dataProvider);
+        }
+        
 
         [DataTestMethod]
         [DataRow("1111AA")]
         [DataRow("2222bb")]
         public void ValidateValidAddressesToUpperAndToLower(string address)
         {
-            var isValid = _addressChecker.ValidateZipCode(address);
+            var isValid = _addressChecker.IsZipCodeValid(address);
             Assert.IsTrue(isValid);
         }
 
@@ -25,7 +30,7 @@ namespace InsuranceRight.Services.AddressService.Tests
         [DataRow("null")]
         public void ValidateInvalidAddresses(string address)
         {
-            Assert.IsFalse(_addressChecker.ValidateZipCode(address));
+            Assert.IsFalse(_addressChecker.IsZipCodeValid(address));
         }
 
         [TestMethod]
@@ -62,7 +67,16 @@ namespace InsuranceRight.Services.AddressService.Tests
                 HouseNumber = "2"
             };
             var fullAddress = _addressChecker.GetFullAddress(incompleteAddress);
+
             Assert.IsNotNull(fullAddress);
+            Assert.IsNotNull(fullAddress.Street);
+            Assert.IsNotNull(fullAddress.City);
+            Assert.IsNotNull(fullAddress.Country);
+
+            Assert.AreEqual(fullAddress.ZipCode, incompleteAddress.ZipCode);
+            Assert.AreEqual(fullAddress.HouseNumber, incompleteAddress.HouseNumber);
+
+
         }
 
         [TestMethod]
@@ -76,5 +90,8 @@ namespace InsuranceRight.Services.AddressService.Tests
             var fullAddress = _addressChecker.GetFullAddress(incompleteInvalidAddress);
             Assert.IsNull(fullAddress);
         }
+
+
+
     }
 }

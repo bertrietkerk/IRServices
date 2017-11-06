@@ -35,12 +35,10 @@ namespace InsuranceRight.Services.AddressService
                     // TODO: this ^
                 });
 
-            
 
-            // App services
+            // DI for models
             services.AddSingleton<IAddressCheck, AddressCheck>();
-
-            // TODO: JSON serializer registeren
+            services.AddSingleton<IDataProvider, DataProvider>();
             
         }
 

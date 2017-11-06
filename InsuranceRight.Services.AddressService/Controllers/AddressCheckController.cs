@@ -31,7 +31,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
         [HttpGet("{zipcode}")]
         public bool ValidateZipCode(string zipcode)
         {
-            return _addressCheckProvider.ValidateZipCode(zipcode);
+            return _addressCheckProvider.IsZipCodeValid(zipcode);
         }
 
         // GET api/addresscheck/2222BB/2
@@ -47,7 +47,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
             return new JsonResult(address);
         }
 
-        // GET api/addresscheck/2222BB/99/b
+        // GET api/addresscheck/2222BB/22/b
         [HttpGet("{zipcode}/{housenumber}/{extension}")]
         public IActionResult GetFullAddress(string zipcode, string housenumber, string extension)
         {
@@ -60,5 +60,19 @@ namespace InsuranceRight.Services.AddressService.Controllers
             return new JsonResult(address);
         }
 
+
+        // POST !!
+        // api/addresscheck
+        [HttpPost]
+        public IActionResult GetFullAddress([FromBody] Address address)
+        {
+            var request = Request;
+            var fullAddress = _addressCheckProvider.GetFullAddress(address);
+            if (fullAddress == null)
+            {
+                return NotFound();
+            }
+            return new JsonResult(fullAddress);
+        }
     }
 }

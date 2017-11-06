@@ -7,7 +7,7 @@ namespace InsuranceRight.Services.AddressService.Models
 {
     public interface IAddressCheck
     {
-        bool ValidateZipCode(string zipCode);
+        bool IsZipCodeValid(string zipCode);
 
         Address GetFullAddress(string zipCode, string houseNumber);
         Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension);

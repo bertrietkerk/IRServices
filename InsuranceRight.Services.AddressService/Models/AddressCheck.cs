@@ -12,62 +12,19 @@ namespace InsuranceRight.Services.AddressService.Models
 {
     public class AddressCheck : IAddressCheck
     {
-        // Constants (injected in ctor based on json files in .\Json folder)
-        public readonly List<string> _validZipCodeList;
-        public readonly List<Address> _validAddressList;
+        public IDataProvider _dataProvider { get; }
+        public readonly IEnumerable<String> _validZipCodeList;
+        public readonly IEnumerable<Address> _validAddressList;
         private static readonly string _defaultDutchRegexPattern = "^[1-9][0-9]{3}[A-Z]{2}$";
 
-        public AddressCheck()
+        public AddressCheck(IDataProvider dataProvider)
         {
-            _validAddressList = GetValidAddresses();
-            _validZipCodeList = GetValidZipdCodes();
+            _dataProvider = dataProvider;
+            _validAddressList = _dataProvider.GetValidAddresses();
+            _validZipCodeList = _dataProvider.GetValidZipCodes(_validAddressList);
         }
 
-        #region GetData
 
-        /// <summary>
-        /// Gets all addresses from the json files in Json folder, and adds them to _validAddressList 
-        /// </summary>
-        /// <returns>List of valid Addresses</returns>
-        public List<Address> GetValidAddresses()
-        {
-            var list = new List<Address>();
-            Address address;
-            string[] files = Directory.GetFiles(@".\Json");
-            foreach (String file in files)
-            {
-                using (StreamReader sr = File.OpenText(file))
-                {
-                    JsonSerializer ser = new JsonSerializer();
-                    address = (Address)ser.Deserialize(sr, typeof(Address));
-                    if (address != null)
-                    {
-                        list.Add(address);
-                    }
-                }
-            }
-
-            return list;
-        }
-
-        /// <summary>
-        /// Get all valid ZipCodes based on all the addresses in the _validAddressList 
-        /// </summary>
-        /// <returns>List of valid zipcodes (strings)</returns>
-        private List<string> GetValidZipdCodes()
-        {
-            var list = new List<string>();
-            foreach (Address address in _validAddressList)
-            {
-                if (!list.Contains(address.ZipCode))
-                {
-                    list.Add(address.ZipCode);
-                }
-            }
-            return list;
-        }
-
-        #endregion
 
         ////////////////////
         // Validate ZipCode
@@ -78,9 +35,9 @@ namespace InsuranceRight.Services.AddressService.Models
         /// </summary>
         /// <param name="zipCode">The zipcode to check</param>
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match default 'Dutch Zipcode' regex pattern </returns>
-        public bool ValidateZipCode(string zipCode)
+        public bool IsZipCodeValid(string zipCode)
         {
-            return ValidateZipCode(zipCode, _defaultDutchRegexPattern);
+            return IsZipCodeValid(zipCode, _defaultDutchRegexPattern);
         }
 
         /// <summary>
@@ -89,7 +46,7 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <param name="zipCode">The zipcode to check</param>
         /// <param name="pattern">An optional custom regex pattern which the zipcode must conform to in order to be checked</param>
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
-        public bool ValidateZipCode(string zipCode, string pattern)
+        public bool IsZipCodeValid(string zipCode, string pattern)
         {
             zipCode.Replace(" ", "").ToUpper();
             Regex regex = new Regex(pattern);
