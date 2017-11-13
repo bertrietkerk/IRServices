@@ -34,6 +34,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
             return _addressCheckProvider.IsZipCodeValid(zipcode);
         }
 
+        
         // GET api/addresscheck/2222BB/2
         [HttpGet("{zipcode}/{housenumber}")]
         public IActionResult GetFullAddress(string zipcode, string housenumber)

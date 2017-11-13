@@ -12,16 +12,14 @@ namespace InsuranceRight.Services.AddressService.Models
 {
     public class AddressCheck : IAddressCheck
     {
-        public IDataProvider _dataProvider { get; }
-        public readonly IEnumerable<String> _validZipCodeList;
-        public readonly IEnumerable<Address> _validAddressList;
         private static readonly string _defaultDutchRegexPattern = "^[1-9][0-9]{3}[A-Z]{2}$";
+        private readonly IEnumerable<String> _validZipCodeList;
+        private readonly IEnumerable<Address> _validAddressList;
 
         public AddressCheck(IDataProvider dataProvider)
         {
-            _dataProvider = dataProvider;
-            _validAddressList = _dataProvider.GetValidAddresses();
-            _validZipCodeList = _dataProvider.GetValidZipCodes(_validAddressList);
+            _validAddressList = dataProvider.GetValidAddresses();
+            _validZipCodeList = dataProvider.GetValidZipCodes(_validAddressList);
         }
 
 
