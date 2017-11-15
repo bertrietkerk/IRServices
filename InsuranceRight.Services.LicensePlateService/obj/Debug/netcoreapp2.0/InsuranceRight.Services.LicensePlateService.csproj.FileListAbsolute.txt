@@ -1,0 +1,11 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\bin\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.LicensePlateService\obj\Debug\netcoreapp2.0\InsuranceRight.Services.LicensePlateService.pdb

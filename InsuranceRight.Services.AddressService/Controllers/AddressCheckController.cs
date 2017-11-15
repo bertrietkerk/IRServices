@@ -20,7 +20,6 @@ namespace InsuranceRight.Services.AddressService.Controllers
             this._addressCheckProvider = addressCheck;
         }
 
-
         [HttpGet]
         public string[] Get()
         {

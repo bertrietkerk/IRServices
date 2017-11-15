@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using InsuranceRight.Services.AddressService.Models;
 using System.Collections.Generic;
+using System;
 
 namespace InsuranceRight.Services.AddressService.Tests
 {
@@ -11,7 +12,7 @@ namespace InsuranceRight.Services.AddressService.Tests
 
         public UnitTest1()
         {
-            var dataProvider = new DataProvider();
+            var dataProvider = new MockDataProvider();
             _addressChecker = new AddressCheck(dataProvider);
         }
         
@@ -19,18 +20,19 @@ namespace InsuranceRight.Services.AddressService.Tests
         [DataTestMethod]
         [DataRow("1111AA")]
         [DataRow("2222bb")]
-        public void ValidateValidAddressesToUpperAndToLower(string address)
+        public void ValidateValidZipCodesToUpperAndToLower(string zipcode)
         {
-            var isValid = _addressChecker.IsZipCodeValid(address);
+            var isValid = _addressChecker.IsZipCodeValid(zipcode);
             Assert.IsTrue(isValid);
         }
 
         [DataTestMethod]
         [DataRow("1122AA")]
         [DataRow("null")]
-        public void ValidateInvalidAddresses(string address)
+        [DataRow("")]
+        public void ValidateInvalidZipCodes(string zipcode)
         {
-            Assert.IsFalse(_addressChecker.IsZipCodeValid(address));
+            Assert.IsFalse(_addressChecker.IsZipCodeValid(zipcode));
         }
 
         [TestMethod]
@@ -56,8 +58,23 @@ namespace InsuranceRight.Services.AddressService.Tests
         {
             var fullAddress = _addressChecker.GetFullAddress(zipCode, houseNumber, houseNumberExt);
             Assert.IsNotNull(fullAddress);
+            Assert.IsNotNull(fullAddress.Street);
+            Assert.IsNotNull(fullAddress.City);
+            Assert.IsNotNull(fullAddress.Country);
+
+            Assert.AreEqual(zipCode, fullAddress.ZipCode);
+            Assert.AreEqual(houseNumber, fullAddress.HouseNumber);
+            Assert.AreEqual(houseNumberExt.ToLower(), fullAddress.HouseNumberExtension);
         }
-        
+
+        [DataTestMethod]
+        [DataRow("2222BB", "")]
+        [DataRow("", "2")]
+        public void GetFullAddressBy_EmptyParameters_ThrowsNullReferenceException(string zipCode, string houseNumber)
+        {
+            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(zipCode, houseNumber));
+        }
+
         [TestMethod]
         public void GetFullAddressBy_IncompleteValidAddress()
         {
@@ -75,8 +92,6 @@ namespace InsuranceRight.Services.AddressService.Tests
 
             Assert.AreEqual(fullAddress.ZipCode, incompleteAddress.ZipCode);
             Assert.AreEqual(fullAddress.HouseNumber, incompleteAddress.HouseNumber);
-
-
         }
 
         [TestMethod]
@@ -91,7 +106,26 @@ namespace InsuranceRight.Services.AddressService.Tests
             Assert.IsNull(fullAddress);
         }
 
+        [TestMethod]
+        public void GetFullAddressBy_NullAddress_ThrowsNullReferenceException()
+        {
+            Address nullAddress = null;
 
+            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(nullAddress));
+        }
+
+        [TestMethod]
+        public void GetFullAddressBy_AddressWithNullZipCode_ThrowsNullReferenceException()
+        {
+            var inValidAddress = new Address()
+            {
+                ZipCode = "",
+                HouseNumber = null
+            };
+            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(inValidAddress));
+        }
+
+        
 
     }
 }

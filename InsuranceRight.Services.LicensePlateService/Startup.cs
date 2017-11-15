@@ -8,10 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using InsuranceRight.Services.AddressService.Models;
-using Newtonsoft.Json.Serialization;
 
-namespace InsuranceRight.Services.AddressService
+namespace InsuranceRight.Services.LicensePlateService
 {
     public class Startup
     {
@@ -25,20 +23,7 @@ namespace InsuranceRight.Services.AddressService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddMvc()
-                .AddJsonOptions(options =>
-                {
-                    var settings = options.SerializerSettings;
-                    settings.Formatting = Newtonsoft.Json.Formatting.Indented;
-                    settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                });
-
-
-            // DI for models
-            services.AddSingleton<IAddressCheck, AddressCheck>();
-            services.AddSingleton<IDataProvider, DataProvider>();
-            
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,16 +35,6 @@ namespace InsuranceRight.Services.AddressService
             }
 
             app.UseMvc();
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=AddressCheck}/{action=Index}/{id?}"
-            //        );
-            //});
-            
-
         }
     }
 }
-

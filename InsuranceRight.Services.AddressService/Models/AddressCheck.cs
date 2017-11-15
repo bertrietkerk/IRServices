@@ -23,11 +23,6 @@ namespace InsuranceRight.Services.AddressService.Models
         }
 
 
-
-        ////////////////////
-        // Validate ZipCode
-        ////////////////////
-
         /// <summary>
         /// Checks if zipCode is valid, based on _validZipCodes list
         /// </summary>
@@ -46,19 +41,15 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         public bool IsZipCodeValid(string zipCode, string pattern)
         {
-            zipCode.Replace(" ", "").ToUpper();
+            zipCode = zipCode.Replace(" ", "").ToUpper();
             Regex regex = new Regex(pattern);
             if (!regex.IsMatch(zipCode))
-            {
                 return false;
-            }
+            
             return _validZipCodeList.Contains(zipCode);
         }
 
-        ////////////////////
-        // Get Full Address
-        ////////////////////
-
+        
         /// <summary>
         /// Get the full address based on the zipcode, housenumber, and empty string as housenumberextension
         /// </summary>
@@ -80,6 +71,15 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <returns>The full address based on zipcode, housenumber & housenumberextension, or null if not found in _validAddressList</returns>
         public Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension)
         {
+            if (string.IsNullOrEmpty(zipCode) || string.IsNullOrEmpty(houseNumber))
+                throw new NullReferenceException("Zipcode and housenumber cannot be null");
+            
+            zipCode = zipCode.Replace(" ", "").ToUpper();
+            houseNumber = houseNumber.Trim();
+
+            if (houseNumberExtension != string.Empty)
+                houseNumberExtension = houseNumberExtension.Trim().ToLower();
+
             return _validAddressList.FirstOrDefault(a => a.ZipCode == zipCode && a.HouseNumber == houseNumber && a.HouseNumberExtension == houseNumberExtension);   
         }
 
@@ -90,10 +90,14 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <returns>Full address based on the given address, or null if not found in _validAddressList</returns>
         public Address GetFullAddress(Address address)
         {
+            if (address == null || string.IsNullOrEmpty(address.ZipCode) || string.IsNullOrEmpty(address.HouseNumber))
+                throw new NullReferenceException("Address model, Zipcode and Housenumber cannot be null");
+
             if (address.HouseNumberExtension == null)
-            {
                 address.HouseNumberExtension = string.Empty;
-            }
+
+            address.HouseNumber.Trim();
+            address.HouseNumberExtension.Trim();
 
             Address fullAddress = _validAddressList.FirstOrDefault(a => 
                 a.ZipCode == address.ZipCode && 

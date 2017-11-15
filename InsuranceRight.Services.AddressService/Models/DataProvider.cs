@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace InsuranceRight.Services.AddressService.Models
@@ -14,6 +15,8 @@ namespace InsuranceRight.Services.AddressService.Models
             var list = new List<Address>();
             Address address;
             string[] files = Directory.GetFiles(@".\Json");
+            var path = Path.GetPathRoot(Assembly.GetExecutingAssembly().Location);
+            var test = AppDomain.CurrentDomain.BaseDirectory;
             foreach (String file in files)
             {
                 using (StreamReader sr = File.OpenText(file))
