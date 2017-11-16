@@ -22,7 +22,7 @@ namespace InsuranceRight.Services.AddressService.Models
             _validZipCodeList = dataProvider.GetValidZipCodes(_validAddressList);
         }
 
-
+        // TODO: do we want to be able to provide a different regex-pattern?
         /// <summary>
         /// Checks if zipCode is valid, based on _validZipCodes list
         /// </summary>
@@ -30,9 +30,11 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match default 'Dutch Zipcode' regex pattern </returns>
         public bool IsZipCodeValid(string zipCode)
         {
+            // check if zipCode is valid based on the default dutch zipcode pattern
             return IsZipCodeValid(zipCode, _defaultDutchRegexPattern);
         }
 
+        // TODO: do we want to be able to provide a different regex-pattern?
         /// <summary>
         /// Checks if zipCode is valid, based on _validZipCodes list
         /// </summary>
@@ -41,25 +43,29 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         public bool IsZipCodeValid(string zipCode, string pattern)
         {
+            if (string.IsNullOrEmpty(zipCode))
+                throw new NullReferenceException("Zipcode cannot be null or empty string");
+                // return false + statuscode 0001 "ValidateZipcode error: Zipcode cannot be null or empty string"
+
+            // first check zipcode on regex, then check in list
             zipCode = zipCode.Replace(" ", "").ToUpper();
             Regex regex = new Regex(pattern);
+
+
+            // TODO: Error handling on IR side by returning statuscodes
             if (!regex.IsMatch(zipCode))
-                return false;
-            
-            return _validZipCodeList.Contains(zipCode);
+                throw new NullReferenceException("Zipcode not correct format");
+                // return false + statuscode 0002 "ValidateZipcode error: Zipcode is NOT in the CORRECT FORMAT"
+
+            if (_validZipCodeList.Contains(zipCode))
+                return true;
+                // return true + custom statuscode 0000 success
+
+            throw new NullReferenceException("Zipcode was not found to be valid");
+            // return false + custom statuscode 0003 "ValidateZipcode error: Zipcode is right format, but NOT found in ValidZipcodeList"
         }
 
-        
-        /// <summary>
-        /// Get the full address based on the zipcode, housenumber, and empty string as housenumberextension
-        /// </summary>
-        /// <param name="zipCode">The zipcode of the full address</param>
-        /// <param name="houseNumber">The housenumber of the full address</param>
-        /// <returns>The full address based on zipcode & housenumber, or null if not found in _validAddressList</returns>
-        public Address GetFullAddress(string zipCode, string houseNumber)
-        {
-            return GetFullAddress(zipCode, houseNumber, string.Empty);
-        }
+       
 
 
         /// <summary>
@@ -69,42 +75,26 @@ namespace InsuranceRight.Services.AddressService.Models
         /// <param name="houseNumber">The housenumber of the full address</param>
         /// <param name="houseNumberExt">The housenumberextension of the full address</param>
         /// <returns>The full address based on zipcode, housenumber & housenumberextension, or null if not found in _validAddressList</returns>
-        public Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension)
+        public Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension = "")
         {
             if (string.IsNullOrEmpty(zipCode) || string.IsNullOrEmpty(houseNumber))
                 throw new NullReferenceException("Zipcode and housenumber cannot be null");
-            
+            // TODO: different exception/return value
+            // return custom statuscode 0010 "GetFullAddress error: Zipcode cannot be null"
+            // return custom statuscode 0011 "GetFullAddress error: Housenumber cannot be null"
+            // 
+            // return custom statuscode 0012 "GetFullAddress error: Combination of  cannot be null"
+
+
             zipCode = zipCode.Replace(" ", "").ToUpper();
             houseNumber = houseNumber.Trim();
 
-            if (houseNumberExtension != string.Empty)
-                houseNumberExtension = houseNumberExtension.Trim().ToLower();
+            if (houseNumberExtension == null)
+                houseNumberExtension = "";
+            else if (!string.IsNullOrEmpty(houseNumberExtension))
+                houseNumberExtension = houseNumberExtension.Trim().ToUpper();
 
             return _validAddressList.FirstOrDefault(a => a.ZipCode == zipCode && a.HouseNumber == houseNumber && a.HouseNumberExtension == houseNumberExtension);   
-        }
-
-        /// <summary>
-        /// Get the full address based on the given addresses' zipcode, housenumber and optionally housenumberextension
-        /// </summary>
-        /// <param name="address">The Address to fill the details on</param>
-        /// <returns>Full address based on the given address, or null if not found in _validAddressList</returns>
-        public Address GetFullAddress(Address address)
-        {
-            if (address == null || string.IsNullOrEmpty(address.ZipCode) || string.IsNullOrEmpty(address.HouseNumber))
-                throw new NullReferenceException("Address model, Zipcode and Housenumber cannot be null");
-
-            if (address.HouseNumberExtension == null)
-                address.HouseNumberExtension = string.Empty;
-
-            address.HouseNumber.Trim();
-            address.HouseNumberExtension.Trim();
-
-            Address fullAddress = _validAddressList.FirstOrDefault(a => 
-                a.ZipCode == address.ZipCode && 
-                a.HouseNumber == address.HouseNumber && 
-                a.HouseNumberExtension == address.HouseNumberExtension
-            );
-            return fullAddress;
         }
     }
 }

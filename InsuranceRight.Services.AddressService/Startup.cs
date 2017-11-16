@@ -53,11 +53,20 @@ namespace InsuranceRight.Services.AddressService
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(
-            //        name: "default",
-            //        template: "{controller=AddressCheck}/{action=Index}/{id?}"
+            //        name: "SayHello",
+            //        template: "{controller}/{action}/{firstname}/{lastname}",
+            //        defaults: new { lastname =  }
             //        );
             //});
-            
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "ValidateZipcode",
+            //        template: "{controller}/{action}/{zipcode}",
+            //        defaults: new { controller=}
+            //        );
+            //});
+
 
         }
     }

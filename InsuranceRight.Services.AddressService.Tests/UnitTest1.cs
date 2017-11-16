@@ -28,11 +28,11 @@ namespace InsuranceRight.Services.AddressService.Tests
 
         [DataTestMethod]
         [DataRow("1122AA")]
-        [DataRow("null")]
+        [DataRow(null)]
         [DataRow("")]
         public void ValidateInvalidZipCodes(string zipcode)
         {
-            Assert.IsFalse(_addressChecker.IsZipCodeValid(zipcode));
+            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.IsZipCodeValid(zipcode));
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace InsuranceRight.Services.AddressService.Tests
 
             Assert.AreEqual(zipCode, fullAddress.ZipCode);
             Assert.AreEqual(houseNumber, fullAddress.HouseNumber);
-            Assert.AreEqual(houseNumberExt.ToLower(), fullAddress.HouseNumberExtension);
+            Assert.AreEqual(houseNumberExt.ToUpper(), fullAddress.HouseNumberExtension);
         }
 
         [DataTestMethod]
@@ -75,57 +75,7 @@ namespace InsuranceRight.Services.AddressService.Tests
             Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(zipCode, houseNumber));
         }
 
-        [TestMethod]
-        public void GetFullAddressBy_IncompleteValidAddress()
-        {
-            var incompleteAddress = new Address()
-            {
-                ZipCode = "2222BB",
-                HouseNumber = "2"
-            };
-            var fullAddress = _addressChecker.GetFullAddress(incompleteAddress);
 
-            Assert.IsNotNull(fullAddress);
-            Assert.IsNotNull(fullAddress.Street);
-            Assert.IsNotNull(fullAddress.City);
-            Assert.IsNotNull(fullAddress.Country);
-
-            Assert.AreEqual(fullAddress.ZipCode, incompleteAddress.ZipCode);
-            Assert.AreEqual(fullAddress.HouseNumber, incompleteAddress.HouseNumber);
-        }
-
-        [TestMethod]
-        public void GetFullAddressBy_IncompleteInValidAddress()
-        {
-            var incompleteInvalidAddress = new Address()
-            {
-                ZipCode = "2222BB",
-                HouseNumber = "91230912309123"
-            };
-            var fullAddress = _addressChecker.GetFullAddress(incompleteInvalidAddress);
-            Assert.IsNull(fullAddress);
-        }
-
-        [TestMethod]
-        public void GetFullAddressBy_NullAddress_ThrowsNullReferenceException()
-        {
-            Address nullAddress = null;
-
-            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(nullAddress));
-        }
-
-        [TestMethod]
-        public void GetFullAddressBy_AddressWithNullZipCode_ThrowsNullReferenceException()
-        {
-            var inValidAddress = new Address()
-            {
-                ZipCode = "",
-                HouseNumber = null
-            };
-            Assert.ThrowsException<NullReferenceException>(() => _addressChecker.GetFullAddress(inValidAddress));
-        }
-
-        
 
     }
 }

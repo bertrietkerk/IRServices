@@ -23,56 +23,53 @@ namespace InsuranceRight.Services.AddressService.Controllers
         [HttpGet]
         public string[] Get()
         {
-            return new string[] { "Add '/zipcode' behind the url to validate the zipcode", "Add '/zipcode/housenumber/?housenumberextension' behind the url to check if address is valid" };
+            return new string[] {
+                "Add '/zipcode' behind the url to validate the zipcode",
+                "Add '/zipcode/housenumber/?housenumberextension' behind the url to check if address is valid"
+            };
         }
 
-        // GET api/addresscheck/1111AA
-        [HttpGet("{zipcode}")]
+
+        //////////////////////////////////////////////////////////
+        // TODO:    url/param1/param2   or   url?param1=..&param2=..
+        //////////////////////////////////////////////////////////
+
+        // GET api/addresscheck/validatezipcode/1111AA
+        [HttpGet("[action]/{zipcode}")]
         public bool ValidateZipCode(string zipcode)
         {
             return _addressCheckProvider.IsZipCodeValid(zipcode);
         }
 
-        
-        // GET api/addresscheck/2222BB/2
-        [HttpGet("{zipcode}/{housenumber}")]
-        public IActionResult GetFullAddress(string zipcode, string housenumber)
+        // GET api/addresscheck/validatezipcode?zipcode=1111AA
+        [HttpGet("[action]")]
+        public bool TestValidateZipCode([FromQuery]string zipcode)
         {
-            var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber);
+            return _addressCheckProvider.IsZipCodeValid(zipcode);
+        }
+
+        // GET api/addresscheck/getfulladdress/1111AA/1
+        // GET api/addresscheck/getfulladdress/1111AA/1/a
+        [HttpGet("[action]/{zipcode}/{housenumber}/{housenumberextension?}")]
+        public IActionResult GetFullAddress(string zipcode, string housenumber, string housenumberextension = "")
+        {
+            var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber, housenumberextension);
             if (address == null)
-            {
                 return NotFound();
-            }
 
             return new JsonResult(address);
         }
 
-        // GET api/addresscheck/2222BB/22/b
-        [HttpGet("{zipcode}/{housenumber}/{extension}")]
-        public IActionResult GetFullAddress(string zipcode, string housenumber, string extension)
+        // GET api/addresscheck/getfulladdress?zipcode=1111AA&housenumber=1
+        // GET api/addresscheck/getfulladdress?zipcode=1111AA&housenumber=1&housenumberextension=a
+        [HttpGet("[action]")]
+        public IActionResult TestGetFullAddress([FromQuery]string zipcode, string housenumber, string housenumberextension = "")
         {
-            var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber, extension);
+            var address = _addressCheckProvider.GetFullAddress(zipcode, housenumber, housenumberextension);
             if (address == null)
-            {
                 return NotFound();
-            }
 
             return new JsonResult(address);
-        }
-
-
-        // POST !!
-        // api/addresscheck
-        [HttpPost]
-        public IActionResult GetFullAddress([FromBody] Address address)
-        {
-            var request = Request;
-            var fullAddress = _addressCheckProvider.GetFullAddress(address);
-            if (fullAddress == null)
-            {
-                return NotFound();
-            }
-            return new JsonResult(fullAddress);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿{
   "zipCode": "1111AA",
   "houseNumber": "1",
-  "houseNumberExtension": "a",
-  "street": "A-street",
-  "city": "Amsterdam",
+  "houseNumberExtension": "A",
+  "street": "Diemerkade",
+  "city": "Diemen",
   "country": "Netherlands"
 }

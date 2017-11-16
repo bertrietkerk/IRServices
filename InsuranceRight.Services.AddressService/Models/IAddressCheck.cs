@@ -8,10 +8,6 @@ namespace InsuranceRight.Services.AddressService.Models
     public interface IAddressCheck
     {
         bool IsZipCodeValid(string zipCode);
-        //bool IsZipCodeValid(string zipcode, string regexPattern);
-
-        Address GetFullAddress(string zipCode, string houseNumber);
-        Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension);
-        Address GetFullAddress(Address address);
+        Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension = "");
     }
 }

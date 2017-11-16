@@ -15,7 +15,7 @@ namespace InsuranceRight.Services.AddressService.Tests
                 {
                     ZipCode = "1111AA",
                     HouseNumber = "1",
-                    HouseNumberExtension = "a",
+                    HouseNumberExtension = "A",
                     Street = "A-laan",
                     City = "Almere",
                     Country = "Holland"
