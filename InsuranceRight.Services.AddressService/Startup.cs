@@ -32,6 +32,7 @@ namespace InsuranceRight.Services.AddressService
                     var settings = options.SerializerSettings;
                     settings.Formatting = Newtonsoft.Json.Formatting.Indented;
                     settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                 });
 
 
@@ -50,14 +51,6 @@ namespace InsuranceRight.Services.AddressService
             }
 
             app.UseMvc();
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "SayHello",
-            //        template: "{controller}/{action}/{firstname}/{lastname}",
-            //        defaults: new { lastname =  }
-            //        );
-            //});
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(

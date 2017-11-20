@@ -7,10 +7,6 @@ namespace InsuranceRight.Services.AddressService.Models
 {
     public class Address
     {
-        public Address()
-        {
-        }
-
         public string ZipCode{ get; set; }
         public string HouseNumber { get; set; }
         public string HouseNumberExtension { get; set; }
