@@ -43,7 +43,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
 
             if (!regex.IsMatch(zipcode))
             {
-                response.Message = "Zipcode was incorrect format (e.g. 1111AA)";
+                response.Message = "Zipcode wasn't in the correct format (e.g. 1111AA)";
                 return Ok(response);
             }
 
@@ -94,7 +94,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
                 response.Object = result;
                 return Ok(response);
             }
-            response.Message = $"No combination was found for {address.ZipCode} {address.HouseNumber} {address.HouseNumberExtension}";
+            response.Message = $"No combination was found for {address.ZipCode} {address.HouseNumber}{address.HouseNumberExtension}";
             return Ok(response);
         }
     }
