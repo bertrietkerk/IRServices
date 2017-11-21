@@ -13,7 +13,7 @@ namespace InsuranceRight.Services.AddressService.Tests
         public UnitTest1()
         {
             var dataProvider = new MockDataProvider();
-            _addressChecker = new AddressCheck(dataProvider);
+            _addressChecker = new AddressCheckRepository(dataProvider);
         }
         
 

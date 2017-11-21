@@ -3554,10 +3554,16 @@
       },
       "InsuranceRight.Services.AddressService/1.0.0": {
         "dependencies": {
+          "InsuranceRight.Services.Shared": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0"
         },
         "runtime": {
           "InsuranceRight.Services.AddressService.dll": {}
+        }
+      },
+      "InsuranceRight.Services.Shared/1.0.0": {
+        "runtime": {
+          "InsuranceRight.Services.Shared.dll": {}
         }
       }
     }
@@ -5648,6 +5654,11 @@
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
     },
     "InsuranceRight.Services.AddressService/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "InsuranceRight.Services.Shared/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

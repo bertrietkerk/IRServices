@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace InsuranceRight.Services.AddressService.Models
 {
-    public class DataProvider : IDataProvider
+    public class DataProviderRepository : IDataProvider
     {
         public IEnumerable<Address> GetValidAddresses()
         {

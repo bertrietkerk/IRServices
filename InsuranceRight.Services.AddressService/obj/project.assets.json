@@ -4746,6 +4746,16 @@
         "runtime": {
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
+      },
+      "InsuranceRight.Services.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/InsuranceRight.Services.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InsuranceRight.Services.Shared.dll": {}
+        }
       }
     }
   },
@@ -12524,10 +12534,16 @@
         "windowsazure.storage.8.1.4.nupkg.sha512",
         "windowsazure.storage.nuspec"
       ]
+    },
+    "InsuranceRight.Services.Shared/1.0.0": {
+      "type": "project",
+      "path": "../InsuranceRight.Services.Shared/InsuranceRight.Services.Shared.csproj",
+      "msbuildProject": "../InsuranceRight.Services.Shared/InsuranceRight.Services.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "InsuranceRight.Services.Shared >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
@@ -12564,7 +12580,11 @@
       },
       "frameworks": {
         "netcoreapp2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Shared\\InsuranceRight.Services.Shared.csproj": {
+              "projectPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Shared\\InsuranceRight.Services.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

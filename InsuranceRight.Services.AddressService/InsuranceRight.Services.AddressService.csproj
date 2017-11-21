@@ -20,4 +20,8 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InsuranceRight.Services.Shared\InsuranceRight.Services.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

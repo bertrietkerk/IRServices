@@ -37,8 +37,8 @@ namespace InsuranceRight.Services.AddressService
 
 
             // DI for models
-            services.AddSingleton<IAddressCheck, AddressCheck>();
-            services.AddSingleton<IDataProvider, DataProvider>();
+            services.AddSingleton<IAddressCheck, AddressCheckRepository>();
+            services.AddSingleton<IDataProvider, DataProviderRepository>();
             
         }
 

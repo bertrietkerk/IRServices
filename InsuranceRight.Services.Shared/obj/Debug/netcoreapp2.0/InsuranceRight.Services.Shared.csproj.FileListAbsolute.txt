@@ -1,0 +1,9 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.pdb

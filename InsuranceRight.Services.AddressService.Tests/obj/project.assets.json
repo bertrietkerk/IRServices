@@ -5171,6 +5171,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
+          "InsuranceRight.Services.Shared": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0"
         },
@@ -5179,6 +5180,16 @@
         },
         "runtime": {
           "bin/placeholder/InsuranceRight.Services.AddressService.dll": {}
+        }
+      },
+      "InsuranceRight.Services.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/InsuranceRight.Services.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InsuranceRight.Services.Shared.dll": {}
         }
       }
     }
@@ -13521,6 +13532,11 @@
       "type": "project",
       "path": "../InsuranceRight.Services.AddressService/InsuranceRight.Services.AddressService.csproj",
       "msbuildProject": "../InsuranceRight.Services.AddressService/InsuranceRight.Services.AddressService.csproj"
+    },
+    "InsuranceRight.Services.Shared/1.0.0": {
+      "type": "project",
+      "path": "../InsuranceRight.Services.Shared/InsuranceRight.Services.Shared.csproj",
+      "msbuildProject": "../InsuranceRight.Services.Shared/InsuranceRight.Services.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -10,13 +10,13 @@ using System.Text.RegularExpressions;
 
 namespace InsuranceRight.Services.AddressService.Models
 {
-    public class AddressCheck : IAddressCheck
+    public class AddressCheckRepository : IAddressCheck
     {
         
         private readonly IEnumerable<String> _validZipCodeList;
         private readonly IEnumerable<Address> _validAddressList;
 
-        public AddressCheck(IDataProvider dataProvider)
+        public AddressCheckRepository(IDataProvider dataProvider)
         {
             _validAddressList = dataProvider.GetValidAddresses();
             _validZipCodeList = dataProvider.GetValidZipCodes(_validAddressList);
