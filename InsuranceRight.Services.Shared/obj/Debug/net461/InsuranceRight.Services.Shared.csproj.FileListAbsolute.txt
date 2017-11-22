@@ -1,0 +1,8 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\bin\Debug\net461\InsuranceRight.Services.Shared.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\bin\Debug\net461\InsuranceRight.Services.Shared.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Shared.pdb

@@ -197,7 +197,8 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       }
-    }
+    },
+    ".NETFramework,Version=v4.6.1": {}
   },
   "libraries": {
     "Microsoft.NETCore.App/2.0.0": {
@@ -661,7 +662,8 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Microsoft.NETCore.App >= 2.0.0"
-    ]
+    ],
+    ".NETFramework,Version=v4.6.1": []
   },
   "packageFolders": {
     "C:\\Users\\brietkerk\\.nuget\\packages\\": {},
@@ -679,6 +681,7 @@
       "packagesPath": "C:\\Users\\brietkerk\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Shared\\obj\\",
       "projectStyle": "PackageReference",
+      "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
@@ -687,13 +690,17 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp2.0"
+        "netcoreapp2.0",
+        "net461"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
+        "net461": {
+          "projectReferences": {}
+        },
         "netcoreapp2.0": {
           "projectReferences": {}
         }
@@ -705,6 +712,7 @@
       }
     },
     "frameworks": {
+      "net461": {},
       "netcoreapp2.0": {
         "dependencies": {
           "Microsoft.NETCore.App": {

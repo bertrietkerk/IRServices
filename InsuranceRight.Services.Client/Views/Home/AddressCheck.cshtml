@@ -1,0 +1,40 @@
+﻿@using InsuranceRight.Services.Client.Models;
+@model AddressCheckViewModel
+@{
+    ViewBag.Title = "AddressCheck";
+}
+
+<h2>AddressCheck</h2>
+
+@using (Html.BeginForm())
+{
+
+    <fieldset>
+        <legend>Address checker</legend>
+        
+        <div style="margin:10px">
+            @Html.LabelFor(m => m.ZipCode.Zipcode)
+            @Html.TextBoxFor(m => m.ZipCode.Zipcode)
+        </div>
+        <div style="margin:10px">
+            @Html.LabelFor(m => m.Address.HouseNumber)
+            @Html.TextBoxFor(m => m.Address.HouseNumber)
+            @Html.LabelFor(m => m.Address.HouseNumberExtension)
+            @Html.TextBoxFor(m => m.Address.HouseNumberExtension)
+        </div>
+        
+        <p>
+            <input type="submit" value="Continue"/>
+        </p>
+        @if (Model != null && Model.ReturnZipCodeObject != null && Model.ReturnZipCodeObject.IsValid == false)
+        {
+            <p class="text-danger">
+                @Model.ReturnZipCodeObject.Message
+            </p>
+        }
+
+
+            
+    </fieldset>
+
+}
