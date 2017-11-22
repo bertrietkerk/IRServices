@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Diagnostics.Contracts;
-using System.IO;
-using static System.Net.Mime.MediaTypeNames;
-using System.Text.RegularExpressions;
+using InsuranceRight.Services.AddressService.Interfaces;
+using InsuranceRight.Services.Shared.Models;
 
-namespace InsuranceRight.Services.AddressService.Models
+namespace InsuranceRight.Services.AddressService.Repositories
 {
     public class AddressCheckRepository : IAddressCheck
     {

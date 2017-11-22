@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using InsuranceRight.Services.AddressService.Models;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json.Linq;
-using InsuranceRight.Services.Shared;
+using InsuranceRight.Services.Shared.Models;
+using InsuranceRight.Services.AddressService.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -74,7 +68,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
 
             if (string.IsNullOrWhiteSpace(address.ZipCode) || string.IsNullOrWhiteSpace(address.HouseNumber))
             {
-                response.Message = "'Zipcode' and/or 'housenumber' of address was/were null or empty";
+                response.Message = "'Zipcode' and/or 'housenumber' of address cannot be null or empty";
                 return Ok(response);
             }
 

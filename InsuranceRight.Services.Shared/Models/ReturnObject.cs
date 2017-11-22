@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace InsuranceRight.Services.Shared
+namespace InsuranceRight.Services.Shared.Models
 {
     public class ReturnObject<T>
     {

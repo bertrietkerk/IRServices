@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using InsuranceRight.Services.Shared.Models;
 
-namespace InsuranceRight.Services.AddressService.Models
+namespace InsuranceRight.Services.AddressService.Interfaces
 {
     public interface IAddressCheck
     {
