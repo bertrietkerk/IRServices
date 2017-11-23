@@ -34,40 +34,61 @@ namespace InsuranceRight.Services.Client.Controllers
 
         public ActionResult AddressCheck()
         {
-
-            //var model = new AddressCheckViewModel();
-            return View();//model);
+            return View();
         }
-        string BaseUrl = @"http://localhost:53491/api/addresscheck/";
 
+
+
+
+        string BaseUrl = @"http://localhost:53491/api/addresscheck/";
 
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult> AddressCheck(AddressCheckViewModel viewModel)
         {
-            var zipCode = viewModel.ZipCode;
-            var stringContent = new StringContent(JsonConvert.SerializeObject(zipCode), Encoding.UTF8, "application/json");
-            var returnObject = new ReturnObject<ZipCode>();
+            if (viewModel.ReturnZipCodeObject == null || viewModel.ReturnZipCodeObject.IsValid == false)
+            {
+                ZipCode zipCodeModel = new ZipCode() { Zipcode = viewModel.Address.ZipCode };
 
-            // call api with zipcode
+                var stringContent = new StringContent(JsonConvert.SerializeObject(zipCodeModel), Encoding.UTF8, "application/json");
+                var returnObjectZipcode = new ReturnObject<ZipCode>();
+
+                // call api with zipcode
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage result = await client.PostAsync("validatezipcode", stringContent);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var response = result.Content.ReadAsStringAsync().Result;
+                        returnObjectZipcode = JsonConvert.DeserializeObject<ReturnObject<ZipCode>>(response);
+                        viewModel.ReturnZipCodeObject = returnObjectZipcode;
+                    }
+                }
+            }
+
+            // zipcode is valid, now check full address
+            var content = new StringContent(JsonConvert.SerializeObject(viewModel.Address), Encoding.UTF8, "application/json");
+            var returnObjectAddress = new ReturnObject<Address>();
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(BaseUrl);
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage result = await client.PostAsync("validatezipcode", stringContent);
+                HttpResponseMessage result = await client.PostAsync("getfulladdress", content);
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync().Result;
-                    returnObject = JsonConvert.DeserializeObject<ReturnObject<ZipCode>>(response);
-                    viewModel.ReturnZipCodeObject = returnObject;
+                    returnObjectAddress = JsonConvert.DeserializeObject<ReturnObject<Address>>(response);
+                    viewModel.ReturnAddressObject = returnObjectAddress;
                 }
             }
 
-            
-            // check isValid value of the ReturnObject
-            
-            // set Validation message to message of the ReturnObject
+
 
             return View(viewModel);
         }
