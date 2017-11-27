@@ -1,4 +1,5 @@
 ﻿using InsuranceRight.Services.Client.Models;
+using InsuranceRight.Services.Client.Repositories;
 using InsuranceRight.Services.Shared.Models;
 using Newtonsoft.Json;
 using System;
@@ -13,6 +14,13 @@ namespace InsuranceRight.Services.Client.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAddressApiCallsRepository _apiRepo;
+        
+        public HomeController() //IAddressApiCallsRepository ApiRepository)   <= DI configured in MVC .Net 461 app (Ninject?)
+        {
+            _apiRepo = new AddressApiCallsRepository();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -37,65 +45,22 @@ namespace InsuranceRight.Services.Client.Controllers
             return View();
         }
 
-
-
-
-
+        
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult> AddressCheck(AddressCheckViewModel viewModel)
         {
-            string BaseUrl = @"http://localhost:53491/api/addresscheck/";
-
-
             if (viewModel.ReturnZipCodeObject == null || viewModel.ReturnZipCodeObject.HasErrors == true)
             {
-                ZipCode zipCodeModel = new ZipCode() { Zipcode = viewModel.Address.ZipCode };
-
-                var stringContent = new StringContent(JsonConvert.SerializeObject(zipCodeModel), Encoding.UTF8, "application/json");
-               // var returnObjectZipcode = new ReturnObject<ZipCode>();
-
-                // call api with zipcode
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(BaseUrl);
-                    client.DefaultRequestHeaders.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    
-                    HttpResponseMessage result = await client.PostAsync("validatezipcode", stringContent);
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var response = result.Content.ReadAsStringAsync().Result;
-                        var returnObjectZipcode = JsonConvert.DeserializeObject<ReturnObject<ZipCode>>(response);
-                        viewModel.ReturnZipCodeObject = returnObjectZipcode;
-                    }
-                }
+                ZipCode zipCode = new ZipCode() { Zipcode = viewModel.Address.ZipCode };
+                viewModel.ReturnZipCodeObject = await _apiRepo.GetZipCodeReturnObjectAsync(zipCode);
             }
 
             // if zipcode is valid, check full address
             if (viewModel.ReturnZipCodeObject != null && viewModel.ReturnZipCodeObject.HasErrors == false)
             {
-                var content = new StringContent(JsonConvert.SerializeObject(viewModel.Address), Encoding.UTF8, "application/json");
-                var returnObjectAddress = new ReturnObject<Address>();
-
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(BaseUrl);
-                    client.DefaultRequestHeaders.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                    HttpResponseMessage result = await client.PostAsync("getfulladdress", content);
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var response = result.Content.ReadAsStringAsync().Result;
-                        returnObjectAddress = JsonConvert.DeserializeObject<ReturnObject<Address>>(response);
-                        viewModel.ReturnAddressObject = returnObjectAddress;
-                    }
-                }
+                viewModel.ReturnAddressObject = await _apiRepo.GetAddressReturnObjectAsync(viewModel.Address);
             }
             
-
-
-
             return View(viewModel);
         }
     }
