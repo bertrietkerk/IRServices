@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InsuranceRight.Services.Shared.Models
 {
@@ -6,15 +7,26 @@ namespace InsuranceRight.Services.Shared.Models
     {
         public ReturnObject() { }
 
-        public ReturnObject(bool isValid, string message, T @object)
+        public ReturnObject(List<string> errorList, T @object)
         {
-            IsValid = isValid;
-            Message = message;
+            ErrorMessages = errorList;
             Object = @object;
         }
 
-        public bool IsValid { get; set; }
-        public string Message { get; set; }
+        public List<string> ErrorMessages { get; set; }
         public T Object { get; set; }
+        public bool HasErrors
+        {
+            get
+            {
+                if (ErrorMessages.Count == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        
     }
 }

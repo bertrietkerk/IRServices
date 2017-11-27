@@ -40,17 +40,19 @@ namespace InsuranceRight.Services.Client.Controllers
 
 
 
-        string BaseUrl = @"http://localhost:53491/api/addresscheck/";
 
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult> AddressCheck(AddressCheckViewModel viewModel)
         {
-            if (viewModel.ReturnZipCodeObject == null || viewModel.ReturnZipCodeObject.IsValid == false)
+            string BaseUrl = @"http://localhost:53491/api/addresscheck/";
+
+
+            if (viewModel.ReturnZipCodeObject == null || viewModel.ReturnZipCodeObject.HasErrors == true)
             {
                 ZipCode zipCodeModel = new ZipCode() { Zipcode = viewModel.Address.ZipCode };
 
                 var stringContent = new StringContent(JsonConvert.SerializeObject(zipCodeModel), Encoding.UTF8, "application/json");
-                var returnObjectZipcode = new ReturnObject<ZipCode>();
+               // var returnObjectZipcode = new ReturnObject<ZipCode>();
 
                 // call api with zipcode
                 using (var client = new HttpClient())
@@ -58,35 +60,39 @@ namespace InsuranceRight.Services.Client.Controllers
                     client.BaseAddress = new Uri(BaseUrl);
                     client.DefaultRequestHeaders.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
+                    
                     HttpResponseMessage result = await client.PostAsync("validatezipcode", stringContent);
                     if (result.IsSuccessStatusCode)
                     {
                         var response = result.Content.ReadAsStringAsync().Result;
-                        returnObjectZipcode = JsonConvert.DeserializeObject<ReturnObject<ZipCode>>(response);
+                        var returnObjectZipcode = JsonConvert.DeserializeObject<ReturnObject<ZipCode>>(response);
                         viewModel.ReturnZipCodeObject = returnObjectZipcode;
                     }
                 }
             }
 
-            // zipcode is valid, now check full address
-            var content = new StringContent(JsonConvert.SerializeObject(viewModel.Address), Encoding.UTF8, "application/json");
-            var returnObjectAddress = new ReturnObject<Address>();
-
-            using (var client = new HttpClient())
+            // if zipcode is valid, check full address
+            if (viewModel.ReturnZipCodeObject != null && viewModel.ReturnZipCodeObject.HasErrors == false)
             {
-                client.BaseAddress = new Uri(BaseUrl);
-                client.DefaultRequestHeaders.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var content = new StringContent(JsonConvert.SerializeObject(viewModel.Address), Encoding.UTF8, "application/json");
+                var returnObjectAddress = new ReturnObject<Address>();
 
-                HttpResponseMessage result = await client.PostAsync("getfulladdress", content);
-                if (result.IsSuccessStatusCode)
+                using (var client = new HttpClient())
                 {
-                    var response = result.Content.ReadAsStringAsync().Result;
-                    returnObjectAddress = JsonConvert.DeserializeObject<ReturnObject<Address>>(response);
-                    viewModel.ReturnAddressObject = returnObjectAddress;
+                    client.BaseAddress = new Uri(BaseUrl);
+                    client.DefaultRequestHeaders.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                    HttpResponseMessage result = await client.PostAsync("getfulladdress", content);
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var response = result.Content.ReadAsStringAsync().Result;
+                        returnObjectAddress = JsonConvert.DeserializeObject<ReturnObject<Address>>(response);
+                        viewModel.ReturnAddressObject = returnObjectAddress;
+                    }
                 }
             }
+            
 
 
 

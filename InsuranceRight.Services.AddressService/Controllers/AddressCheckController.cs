@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using InsuranceRight.Services.Shared.Models;
 using InsuranceRight.Services.AddressService.Interfaces;
+using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,13 +23,13 @@ namespace InsuranceRight.Services.AddressService.Controllers
         [HttpPost("[action]")]
         public IActionResult ValidateZipcode([FromBody]ZipCode ZipCode)
         {
-            var response = new ReturnObject<ZipCode>() { IsValid = false, Message = "", Object = ZipCode };
+            var response = new ReturnObject<ZipCode>() { ErrorMessages = new List<string>(), Object = ZipCode };
 
             // TODO: get only string from body directly as zipcode
             string zipcode = ZipCode.ToString();
             if (string.IsNullOrWhiteSpace(zipcode))
             {
-                response.Message = "Zipcode was null or empty";
+                response.ErrorMessages.Add("Zipcode was null or empty");
                 return Ok(response);
             }
 
@@ -37,7 +38,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
 
             if (!regex.IsMatch(zipcode))
             {
-                response.Message = "Zipcode wasn't in the correct format (e.g. 1111AA)";
+                response.ErrorMessages.Add("Zipcode wasn't in the correct format (e.g. 1111AA)");
                 return Ok(response);
             }
 
@@ -45,12 +46,11 @@ namespace InsuranceRight.Services.AddressService.Controllers
 
             if (result)
             {
-                response.IsValid = true;
-                response.Message = "Zipcode was found!";
+                response.ErrorMessages.Clear();
                 return Ok(response);
             }
 
-            response.Message = "Zipcode was not found";
+            response.ErrorMessages.Add("Zipcode was not found");
             return Ok(response);
         }
 
@@ -58,17 +58,17 @@ namespace InsuranceRight.Services.AddressService.Controllers
         [HttpPost("[action]")]
         public IActionResult GetFullAddress([FromBody]Address address)
         {
-            var response = new ReturnObject<Address>() { IsValid = false, Message = "", Object = address };
+            var response = new ReturnObject<Address>() { ErrorMessages = new List<string>() , Object = address };
 
             if (address == null)
             {
-                response.Message = "Address was null";
+                response.ErrorMessages.Add("Address was null");
                 return Ok(response);
             }
 
             if (string.IsNullOrWhiteSpace(address.ZipCode) || string.IsNullOrWhiteSpace(address.HouseNumber))
             {
-                response.Message = "'Zipcode' and/or 'housenumber' of address cannot be null or empty";
+                response.ErrorMessages.Add("'Zipcode' and/or 'housenumber' of address cannot be null or empty");
                 return Ok(response);
             }
 
@@ -83,12 +83,12 @@ namespace InsuranceRight.Services.AddressService.Controllers
             Address result = _addressCheckProvider.GetFullAddress(address.ZipCode, address.HouseNumber, address.HouseNumberExtension);
             if (result != null)
             {
-                response.IsValid = true;
-                response.Message = "Address found!";
+                response.ErrorMessages.Clear();
                 response.Object = result;
                 return Ok(response);
             }
-            response.Message = $"No combination was found for {address.ZipCode} {address.HouseNumber}{address.HouseNumberExtension}";
+
+            response.ErrorMessages.Add($"No combination was found for {address.ZipCode} {address.HouseNumber}{address.HouseNumberExtension}");
             return Ok(response);
         }
     }

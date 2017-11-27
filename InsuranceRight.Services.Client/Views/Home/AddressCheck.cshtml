@@ -20,7 +20,7 @@
             @Html.LabelFor(m => m.Address.HouseNumber)
             @Html.TextBoxFor(m => m.Address.HouseNumber)
         </div>
-        <div>
+        <div style="margin:10px">
             @Html.LabelFor(m => m.Address.HouseNumberExtension)
             @Html.TextBoxFor(m => m.Address.HouseNumberExtension)
         </div>
@@ -30,17 +30,25 @@
         </p>
         @if (Model != null)
         {
-            if (Model.ReturnZipCodeObject != null && Model.ReturnZipCodeObject.IsValid == false)
+            if (Model.ReturnZipCodeObject != null && Model.ReturnZipCodeObject.HasErrors)
             {
-                <p class="text-danger">
-                    @Model.ReturnZipCodeObject.Message
-                </p>
+                foreach (var message in @Model.ReturnZipCodeObject.ErrorMessages)
+                {
+                    <p class="text-danger">
+                        @message
+                    </p>
+                }
+
             }
-            if (Model.ReturnAddressObject != null && Model.ReturnAddressObject.IsValid == false)
+            if (Model.ReturnAddressObject != null && Model.ReturnAddressObject.HasErrors)
             {
-                <p class="text-danger">
-                    @Model.ReturnAddressObject.Message
-                </p>
+                foreach (var message in @Model.ReturnAddressObject.ErrorMessages)
+                {
+                    <p class="text-danger">
+                        @message
+                    </p>
+                }
+
             }
         }
          
