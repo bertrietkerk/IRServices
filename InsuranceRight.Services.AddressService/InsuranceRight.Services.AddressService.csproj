@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile></DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,11 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InsuranceRight.Services.Shared\InsuranceRight.Services.Shared.csproj" />
+    <ProjectReference Include="..\InsuranceRight.Services.Shared\InsuranceRight.Services.Models.csproj" />
   </ItemGroup>
 
 </Project>

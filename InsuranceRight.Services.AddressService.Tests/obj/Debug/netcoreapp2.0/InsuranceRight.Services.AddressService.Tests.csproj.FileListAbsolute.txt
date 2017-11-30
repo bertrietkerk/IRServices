@@ -14,5 +14,6 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.AssemblyInfo.cs
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\obj\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.Tests.pdb
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.dll
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Shared.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.xml
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Models.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService.Tests\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Models.pdb

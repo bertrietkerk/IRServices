@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using InsuranceRight.Services.AddressService.Interfaces;
 using InsuranceRight.Services.AddressService.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 namespace InsuranceRight.Services.AddressService
 {
@@ -30,10 +33,27 @@ namespace InsuranceRight.Services.AddressService
                     settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                 });
 
+            services.AddSwaggerGen(c =>
+            {
+                
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "InsuranceRight Services",
+                    Version = "1.0.0.0",
+                    Description = "Documentation on the services for InsuranceRight",
+                    Contact = new Contact { Name = "Virtual Affairs", Email = "", Url = "http://wwww.virtual-affairs.com/"},
+                    License = new License { Name = "License", Url = "https://en.wikipedia.org/wiki/License" }
+                });
+
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "InsuranceRight.Services.AddressService.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
+
 
             // DI for models
             services.AddSingleton<IAddressCheck, AddressCheckRepository>();
-            services.AddSingleton<IDataProvider, DataProviderRepository>();
+            services.AddSingleton<IDataProvider, AddressDataProvider>();
             
         }
 
@@ -44,8 +64,17 @@ namespace InsuranceRight.Services.AddressService
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
             //app.UseMvc(routes =>
             //{
             //    routes.MapRoute(
@@ -54,8 +83,6 @@ namespace InsuranceRight.Services.AddressService
             //        defaults: new { controller=}
             //        );
             //});
-
-
         }
     }
 }

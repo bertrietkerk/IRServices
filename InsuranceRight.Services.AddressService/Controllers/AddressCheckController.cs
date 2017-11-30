@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using InsuranceRight.Services.Shared.Models;
+//using InsuranceRight.Services.Models;
 using InsuranceRight.Services.AddressService.Interfaces;
 using System.Collections.Generic;
 
@@ -8,24 +9,40 @@ using System.Collections.Generic;
 
 namespace InsuranceRight.Services.AddressService.Controllers
 {
+    /// <summary>
+    /// Controller for validating zipcodes and getting full address details
+    /// </summary>
     [Route("api/[controller]")]
     public class AddressCheckController : Controller
     {
         private static readonly string _defaultDutchRegexPattern = "^[1-9][0-9]{3}[A-Z]{2}$";
         IAddressCheck _addressCheckProvider;
 
+        /// <summary>
+        /// Constructor injecting IAddressCheck
+        /// </summary>
+        /// <param name="addressCheck">IAddressCheck</param>
         public AddressCheckController(IAddressCheck addressCheck)
         {
-            this._addressCheckProvider = addressCheck;
+            _addressCheckProvider = addressCheck;
         }
 
         // POST api/addresscheck/validatezipcode
+        /// <summary>
+        /// Method for validating a zipcode
+        /// </summary>
+        /// <param name="ZipCode">The zipcode to validate</param>
+        /// <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         [HttpPost("[action]")]
         public IActionResult ValidateZipcode([FromBody]ZipCode ZipCode)
         {
             var response = new ReturnObject<ZipCode>() { ErrorMessages = new List<string>(), Object = ZipCode };
+            if (ZipCode == null)
+            {
+                response.ErrorMessages.Add("ZipCode was null");
+                return Ok(response);
+            }
 
-            // TODO: get only string from body directly as zipcode
             string zipcode = ZipCode.ToString();
             if (string.IsNullOrWhiteSpace(zipcode))
             {
@@ -42,9 +59,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
                 return Ok(response);
             }
 
-            var result = _addressCheckProvider.IsZipCodeValid(zipcode);
-
-            if (result)
+            if (_addressCheckProvider.IsZipCodeValid(zipcode))
             {
                 response.ErrorMessages.Clear();
                 return Ok(response);
@@ -55,6 +70,11 @@ namespace InsuranceRight.Services.AddressService.Controllers
         }
 
         // POST api/addresscheck/getfulladdress
+        /// <summary>
+        /// Method for getting the full details of an address
+        /// </summary>
+        /// <param name="address">Incomplete Address to fill with details</param>
+        /// <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
         [HttpPost("[action]")]
         public IActionResult GetFullAddress([FromBody]Address address)
         {
