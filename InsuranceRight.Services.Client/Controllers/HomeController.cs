@@ -49,6 +49,10 @@ namespace InsuranceRight.Services.Client.Controllers
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult> AddressCheck(AddressCheckViewModel viewModel)
         {
+            ViewBag.Street = "";
+            ViewBag.City = "";
+            ViewBag.Country = "";
+
             if (viewModel.ReturnZipCodeObject == null || viewModel.ReturnZipCodeObject.HasErrors == true)
             {
                 ZipCode zipCode = new ZipCode() { Zipcode = viewModel.Address.ZipCode };
@@ -59,6 +63,12 @@ namespace InsuranceRight.Services.Client.Controllers
             if (viewModel.ReturnZipCodeObject != null && viewModel.ReturnZipCodeObject.HasErrors == false)
             {
                 viewModel.ReturnAddressObject = await _apiRepo.GetAddressReturnObjectAsync(viewModel.Address);
+                if (!viewModel.ReturnAddressObject.HasErrors)
+                {
+                    ViewBag.Street = viewModel.ReturnAddressObject.Object.Street;
+                    ViewBag.City = viewModel.ReturnAddressObject.Object.City;
+                    ViewBag.Country = viewModel.ReturnAddressObject.Object.Country;
+                }
             }
             
             return View(viewModel);

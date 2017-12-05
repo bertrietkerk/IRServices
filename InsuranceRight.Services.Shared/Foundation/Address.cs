@@ -16,7 +16,8 @@ namespace InsuranceRight.Services.Shared.Models
             HouseNumberExtension = houseNumberExtension;
         }
 
-         public string ZipCode { get; set; }
+        [RegularExpression("^[1-9][0-9]{3}[A-Z]{2}$")]
+        public string ZipCode { get; set; }
 
         public string HouseNumber { get; set; }
 

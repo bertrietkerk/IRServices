@@ -21,6 +21,27 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             _lpLookup = lpLookup;
         }
 
+        /// <summary>
+        /// Returns the Car details of the car corresponding to the give license-plate
+        /// </summary>
+        /// <param name="licensePlate">The license-plate from the car to get the details from</param>
+        /// <returns>CarObject with car details</returns>
+        [HttpPost("[action]")]
+        public IActionResult GetCarDetails([FromBody] LicensePlate licensePlate)
+        {
+            var response = new ReturnObject<CarObject>();
+            response.ErrorMessages = new List<string>();
+            var carDetails = _lpLookup.GetCar(licensePlate.ToString());
+            if (carDetails == null)
+            {
+                response.ErrorMessages.Add("Car not found");
+                return Ok(response);
+            }
+
+            response.Object = carDetails;
+            return Ok(response);
+        }
+
         [HttpGet("[action]/{licensePlate}")]
         public IActionResult GetCarDetails(string licensePlate)
         {
@@ -36,7 +57,5 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             response.Object = carDetails;
             return Ok(response);
         }
-
-
     }
 }

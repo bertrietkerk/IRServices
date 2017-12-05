@@ -69,20 +69,14 @@ namespace InsuranceRight.Services.AddressService
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
 
-            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
+            // Enable middleware to serve swagger-ui, specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            //app.UseMvc(routes =>
-            //{
-            //    routes.MapRoute(
-            //        name: "ValidateZipcode",
-            //        template: "{controller}/{action}/{zipcode}",
-            //        defaults: new { controller=}
-            //        );
-            //});
+
+
         }
     }
 }

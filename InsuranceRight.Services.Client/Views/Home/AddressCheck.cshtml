@@ -7,28 +7,40 @@
 <h2>AddressCheck</h2>
 
 @using (Html.BeginForm())
-{
-
-    <fieldset>
-        <legend>Address</legend>
-        
-        <div style="margin:10px">
+{    
+        <div class="form-group">
             @Html.LabelFor(m => m.Address.ZipCode)
-            @Html.TextBoxFor(m => m.Address.ZipCode)
+            @Html.TextBoxFor(m => m.Address.ZipCode, new { @class = "form-control"})
         </div>
-        <div style="margin:10px">
+        <div class="form-group">
             @Html.LabelFor(m => m.Address.HouseNumber)
-            @Html.TextBoxFor(m => m.Address.HouseNumber)
+            @Html.TextBoxFor(m => m.Address.HouseNumber, new { @class = "form-control" })
         </div>
-        <div style="margin:10px">
+        <div class="form-group">
             @Html.LabelFor(m => m.Address.HouseNumberExtension)
-            @Html.TextBoxFor(m => m.Address.HouseNumberExtension)
+            @Html.TextBoxFor(m => m.Address.HouseNumberExtension, new { @class = "form-control" })
         </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address.Street)
+            @Html.TextBoxFor(m => m.Address.Street, new { @readonly = "readonly", @Value = ViewBag.Street, @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address.City)
+            @Html.TextBoxFor(m => m.Address.City, new { @readonly = "readonly", @Value = ViewBag.City, @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Address.Country)
+            @Html.TextBoxFor(m => m.Address.Country, new { @readonly = "readonly", @Value = ViewBag.Country, @class = "form-control" })
+        </div>
+
+
+
         
         <p>
             <input type="submit" value="Continue"/>
         </p>
-        @if (Model != null)
+
+        if (Model != null)
         {
             if (Model.ReturnZipCodeObject != null && Model.ReturnZipCodeObject.HasErrors)
             {
@@ -49,11 +61,6 @@
                 }
 
             }
-        }
-         
-
-
-            
-    </fieldset>
+        }  
 
 }

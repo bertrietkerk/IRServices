@@ -7,15 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Add
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.AddressService.Tests", "InsuranceRight.Services.AddressService.Tests\InsuranceRight.Services.AddressService.Tests.csproj", "{E4296332-48FA-4FCC-A729-D00FD7482066}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.LicensePlateService", "InsuranceRight.Services.LicensePlateService\InsuranceRight.Services.LicensePlateService.csproj", "{DEE7CCFF-CE2C-411C-A534-AF3CFF9F38CA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Models", "InsuranceRight.Services.Shared\InsuranceRight.Services.Models.csproj", "{F0D55C9D-C76F-4A8D-9DD3-6D67110C0AB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.Client", "InsuranceRight.Services.Client\InsuranceRight.Services.Client.csproj", "{C680CE2D-FA8D-4C85-B436-213B531B78E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{0C9C7C19-712C-495C-9E39-484ED1BA52E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.Feature.Car", "InsuranceRight.Services.Feature.Car\InsuranceRight.Services.Feature.Car.csproj", "{A645A097-E45B-43C3-B22C-1CF7A3B956AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Feature.Car", "InsuranceRight.Services.Feature.Car\InsuranceRight.Services.Feature.Car.csproj", "{A645A097-E45B-43C3-B22C-1CF7A3B956AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.Host", "InsuranceRight.Services.Host\InsuranceRight.Services.Host.csproj", "{BBD33A57-B5A4-4974-A870-34DA60090C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +31,6 @@ Global
 		{E4296332-48FA-4FCC-A729-D00FD7482066}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4296332-48FA-4FCC-A729-D00FD7482066}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4296332-48FA-4FCC-A729-D00FD7482066}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DEE7CCFF-CE2C-411C-A534-AF3CFF9F38CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEE7CCFF-CE2C-411C-A534-AF3CFF9F38CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEE7CCFF-CE2C-411C-A534-AF3CFF9F38CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEE7CCFF-CE2C-411C-A534-AF3CFF9F38CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F0D55C9D-C76F-4A8D-9DD3-6D67110C0AB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F0D55C9D-C76F-4A8D-9DD3-6D67110C0AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0D55C9D-C76F-4A8D-9DD3-6D67110C0AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +43,10 @@ Global
 		{A645A097-E45B-43C3-B22C-1CF7A3B956AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A645A097-E45B-43C3-B22C-1CF7A3B956AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A645A097-E45B-43C3-B22C-1CF7A3B956AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
