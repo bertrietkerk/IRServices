@@ -1,13 +1,6 @@
 ﻿using InsuranceRight.Services.Client.Models;
 using InsuranceRight.Services.Client.Repositories;
-using InsuranceRight.Services.Shared.Models;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web;
+using InsuranceRight.Services.Models.Foundation;
 using System.Web.Mvc;
 
 namespace InsuranceRight.Services.Client.Controllers

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using InsuranceRight.Services.AddressService.Interfaces;
-using InsuranceRight.Services.Shared.Models;
+using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.AddressService.Repositories
 {

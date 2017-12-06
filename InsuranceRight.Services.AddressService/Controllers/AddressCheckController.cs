@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
-using InsuranceRight.Services.Shared.Models;
-//using InsuranceRight.Services.Models;
+using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.AddressService.Interfaces;
 using System.Collections.Generic;
+using InsuranceRight.Services.Models.Foundation;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

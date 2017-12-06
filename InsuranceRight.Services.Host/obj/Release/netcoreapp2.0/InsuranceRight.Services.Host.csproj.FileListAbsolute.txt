@@ -1,0 +1,17 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Host.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Host.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Host.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Host.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Host.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.AddressService.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Feature.Car.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Models.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.AddressService.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Release\netcoreapp2.0\InsuranceRight.Services.Models.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Release\netcoreapp2.0\InsuranceRight.Services.Host.pdb

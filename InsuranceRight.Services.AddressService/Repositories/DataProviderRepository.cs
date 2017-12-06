@@ -1,5 +1,5 @@
 ﻿using InsuranceRight.Services.AddressService.Interfaces;
-using InsuranceRight.Services.Shared.Models;
+using InsuranceRight.Services.Models.Foundation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,8 @@ namespace InsuranceRight.Services.AddressService.Repositories
         {
             var list = new List<Address>();
             Address address;
-            string[] files = Directory.GetFiles(@".\Json");
+            //string[] files = Directory.GetFiles(@".\Json");
+            string[] files = Directory.GetFiles(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\Json");
             foreach (String file in files)
             {
                 using (StreamReader sr = File.OpenText(file))

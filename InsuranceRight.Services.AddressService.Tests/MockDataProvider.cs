@@ -1,5 +1,5 @@
 ﻿using InsuranceRight.Services.AddressService.Interfaces;
-using InsuranceRight.Services.Shared.Models;
+using InsuranceRight.Services.Models.Foundation;
 using System.Collections.Generic;
 
 namespace InsuranceRight.Services.AddressService.Tests

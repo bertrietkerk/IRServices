@@ -1,0 +1,38 @@
+﻿{
+  "cars": [
+    {
+      "LicensePlate": "ST-IG-13",
+      "Brand": "AUDI",
+      "Model": "TT",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "2510",
+      "Edition": "1.8 T",
+      "Year": "2012",
+      "Price": {
+        "CarPrice": {
+          "CatalogPrice": 20250,
+          "CurrentPrice": 15000
+        }
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-GBB-1",
+      "Brand": "VOLVO",
+      "Model": "XC60",
+      "Fuel": "DIESEL",
+      "GearType": "Manual",
+      "Weight": "2400",
+      "Edition": "2.0",
+      "Year": "2015",
+      "Price": {
+        "CarPrice": {
+          "CatalogPrice": 18000,
+          "CurrentPrice": 17000
+        }
+      },
+      "IsVehicleFound": true
+    }
+  ]
+}

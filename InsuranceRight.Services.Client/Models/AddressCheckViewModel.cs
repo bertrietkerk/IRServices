@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using InsuranceRight.Services.Shared.Models;
+﻿using InsuranceRight.Services.Models.Response;
+using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.Client.Models
 {

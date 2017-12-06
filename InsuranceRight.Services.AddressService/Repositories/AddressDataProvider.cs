@@ -1,12 +1,9 @@
 ﻿using InsuranceRight.Services.AddressService.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Shared.Models;
+using InsuranceRight.Services.Models.JsonRootObjects;
 using System.IO;
 using Newtonsoft.Json;
-using InsuranceRight.Services.AddressService.Json;
+using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.AddressService.Repositories
 {
@@ -22,7 +19,9 @@ namespace InsuranceRight.Services.AddressService.Repositories
         public IEnumerable<Address> GetValidAddresses()
         {
             AddressJsonRootObject rootObject;
-            using (StreamReader sr = File.OpenText(@".\Json\addresses.json"))
+
+            //using (StreamReader sr = File.OpenText(@".\Json\addresses.json"))
+            using (StreamReader sr = File.OpenText(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\Json\addresses.json"))
             {
                 JsonSerializer ser = new JsonSerializer();
                 rootObject = (AddressJsonRootObject)ser.Deserialize(sr, typeof(AddressJsonRootObject));

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using InsuranceRight.Services.Models.Car;
-using InsuranceRight.Services.Feature.Car.Services.Data.Json;
 using System.IO;
 using Newtonsoft.Json;
+using InsuranceRight.Services.Models.JsonRootObjects;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
 {
@@ -15,7 +12,10 @@ namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
         {
             List<CarObject> carsList = new List<CarObject>();
             CarJsonRootObject rootObject;
-            using (StreamReader sr = File.OpenText(@".\Services\Data\Json\cars.json"))
+
+
+            // using (StreamReader sr = File.OpenText(@".\Services\Data\Json\cars.json"))
+            using (StreamReader sr = File.OpenText(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json"))
             {
                 JsonSerializer ser = new JsonSerializer();
                 rootObject = (CarJsonRootObject)ser.Deserialize(sr, typeof(CarJsonRootObject));

@@ -1,9 +1,5 @@
-﻿using InsuranceRight.Services.Client.Models;
-using InsuranceRight.Services.Shared.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using InsuranceRight.Services.Models.Foundation;
+using InsuranceRight.Services.Models.Response;
 using System.Threading.Tasks;
 
 namespace InsuranceRight.Services.Client.Repositories

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace InsuranceRight.Services.Shared.Models
+namespace InsuranceRight.Services.Models.Foundation
 {
     public class Address
     {

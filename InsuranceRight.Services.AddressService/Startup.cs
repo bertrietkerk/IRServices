@@ -23,6 +23,7 @@ namespace InsuranceRight.Services.AddressService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services
                 .AddMvc()
                 .AddJsonOptions(options =>
@@ -52,8 +53,8 @@ namespace InsuranceRight.Services.AddressService
 
 
             // DI for models
-            services.AddSingleton<IAddressCheck, AddressCheckRepository>();
-            services.AddSingleton<IDataProvider, AddressDataProvider>();
+           // services.AddSingleton<IAddressCheck, AddressCheckRepository>();
+           // services.AddSingleton<IDataProvider, AddressDataProvider>();
             
         }
 

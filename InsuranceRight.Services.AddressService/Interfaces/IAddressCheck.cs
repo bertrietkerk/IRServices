@@ -1,4 +1,4 @@
-﻿using InsuranceRight.Services.Shared.Models;
+﻿using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.AddressService.Interfaces
 {

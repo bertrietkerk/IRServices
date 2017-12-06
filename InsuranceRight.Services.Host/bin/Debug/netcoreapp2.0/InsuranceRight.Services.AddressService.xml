@@ -15,14 +15,14 @@
             </summary>
             <param name="addressCheck">IAddressCheck</param>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.ValidateZipcode(InsuranceRight.Services.Shared.Models.ZipCode)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.ValidateZipcode(InsuranceRight.Services.Models.Foundation.ZipCode)">
             <summary>
             Method for validating a zipcode
             </summary>
             <param name="ZipCode">The zipcode to validate</param>
             <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.GetFullAddress(InsuranceRight.Services.Shared.Models.Address)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.GetFullAddress(InsuranceRight.Services.Models.Foundation.Address)">
             <summary>
             Method for getting the full details of an address
             </summary>

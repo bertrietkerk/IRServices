@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using InsuranceRight.Services.Client.Models;
-//using InsuranceRight.Services.Models;
-using InsuranceRight.Services.Shared.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Text;
 using System.Threading.Tasks;
+using InsuranceRight.Services.Models.Response;
+using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.Client.Repositories
 {

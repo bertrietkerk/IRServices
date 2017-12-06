@@ -44,8 +44,8 @@ namespace InsuranceRight.Services.Feature.Car
             });
 
             // DI
-            services.AddSingleton<ILicensePlateLookup, DefaultLicensePlateLookup>();
-            services.AddSingleton<ICarDataProvider, DefaultCarDataProvider>();
+            //services.AddSingleton<ILicensePlateLookup, DefaultLicensePlateLookup>();
+            //services.AddSingleton<ICarDataProvider, DefaultCarDataProvider>();
 
         }
 
