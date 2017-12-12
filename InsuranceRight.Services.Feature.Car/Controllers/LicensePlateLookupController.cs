@@ -37,21 +37,5 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             response.Object = carDetails;
             return Ok(response);
         }
-
-        [HttpGet("[action]/{licensePlate}")]
-        public IActionResult GetCarDetails(string licensePlate)
-        {
-            var response = new ReturnObject<CarObject>();
-            response.ErrorMessages = new List<string>();
-            var carDetails = _lpLookup.GetCar(licensePlate);
-            if (carDetails == null)
-            {
-                response.ErrorMessages.Add("Car not found");
-                return Ok(response);
-            }
-
-            response.Object = carDetails;
-            return Ok(response);
-        }
     }
 }

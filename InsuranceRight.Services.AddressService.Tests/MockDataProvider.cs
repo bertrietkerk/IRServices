@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace InsuranceRight.Services.AddressService.Tests
 {
-    class MockDataProvider : IDataProvider
+    class MockDataProvider : IAddressDataProvider
     {
         public IEnumerable<Address> GetValidAddresses()
         {

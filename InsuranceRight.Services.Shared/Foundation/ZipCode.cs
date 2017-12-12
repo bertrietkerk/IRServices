@@ -7,6 +7,7 @@ namespace InsuranceRight.Services.Models.Foundation
 {
     public class ZipCode
     {
+
         [RegularExpression("^[1-9][0-9]{3}[A-Z]{2}$")]
         public string Zipcode { get; set; }
 

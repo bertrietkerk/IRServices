@@ -16,17 +16,35 @@ namespace InsuranceRight.Services.Models.Foundation
             HouseNumberExtension = houseNumberExtension;
         }
 
+        /// <summary>
+        /// The zipcode of the address
+        /// </summary>
         [RegularExpression("^[1-9][0-9]{3}[A-Z]{2}$")]
         public string ZipCode { get; set; }
 
+        /// <summary>
+        /// The housenumber of the address
+        /// </summary>
         public string HouseNumber { get; set; }
 
+        /// <summary>
+        /// The housenumber-extension of the address
+        /// </summary>
         public string HouseNumberExtension { get; set; }
 
-        public string City { get; set; }
-
+        /// <summary>
+        /// The street of the address
+        /// </summary>
         public string Street { get; set; }
 
+        /// <summary>
+        /// The city of the address
+        /// </summary>
+        public string City { get; set; }
+
+        /// <summary>
+        /// The country of the address
+        /// </summary>
         public string Country { get; set; }
     }
 }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="XmlCommentDocs\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -10,7 +10,7 @@ namespace InsuranceRight.Services.Client.Repositories
 {
     public class AddressApiCallsRepository : IAddressApiCallsRepository
     {
-        static string BaseUrl = @"http://localhost:53491/api/addresscheck/";
+        static string BaseUrl = @"http://localhost:53491/api/addresslookup/";
 
         public async Task<ReturnObject<T>> BaseReturnObjectApiCall<T>(StringContent stringContent, string path)
         {

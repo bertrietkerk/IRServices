@@ -4,32 +4,32 @@
         <name>InsuranceRight.Services.AddressService</name>
     </assembly>
     <members>
-        <member name="T:InsuranceRight.Services.AddressService.Controllers.AddressCheckController">
+        <member name="T:InsuranceRight.Services.AddressService.Controllers.AddressLookupController">
             <summary>
             Controller for validating zipcodes and getting full address details
             </summary>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.#ctor(InsuranceRight.Services.AddressService.Interfaces.IAddressCheck)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.#ctor(InsuranceRight.Services.AddressService.Interfaces.IAddressLookup)">
             <summary>
             Constructor injecting IAddressCheck
             </summary>
             <param name="addressCheck">IAddressCheck</param>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.ValidateZipcode(InsuranceRight.Services.Models.Foundation.ZipCode)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode(InsuranceRight.Services.Models.Foundation.ZipCode)">
             <summary>
             Method for validating a zipcode
             </summary>
             <param name="ZipCode">The zipcode to validate</param>
             <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressCheckController.GetFullAddress(InsuranceRight.Services.Models.Foundation.Address)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.GetFullAddress(InsuranceRight.Services.Models.Foundation.Address)">
             <summary>
             Method for getting the full details of an address
             </summary>
             <param name="address">Incomplete Address to fill with details</param>
             <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Repositories.AddressCheckRepository.IsZipCodeValid(System.String)">
+        <member name="M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.IsZipCodeValid(System.String)">
             <summary>
             Checks if zipCode is valid, based on _validZipCodes list
             </summary>
@@ -37,6 +37,6 @@
             <param name="pattern">An optional custom regex pattern which the zipcode must conform to in order to be checked</param>
             <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:InsuranceRight.Services.AddressService.Repositories.AddressCheckRepository.GetFullAddress(System.String,System.String,System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)" -->
     </members>
 </doc>

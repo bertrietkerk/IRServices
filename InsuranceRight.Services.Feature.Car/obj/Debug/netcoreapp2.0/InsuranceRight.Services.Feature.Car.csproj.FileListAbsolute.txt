@@ -11,3 +11,17 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Debu
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\netcoreapp2.0\InsuranceRight.Services.Feature.Car.xml
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Feature.Car.xml
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Models.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Models.pdb
