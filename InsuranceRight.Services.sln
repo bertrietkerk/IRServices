@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{0C9C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Feature.Car", "InsuranceRight.Services.Feature.Car\InsuranceRight.Services.Feature.Car.csproj", "{A645A097-E45B-43C3-B22C-1CF7A3B956AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.Host", "InsuranceRight.Services.Host\InsuranceRight.Services.Host.csproj", "{BBD33A57-B5A4-4974-A870-34DA60090C27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Host", "InsuranceRight.Services.Host\InsuranceRight.Services.Host.csproj", "{BBD33A57-B5A4-4974-A870-34DA60090C27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

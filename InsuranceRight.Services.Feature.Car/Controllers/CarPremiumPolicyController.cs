@@ -23,17 +23,17 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         }
 
         /// <summary>
-        /// Get Coverage Variants
+        /// Get Product Variants
         /// </summary>
-        /// <param name="viewModel">Viewmodel containing PremiumFactors</param>
+        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("[action]")]
         public IActionResult GetVariants([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
 
 
-            if (viewModel == null)
+            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
             {
                 response.ErrorMessages.Add("Viewmodel was null");
                 return Ok(response);
@@ -52,7 +52,102 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             }
 
             response.Object = variants;
-            return Ok(response);   
+            return Ok(response);
+        }
+
+
+        /// <summary>
+        /// Get Package Variants (MTPL, MTPL Limited Casco & MTPL All Risk)
+        /// </summary>
+        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears, -residenceaddress zipcode and -kilometersPerYear</param>
+        /// <returns></returns>
+        [HttpPost("[action]")]
+        public IActionResult GetVariants_V2([FromBody] CarViewModel viewModel)
+        {
+            var response = new ReturnObject<List<ProductVariant>>();
+
+
+            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            {
+                response.ErrorMessages.Add("Viewmodel was null");
+                return Ok(response);
+            }
+
+            var variants = _carPremiumPolicy.GetVariants_V2(
+                viewModel.PremiumFactors.Car.LicensePlate,
+                viewModel.PremiumFactors.Driver.Age,
+                viewModel.PremiumFactors.Driver.DamageFreeYears,
+                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode,
+                viewModel.PremiumFactors.Driver.KilometersPerYear
+            );
+
+            if (variants == null)
+            {
+                response.ErrorMessages.Add("Variants were not found");
+                return Ok(response);
+            }
+
+            response.Object = variants;
+            return Ok(response);
+        }
+
+
+
+        /// <summary>
+        /// Get Coverages
+        /// </summary>
+        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+        /// <returns></returns>
+        [HttpPost("[action]")]
+        public IActionResult GetCoverages([FromBody] CarViewModel viewModel)
+        {
+            var response = new ReturnObject<List<Coverage>>();
+
+            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            {
+                response.ErrorMessages.Add("Viewmodel was null");
+                return Ok(response);
+            }
+
+            var coverages = _carPremiumPolicy.GetCoverages(
+                viewModel.PremiumFactors.Car.LicensePlate,
+                viewModel.PremiumFactors.Driver.Age,
+                viewModel.PremiumFactors.Driver.DamageFreeYears,
+                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode);
+
+            if (coverages == null)
+            {
+                response.ErrorMessages.Add("Coverages were not found");
+                return Ok(response);
+            }
+
+            response.Object = coverages;
+            return Ok(response);
+        }
+
+        /// <summary>
+        /// Get the discount based on the payment frequency
+        /// </summary>
+        /// <param name="viewModel">Viewmodel containing the payment frequency</param>
+        /// <returns></returns>
+        [HttpPost("[action]")]
+        public IActionResult PaymentFrequencyDiscount([FromBody] CarViewModel viewModel)
+        {
+            var response = new ReturnObject<PaymentFrequencyDiscountModel>();
+            response.Object = new PaymentFrequencyDiscountModel();
+
+            if (viewModel == null || viewModel.Payment == null)
+            {
+                response.ErrorMessages.Add("Viewmodel was null");
+                response.Object.Amount = 0M;
+                return Ok(response);
+            }
+
+            var discount = _carPremiumPolicy.GetPaymentFrequencyDiscount((int)viewModel.Payment.PaymentFrequency);
+
+            response.Object.Frequency = viewModel.Payment.PaymentFrequency;
+            response.Object.Amount = discount;
+            return Ok(response);
         }
     }
 }

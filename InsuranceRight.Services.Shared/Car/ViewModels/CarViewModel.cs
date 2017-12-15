@@ -8,8 +8,6 @@ namespace InsuranceRight.Services.Models.Car.ViewModels
     {
 
         public CarPremiumFactors PremiumFactors { get; set; }
-
-        //public Payment Payment { get; set; }
-
+        public CarPayment Payment { get; set; }
     }
 }

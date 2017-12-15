@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InsuranceRight.Services.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,8 @@ namespace InsuranceRight.Services.Models.Coverages
             Coverages = new List<Coverage>();
             AdditionalCoverages = new List<Coverage>();
         }
+
+        public CarInsurancePackageType InsuranceType { get; set; }
 
         public virtual string Id { get; set; }
 

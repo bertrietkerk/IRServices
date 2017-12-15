@@ -63,6 +63,7 @@ namespace InsuranceRight.Services.Host
             services.AddSingleton<ICarDiscountPolicy, DefaultCarDiscountPolicy>();
             services.AddSingleton<ICarPremiumPolicy, DefaultCarPremiumPolicy>();
 
+            services.AddSingleton<IPremiumCalculator, DefaultPremiumCalculator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

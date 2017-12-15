@@ -41,9 +41,24 @@
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
             <summary>
-            Get Coverage Variants
+            Get Product Variants
             </summary>
-            <param name="viewModel">Viewmodel containing PremiumFactors</param>
+            <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants_V2(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)" -->
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetCoverages(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Get Coverages
+            </summary>
+            <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+            <returns></returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.PaymentFrequencyDiscount(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Get the discount based on the payment frequency
+            </summary>
+            <param name="viewModel">Viewmodel containing the payment frequency</param>
             <returns></returns>
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.LicensePlateLookupController.GetCarDetails(InsuranceRight.Services.Models.Car.LicensePlate)">
