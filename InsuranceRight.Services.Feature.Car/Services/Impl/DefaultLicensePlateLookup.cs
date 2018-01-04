@@ -24,7 +24,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
 
             return _carRepo.GetCars().FirstOrDefault(c => c.LicensePlate.Replace("-", "") == licensePlate.Replace("-", "").ToUpper());
-
         }
     }
 }

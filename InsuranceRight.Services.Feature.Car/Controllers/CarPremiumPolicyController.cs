@@ -25,10 +25,10 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <summary>
         /// Get Product Variants
         /// </summary>
-        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+        /// <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
         /// <returns></returns>
         [HttpPost("[action]")]
-        public IActionResult GetVariants([FromBody] CarViewModel viewModel)
+        public IActionResult GetVariants_Old([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
 
@@ -39,7 +39,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                 return Ok(response);
             }
 
-            var variants = _carPremiumPolicy.GetVariants(
+            var variants = _carPremiumPolicy.GetVariants_Old(
                 viewModel.PremiumFactors.Car.LicensePlate,
                 viewModel.PremiumFactors.Driver.Age,
                 viewModel.PremiumFactors.Driver.DamageFreeYears,
@@ -57,12 +57,12 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
 
 
         /// <summary>
-        /// Get Package Variants (MTPL, MTPL Limited Casco & MTPL All Risk)
+        /// Get Package Variants (MTPL || MTPL Limited Casco || MTPL All Risk)
         /// </summary>
-        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears, -residenceaddress zipcode and -kilometersPerYear</param>
+        /// <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears, -residenceaddress zipcode and -kilometersPerYear</param>
         /// <returns></returns>
         [HttpPost("[action]")]
-        public IActionResult GetVariants_V2([FromBody] CarViewModel viewModel)
+        public IActionResult GetVariants([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
 
@@ -73,7 +73,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                 return Ok(response);
             }
 
-            var variants = _carPremiumPolicy.GetVariants_V2(
+            var variants = _carPremiumPolicy.GetVariants(
                 viewModel.PremiumFactors.Car.LicensePlate,
                 viewModel.PremiumFactors.Driver.Age,
                 viewModel.PremiumFactors.Driver.DamageFreeYears,
@@ -96,7 +96,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <summary>
         /// Get Coverages
         /// </summary>
-        /// <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+        /// <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
         /// <returns></returns>
         [HttpPost("[action]")]
         public IActionResult GetCoverages([FromBody] CarViewModel viewModel)

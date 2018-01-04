@@ -23,7 +23,6 @@ namespace InsuranceRight.Services.AddressService.Repositories
         /// Checks if zipCode is valid, based on _validZipCodes list
         /// </summary>
         /// <param name="zipCode">The zipcode to check</param>
-        /// <param name="pattern">An optional custom regex pattern which the zipcode must conform to in order to be checked</param>
         /// <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         public bool IsZipCodeValid(string zipCode)
         {
@@ -35,8 +34,8 @@ namespace InsuranceRight.Services.AddressService.Repositories
         /// </summary>
         /// <param name="zipCode">The zipcode of the full address</param>
         /// <param name="houseNumber">The housenumber of the full address</param>
-        /// <param name="houseNumberExt">The housenumberextension of the full address</param>
-        /// <returns>The full address based on zipcode, housenumber & housenumberextension, or null if not found in _validAddressList</returns>
+        /// <param name="houseNumberExtension">The housenumberextension of the full address</param>
+        /// <returns>The full address based on zipcode, housenumber and housenumberextension, or null if not found in _validAddressList</returns>
         public Address GetFullAddress(string zipCode, string houseNumber, string houseNumberExtension = "")
         {
             return _validAddressList.FirstOrDefault(a => a.ZipCode == zipCode && a.HouseNumber == houseNumber && a.HouseNumberExtension == houseNumberExtension);   

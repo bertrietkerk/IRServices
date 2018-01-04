@@ -34,9 +34,16 @@
             Checks if zipCode is valid, based on _validZipCodes list
             </summary>
             <param name="zipCode">The zipcode to check</param>
-            <param name="pattern">An optional custom regex pattern which the zipcode must conform to in order to be checked</param>
             <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)" -->
+        <member name="M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)">
+            <summary>
+            Get the full address based on the zipcode, housenumber and housenumberextension
+            </summary>
+            <param name="zipCode">The zipcode of the full address</param>
+            <param name="houseNumber">The housenumber of the full address</param>
+            <param name="houseNumberExtension">The housenumberextension of the full address</param>
+            <returns>The full address based on zipcode, housenumber and housenumberextension, or null if not found in _validAddressList</returns>
+        </member>
     </members>
 </doc>

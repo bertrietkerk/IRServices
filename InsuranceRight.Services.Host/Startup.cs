@@ -64,6 +64,8 @@ namespace InsuranceRight.Services.Host
             services.AddSingleton<ICarPremiumPolicy, DefaultCarPremiumPolicy>();
 
             services.AddSingleton<IPremiumCalculator, DefaultPremiumCalculator>();
+
+            services.AddSingleton<ICarDocumentService, DefaultCarDocumentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -79,7 +81,7 @@ namespace InsuranceRight.Services.Host
             app.UseSwagger();
 
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Host of Services - Documentation v1");
             });
         }
     }

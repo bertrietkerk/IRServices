@@ -12,7 +12,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
     public class DefaultCarPremiumPolicy : ICarPremiumPolicy
     {
         private readonly ILicensePlateLookup _licensePlateLookup;
-
         private readonly IPremiumCalculator _premiumCalculator;
 
         public DefaultCarPremiumPolicy(ILicensePlateLookup licensePlateLookup, IPremiumCalculator premiumCalculator)
@@ -25,7 +24,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         {
             var carAge = GetCarAge(licensePlate);
             var carAgePremium = (carAge / 10M);
-
             var driverAge = 99;
 
             if (!string.IsNullOrWhiteSpace(ageRange))
@@ -38,13 +36,9 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 }
             }
 
-           
             var driverAgePremium = (driverAge < 30 ? ((30 - driverAge) / 3M) : (driverAge > 50 ? ((driverAge - 50) / 5M) : 0));
-
-            var claimPremium = 0M;//GetClaimPremium(claimFreeYear);
-            var addressPremium = 1M;//GetAddressPremium(zipCode);
-           
-            // + addressPremium
+            var claimPremium = 0M;
+            var addressPremium = 0M;
             var coverages = new List<Coverage>();
 
             for (var i = 0; i < 30; i++)
@@ -54,10 +48,9 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 {
                     CoverageCode = backOfficecode,
                     CoverageSubCode = backOfficecode,
-                    Premium = decimal.Round((1 + ((i * 1.2M) % 3) + carAgePremium + driverAgePremium + claimPremium), 2, MidpointRounding.AwayFromZero)
+                    Premium = decimal.Round((1 + ((i * 1.2M) % 3) + carAgePremium + driverAgePremium + claimPremium + addressPremium), 2, MidpointRounding.AwayFromZero)
                 });
             }
-
             return coverages;
         }
 
@@ -80,12 +73,10 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
         }
 
-
-        public List<ProductVariant> GetVariants_V2(string licensePlate, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public List<ProductVariant> GetVariants(string licensePlate, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
             int carAge = GetCarAge(licensePlate);
             CarPrice carPrice = GetCarPrice(licensePlate);
-
 
             var mtpl = _premiumCalculator.CalculateMtplPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear);
             var mtplLimitedCasco = _premiumCalculator.CalculateMtplLimitedCascoPremium(carAge, carPrice, ageRange, claimFreeYear, zipCode, kmsPerYear);
@@ -96,12 +87,10 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             };
         }
 
-        
-        public List<ProductVariant> GetVariants(string licensePlate, string ageRange, string claimFreeYear, string zipCode)
+        public List<ProductVariant> GetVariants_Old(string licensePlate, string ageRange, string claimFreeYear, string zipCode)
         {
             var carAge = GetCarAge(licensePlate);
             var carAgePremium = (carAge / 5M);
-
             var driverAge = 99;
 
             if (!string.IsNullOrWhiteSpace(ageRange))
@@ -114,24 +103,9 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 }
             }
 
-            #region OldMethod 
-
-            // Age Premium
-            //-----------------
-            // 20       5.00M
-            // 25       2.5M
-            // 29       0.5M
-            // 30       0M
-            // 50       0M
-            // 51       0.3M
-            // 60       3.3M
-            // 80       10.0M
-            #endregion
             var driverAgePremium = (driverAge < 30 ? ((30 - driverAge) / 2M) : (driverAge > 50 ? ((driverAge - 50) / 3M) : 0));
-
-            var claimPremium = 1M;//GetClaimPremium(claimFreeYear);
-            var addressPremium = 0M;//GetAddressPremium(zipCode);
-
+            var claimPremium = 1M;
+            var addressPremium = 0M;
             var variants = new List<ProductVariant>();
 
             for (int i = 0; i < 10; i++)
@@ -139,17 +113,15 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 variants.Add(new ProductVariant()
                 {
                     ProductCode = string.Format("V{0}", i.ToString("000")),
-                    Premium = decimal.Round((20 + (i * 1.5M) + carAgePremium + driverAgePremium + claimPremium), 2, MidpointRounding.AwayFromZero)
-                    //Premium = decimal.Round((20 + (i * 1.5M) + carAgePremium + driverAgePremium + claimPremium + addressPremium), 2, MidpointRounding.AwayFromZero)
+                    //Premium = decimal.Round((20 + (i * 1.5M) + carAgePremium + driverAgePremium + claimPremium), 2, MidpointRounding.AwayFromZero)
+                    Premium = decimal.Round((20 + (i * 1.5M) + carAgePremium + driverAgePremium + claimPremium + addressPremium), 2, MidpointRounding.AwayFromZero)
                 });
             }
             return variants;
-
         }
 
 
-        #region private helpermethods
-
+        #region HelperMethods
 
         private CarPrice GetCarPrice(string licensePlate)
         {
@@ -161,7 +133,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
             return carPrice;
         }
-
 
         private int GetCarAge(string licensePlate)
         {
@@ -178,7 +149,5 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             return carAge;
         }
         #endregion
-
-
     }
 }

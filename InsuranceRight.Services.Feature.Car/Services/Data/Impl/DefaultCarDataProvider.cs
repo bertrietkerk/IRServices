@@ -13,9 +13,8 @@ namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
             List<CarObject> carsList = new List<CarObject>();
             CarJsonRootObject rootObject;
 
-            // can't use this, relative path changes because of host proj
-            // using (StreamReader sr = File.OpenText(@".\Services\Data\Json\cars.json"))
-            using (StreamReader sr = File.OpenText(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json"))
+            // must use relative path to Host project
+            using (StreamReader sr = File.OpenText(@"..\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json"))
             {
                 JsonSerializer ser = new JsonSerializer();
                 rootObject = (CarJsonRootObject)ser.Deserialize(sr, typeof(CarJsonRootObject));

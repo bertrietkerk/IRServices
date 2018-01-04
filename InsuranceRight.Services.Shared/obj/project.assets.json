@@ -7074,6 +7074,7 @@
   },
   "packageFolders": {
     "C:\\Users\\brietkerk\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -7090,25 +7091,27 @@
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\brietkerk\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
       "originalTargetFrameworks": [
-        "netcoreapp2.0",
-        "net461"
+        "net461",
+        "netcoreapp2.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net461": {
+        "netcoreapp2.0": {
           "projectReferences": {}
         },
-        "netcoreapp2.0": {
+        "net461": {
           "projectReferences": {}
         }
       },
@@ -7119,25 +7122,17 @@
       }
     },
     "frameworks": {
-      "net461": {
-        "dependencies": {
-          "Swashbuckle.AspNetCore": {
-            "target": "Package",
-            "version": "1.1.0"
-          }
-        }
-      },
       "netcoreapp2.0": {
         "dependencies": {
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "2.0.0",
+            "version": "[2.0.0, )",
             "autoReferenced": true
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",
-            "version": "1.1.0"
+            "version": "[1.1.0, )"
           }
         },
         "imports": [
@@ -7145,6 +7140,14 @@
         ],
         "assetTargetFallback": true,
         "warn": true
+      },
+      "net461": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore": {
+            "target": "Package",
+            "version": "[1.1.0, )"
+          }
+        }
       }
     }
   }

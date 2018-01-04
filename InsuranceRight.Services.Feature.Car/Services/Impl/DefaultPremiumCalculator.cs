@@ -10,88 +10,79 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 {
     public class DefaultPremiumCalculator : IPremiumCalculator
     {
+
+        /// <summary>
+        /// Calculates the premium for the - MTPL - package based on the given parameters
+        /// </summary>
+        /// <param name="carAge">Age of the car in years</param> 
+        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="claimFreeYear">Amount of years without claim</param>
+        /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+        /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+        /// <returns>The Product variant including calculated premium</returns>
         public ProductVariant CalculateMtplPremium(int carAge, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
-            var carAgePremium = GetCarAgePremium(carAge, CarInsurancePackageType.MTPL);
-            var claimPremium = GetClaimPremium(claimFreeYear, CarInsurancePackageType.MTPL);
-            var addressPremium = GetAddressPremium(zipCode, CarInsurancePackageType.MTPL);
-            var kmsPerYearPremium = GetKmsPerYearPremium(kmsPerYear, CarInsurancePackageType.MTPL);
-            var driverAgePremium = GetDriverAgePremium(ageRange, CarInsurancePackageType.MTPL);
-            if (!driverAgePremium.HasValue)
-            {
-                return null;
-            }
-
-            var totalPremium = (decimal)(carAgePremium + claimPremium + driverAgePremium + addressPremium + kmsPerYearPremium);
-            //var totalPremium = (carAgePremium * 0.10M) + (claimPremium * 0.30M) + (addressPremium * 0.20M) + (driverAgePremium * 0.25M) + (kmsPerYearPremium * 0.15M);
+            var totalPremium = GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear, CarInsurancePackageType.Mtpl);
+            var mtplPremium = decimal.Round((totalPremium * 0.551M), 2, MidpointRounding.AwayFromZero);
 
             var variant = new ProductVariant()
             {
-                InsuranceType = CarInsurancePackageType.MTPL,
-                Premium = totalPremium
+                InsuranceType = CarInsurancePackageType.Mtpl,
+                Premium = mtplPremium
             };
-
             return variant;
         }
 
+        /// <summary>
+        ///  Calculates the premium for the - MTPL Limited Casco - package based on the given parameters
+        /// </summary>
+        /// <param name="carAge">Age of the car in years</param> 
+        /// <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
+        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="claimFreeYear">Amount of years without claim</param>
+        /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+        /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+        /// <returns>The Product variant including calculated premium</returns>
         public ProductVariant CalculateMtplLimitedCascoPremium(int carAge, CarPrice carPrice, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
-            var carPricePremium = GetCarPricePremium(carPrice, CarInsurancePackageType.MTPL_LimitedCasco);
-
-            var carAgePremium = GetCarAgePremium(carAge, CarInsurancePackageType.MTPL_LimitedCasco);
-            var claimPremium = GetClaimPremium(claimFreeYear, CarInsurancePackageType.MTPL_LimitedCasco);
-            var addressPremium = GetAddressPremium(zipCode, CarInsurancePackageType.MTPL_LimitedCasco);
-            var kmsPerYearPremium = GetKmsPerYearPremium(kmsPerYear, CarInsurancePackageType.MTPL_LimitedCasco);
-            var driverAgePremium = GetDriverAgePremium(ageRange, CarInsurancePackageType.MTPL_LimitedCasco);
-            if (!driverAgePremium.HasValue)
-            {
-                return null;
-            }
-
-            var totalPremium = (decimal)(carPricePremium + carAgePremium + claimPremium + driverAgePremium + addressPremium + kmsPerYearPremium);
-            var limitedCascoPremium = totalPremium * 1.3M;
-
-
+            var carPricePremium = GetCarPricePremium(carPrice, CarInsurancePackageType.Mtpl_LimitedCasco);
+            var totalPremium = (GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear, CarInsurancePackageType.Mtpl_LimitedCasco) + carPricePremium);
+            var limitedCascoPremium = decimal.Round((totalPremium * 0.705M), 2, MidpointRounding.AwayFromZero);
+            
             var variant = new ProductVariant()
             {
-                InsuranceType = CarInsurancePackageType.MTPL_LimitedCasco,
+                InsuranceType = CarInsurancePackageType.Mtpl_LimitedCasco,
                 Premium = limitedCascoPremium
             };
 
             return variant;
         }
 
-        
-
+        /// <summary>
+        /// Calculates the premium for the - MTPL All Risk - package based on the given parameters
+        /// </summary>
+        /// <param name="carAge">Age of the car in years</param>
+        /// <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
+        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="claimFreeYear">Amount of years without claim</param>
+        /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+        /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+        /// <returns>The Product variant including calculated premium</returns>
         public ProductVariant CalculateMtplAllRiskPremium(int carAge, CarPrice carPrice, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
-            var carPricePremium = 1.2M * (GetCarPricePremium(carPrice, CarInsurancePackageType.MTPL_AllRisk));
-
-            var carAgePremium = GetCarAgePremium(carAge, CarInsurancePackageType.MTPL_AllRisk);
-            var claimPremium = GetClaimPremium(claimFreeYear, CarInsurancePackageType.MTPL_AllRisk);
-            var addressPremium = GetAddressPremium(zipCode, CarInsurancePackageType.MTPL_AllRisk);
-            var kmsPerYearPremium = GetKmsPerYearPremium(kmsPerYear, CarInsurancePackageType.MTPL_AllRisk);
-            var driverAgePremium = GetDriverAgePremium(ageRange, CarInsurancePackageType.MTPL_AllRisk);
-            if (!driverAgePremium.HasValue)
-            {
-                return null;
-            }
-
-            var totalPremium = (decimal)(carPricePremium + carAgePremium + claimPremium + driverAgePremium + addressPremium + kmsPerYearPremium);
-            var allRiskPremium = totalPremium * 2M;
+            var carPricePremium = 1.21M * (GetCarPricePremium(carPrice, CarInsurancePackageType.Mtpl_AllRisk));
+            var totalPremium = (GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear, CarInsurancePackageType.Mtpl_AllRisk) + carPricePremium);
+            var allRiskPremium = decimal.Round((totalPremium * 0.851M), 2, MidpointRounding.AwayFromZero);
 
             var variant = new ProductVariant()
             {
-                InsuranceType = CarInsurancePackageType.MTPL_AllRisk,
+                InsuranceType = CarInsurancePackageType.Mtpl_AllRisk,
                 Premium = allRiskPremium
             };
             return variant;
         }
 
-
-
         #region HelperMethods
-
         private decimal GetCarPricePremium(CarPrice carPrice, CarInsurancePackageType packageType)
         {
             var price = carPrice.CurrentPrice;
@@ -111,8 +102,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 return 100M;
         }
 
-
-
         private int CalculateDriverAge(DateTime dateOfBirth)
         {
             return CalculateDriverAge(dateOfBirth, DateTime.Now);
@@ -124,6 +113,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 age--;
             return age;
         }
+
         private decimal? GetDriverAgePremium(string ageRange, CarInsurancePackageType packageType)
         {
             var driverAge = 99;
@@ -141,20 +131,17 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             if (driverAge < 18)
                 return null;
             else if (driverAge < 20)
-                return 20M;
+                return 45M;
             else if (driverAge < 25)
-                return 14M;
+                return 32M;
             else if (driverAge < 35)
-                return 6M;
+                return 15M;
             else if (driverAge < 55)
-                return 10M;
+                return 18M;
             else if (driverAge < 65)
-                return 16M;
+                return 37M;
             else
-                return 19M;
-
-            // return (driverAge < 30 ? ((30 - driverAge) / 2M) : (driverAge > 50 ? ((driverAge - 50) / 3M) : 0));
-
+                return 44M;
         }
         private decimal? GetDriverAgePremiumV2(DateTime dateOfBirth, CarInsurancePackageType packageType)
         {
@@ -176,8 +163,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 
             // return (driverAge < 30 ? ((30 - driverAge) / 2M) : (driverAge > 50 ? ((driverAge - 50) / 3M) : 0));
         }
-
-
 
         private decimal GetCarAgePremium(int carAge, CarInsurancePackageType packageType)
         {
@@ -268,6 +253,16 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 return null;
         }
 
+        private decimal GetBaseTotalPremium(int carAge, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear, CarInsurancePackageType packageType)
+        {
+            var carAgePremium = GetCarAgePremium(carAge, packageType);
+            var claimPremium = GetClaimPremium(claimFreeYear, packageType);
+            var addressPremium = GetAddressPremium(zipCode, packageType);
+            var kmsPerYearPremium = GetKmsPerYearPremium(kmsPerYear, packageType);
+            var driverAgePremium = GetDriverAgePremium(ageRange, packageType);
+
+            return (decimal)(carAgePremium + claimPremium + driverAgePremium + addressPremium + kmsPerYearPremium);
+        }
         #endregion
     }
 }

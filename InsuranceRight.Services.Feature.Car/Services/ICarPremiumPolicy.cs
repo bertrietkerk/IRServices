@@ -9,11 +9,11 @@ namespace InsuranceRight.Services.Feature.Car.Services
 {
     public interface ICarPremiumPolicy
     {
-        List<ProductVariant> GetVariants(string licensePlate, string ageRange, string claimFreeYear, string zipCode);
-        List<Coverage> GetCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode);
+        List<ProductVariant> GetVariants_Old(string licensePlate, string ageRange, string claimFreeYear, string zipCode);
+        List<ProductVariant> GetVariants(string licensePlate, string ageRange, string claimFreeYear, string zipcode, KilometersPerYear kmsPerYear);
 
-        List<ProductVariant> GetVariants_V2(string licensePlate, string ageRange, string claimFreeYear, string zipcode, KilometersPerYear kmsPerYear);
-        // change
+        List<Coverage> GetCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode);
+        
         decimal GetPaymentFrequencyDiscount(int? paymentFrequency);
     }
 }

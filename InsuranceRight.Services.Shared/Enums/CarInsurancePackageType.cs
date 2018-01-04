@@ -7,8 +7,8 @@ namespace InsuranceRight.Services.Models.Enums
     public enum CarInsurancePackageType
     {
         Unknown = 0,
-        MTPL = 1,
-        MTPL_LimitedCasco = 2,
-        MTPL_AllRisk = 3
+        Mtpl = 1,
+        Mtpl_LimitedCasco = 2,
+        Mtpl_AllRisk = 3
     }
 }

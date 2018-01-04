@@ -39,19 +39,32 @@
             <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the catalog value for</param>
             <returns>The catalog value(decimal) of the provided car</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPolicyDocumentController.GetDocuments(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Get the policy documents for the chosen insurance
+            </summary>
+            <param name="viewModel">CarViewModel</param>
+            <returns></returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants_Old(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
             <summary>
             Get Product Variants
             </summary>
-            <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+            <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants_V2(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)" -->
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariants(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Get Package Variants (MTPL || MTPL Limited Casco || MTPL All Risk)
+            </summary>
+            <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears, -residenceaddress zipcode and -kilometersPerYear</param>
+            <returns></returns>
+        </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetCoverages(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
             <summary>
             Get Coverages
             </summary>
-            <param name="viewModel">Viewmodel containg licenseplace, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+            <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
             <returns></returns>
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.PaymentFrequencyDiscount(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
@@ -72,6 +85,41 @@
             <summary>
             Get a list of all models of the given brand car
             </summary>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplPremium(System.Int32,System.String,System.String,System.String,InsuranceRight.Services.Models.Enums.KilometersPerYear)">
+            <summary>
+            Calculates the premium for the - MTPL - package based on the given parameters
+            </summary>
+            <param name="carAge">Age of the car in years</param> 
+            <param name="ageRange">Age range of the applicant</param>
+            <param name="claimFreeYear">Amount of years without claim</param>
+            <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+            <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+            <returns>The Product variant including calculated premium</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplLimitedCascoPremium(System.Int32,InsuranceRight.Services.Models.Car.CarPrice,System.String,System.String,System.String,InsuranceRight.Services.Models.Enums.KilometersPerYear)">
+            <summary>
+             Calculates the premium for the - MTPL Limited Casco - package based on the given parameters
+            </summary>
+            <param name="carAge">Age of the car in years</param> 
+            <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
+            <param name="ageRange">Age range of the applicant</param>
+            <param name="claimFreeYear">Amount of years without claim</param>
+            <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+            <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+            <returns>The Product variant including calculated premium</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplAllRiskPremium(System.Int32,InsuranceRight.Services.Models.Car.CarPrice,System.String,System.String,System.String,InsuranceRight.Services.Models.Enums.KilometersPerYear)">
+            <summary>
+            Calculates the premium for the - MTPL All Risk - package based on the given parameters
+            </summary>
+            <param name="carAge">Age of the car in years</param>
+            <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
+            <param name="ageRange">Age range of the applicant</param>
+            <param name="claimFreeYear">Amount of years without claim</param>
+            <param name="zipCode">Zipcode of the residence-address of the applicant</param>
+            <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
+            <returns>The Product variant including calculated premium</returns>
         </member>
     </members>
 </doc>
