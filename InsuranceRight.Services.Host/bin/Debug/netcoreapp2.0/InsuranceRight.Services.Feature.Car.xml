@@ -74,6 +74,13 @@
             <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
             <returns></returns>
         </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GetVariantsAndCoverages(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Get Coverages and Variants
+            </summary>
+            <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+            <returns></returns>
+        </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.PaymentFrequencyDiscount(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
             <summary>
             Get the discount based on the payment frequency

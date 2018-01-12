@@ -6,6 +6,7 @@ using InsuranceRight.Services.Models.Coverages;
 using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.Models.Enums;
 using InsuranceRight.Services.Models.Car;
+using InsuranceRight.Services.Models.HelperMethods;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Impl
 {
@@ -24,17 +25,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         {
             var carAge = GetCarAge(licensePlate);
             var carAgePremium = (carAge / 10M);
-            var driverAge = 99;
-
-            if (!string.IsNullOrWhiteSpace(ageRange))
-            {
-                var ageRangeArray = ageRange.Split(new[] { "-", "+", " " }, StringSplitOptions.RemoveEmptyEntries);
-                if (ageRangeArray.Length > 0)
-                {
-                    var ageRangeLast = int.Parse(ageRangeArray.LastOrDefault().Trim());
-                    driverAge = Math.Min(driverAge, ageRangeLast);
-                }
-            }
+            var driverAge = Helpers.GetDriverAge(ageRange);
 
             var driverAgePremium = (driverAge < 30 ? ((30 - driverAge) / 3M) : (driverAge > 50 ? ((driverAge - 50) / 5M) : 0));
             var claimPremium = 0M;
@@ -69,7 +60,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                     return 1.2M;
                 case PaymentFrequency.Unknown:
                 default:
-                    return 1.0M;
+                    return 0M;
             }
         }
 

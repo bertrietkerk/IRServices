@@ -11,6 +11,7 @@ using InsuranceRight.Services.Models.Coverages;
 using Microsoft.Extensions.Options;
 using InsuranceRight.Services.Models.Settings;
 using InsuranceRight.Services.Acceptance.Services;
+using InsuranceRight.Services.Models.Acceptance;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -19,13 +20,13 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
     public class CarPremiumPolicyController : Controller
     {
         private readonly ICarPremiumPolicy _carPremiumPolicy;
-        private readonly IOptions<PremiumCalculationSettings> _settings;
+        private readonly PremiumCalculationSettings _settings;
         private readonly IAcceptanceCheck _acceptanceCheck;
 
         public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, IAcceptanceCheck acceptanceCheck)
         {
             _carPremiumPolicy = carPremiumPolicy;
-            _settings = settings;
+            _settings = settings.Value;
             _acceptanceCheck = acceptanceCheck;
         }
 
@@ -138,34 +139,27 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariantsAndCoverages([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<VariantsAndCoverages>();
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
             {
                 response.ErrorMessages.Add("Viewmodel was null");
                 return Ok(response);
             }
 
             // ACCEPTANCE CHECK
-            if (_settings.Value.IncludeAcceptanceCheck)
+            if (_settings.IncludeAcceptanceCheck)
             {
-                //_acceptanceCheck.IsCarSecurityAccepted;
-                // TODO: acceptance check (reference to acceptance service)
-                bool isAccepted = false;
-                string reason = "";
-                if (!isAccepted)
+                AcceptanceStatus status = _acceptanceCheck.Check(driver, car);
+                if (!status.IsAccepted)
                 {
-                    response.ErrorMessages.Add("Acceptance check failed: " + reason);
+                    response.ErrorMessages.Add("Acceptance check failed: " + status.Reason);
                     return Ok(response);
                 }
             }
 
-            response.Object = _carPremiumPolicy.GetVariantsAndCoverages(
-                viewModel.PremiumFactors.Car.LicensePlate,
-                viewModel.PremiumFactors.Driver.Age,
-                viewModel.PremiumFactors.Driver.DamageFreeYears,
-                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode,
-                viewModel.PremiumFactors.Driver.KilometersPerYear
-            );
+            response.Object = _carPremiumPolicy.GetVariantsAndCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ZipCode, driver.KilometersPerYear);
 
             if (response.Object == null)
                 response.ErrorMessages.Add("Variants/coverages were not found");

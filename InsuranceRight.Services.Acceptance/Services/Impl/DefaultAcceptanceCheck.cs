@@ -11,16 +11,23 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
 {
     public class DefaultAcceptanceCheck : IAcceptanceCheck
     {
-        private readonly IOptions<ApplicationSettings> _settings;
+        private readonly AcceptanceSettings _settings;
 
-        public DefaultAcceptanceCheck(IOptions<ApplicationSettings> settings)
+        public DefaultAcceptanceCheck(IOptions<AcceptanceSettings> settings)
         {
-            _settings = settings;
+            _settings = settings.Value;
         }
 
         public AcceptanceStatus Check(MostFrequentDriverViewModel driver, CarObject car)
         {
             AcceptanceStatus status;
+
+            if (_settings.AcceptAlways)
+            {
+                status = new AcceptanceStatus() { IsAccepted = true };
+                return status;
+            }
+            
             // SECURITY CHECK
             status = IsCarSecurityAccepted(car.Price.CatalogPrice, car.Immobilizer, car.Alarm, car.MechanicalSecurity, car.SatelliteMonitoring);
             if (!status.IsAccepted)
@@ -49,7 +56,7 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
                 return result;
             }
 
-            var expensiveCarBoundary = _settings.Value.AcceptanceSettings.ExpensiveCarBoundary;
+            var expensiveCarBoundary = _settings.ExpensiveCarBoundary;
             if (catalogPrice >= expensiveCarBoundary && !hasImmobilizer && !hasAlarm && !hasMechanicalSecurity && !hasSatMonitoring)
             {
                 result.Reason = "Car too expensive. Need at least one security measurement";
@@ -65,9 +72,9 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
             var result = new AcceptanceStatus() { IsAccepted = false };
             var zipcode = driver.ResidenceAddress.ZipCode;
             var claimFree = int.Parse(driver.DamageFreeYears);
-            var driverAge = GetDriverAge(driver.Age);
+            var driverAge = Helpers.GetDriverAge(driver.Age);
             var carPrice = car.Price.CatalogPrice;
-            var expensiveCarBoundary = _settings.Value.AcceptanceSettings.ExpensiveCarBoundary;   
+            var expensiveCarBoundary = _settings.ExpensiveCarBoundary;   
 
             
             if ((driverAge - claimFree) < 18)
@@ -80,7 +87,7 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
                 result.Reason = string.Format("Cannot be {0} years old and insure a car that has a catalog value of {1}", driverAge, car.Price.CatalogPrice);
                 return result;
             }
-            if (carPrice > expensiveCarBoundary && zipcode.StartsWith("1"))
+            if (carPrice >= expensiveCarBoundary && zipcode.StartsWith("1"))
             {
                 result.Reason = string.Format("Cannot insure a car that has a catalog value of {0} in area with zipcode {1}", carPrice, zipcode);
                 return result;
@@ -100,26 +107,10 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
             //    return result;
             //}
 
+            // TODO: for now just accept always
+
             result.IsAccepted = true;
             return result;
-        }
-
-
-
-        private int GetDriverAge(string ageRange)
-        {
-            var driverAge = 99;
-
-            if (!string.IsNullOrWhiteSpace(ageRange))
-            {
-                var ageRangeArray = ageRange.Split(new[] { "-", "+", " " }, StringSplitOptions.RemoveEmptyEntries);
-                if (ageRangeArray.Length > 0)
-                {
-                    var ageRangeLast = int.Parse(ageRangeArray.LastOrDefault().Trim());
-                    driverAge = Math.Min(driverAge, ageRangeLast);
-                }
-            }
-            return driverAge;
         }
     }
 }

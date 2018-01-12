@@ -56,7 +56,7 @@ namespace InsuranceRight.Services.Host
 
             services.AddOptions();
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
-            services.Configure<PremiumCalculationSettings>(Configuration.GetSection("PremiumConfigurationSettings"));
+            services.Configure<PremiumCalculationSettings>(Configuration.GetSection("PremiumCalculationSettings"));
 
             // DI Address
             services.AddSingleton<IAddressLookup, DefaultAddressLookup>();

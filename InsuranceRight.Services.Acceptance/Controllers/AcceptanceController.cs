@@ -23,6 +23,11 @@ namespace InsuranceRight.Services.Acceptance.Controllers
             _acceptanceCheck= acceptanceCheck;
         }
 
+        /// <summary>
+        /// Acceptance check on current data
+        /// </summary>
+        /// <param name="viewModel">Current data. Can include -1- Car details (licenseplate, price, security measurements, etc), -2- Most frequent driver details, -3- Risk assesment answers </param>
+        /// <returns>Acceptance status indicating accepted or not, and if not the reason</returns>
         [HttpPost("[action]")]
         public IActionResult Check([FromBody] CarViewModel viewModel)
         {
