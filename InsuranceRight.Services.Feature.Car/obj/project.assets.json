@@ -5093,6 +5093,22 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "InsuranceRight.Services.Acceptance/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "InsuranceRight.Services.Models": "1.0.0",
+          "Microsoft.AspNetCore.All": "2.0.3",
+          "Microsoft.NETCore.App": "2.0.0",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.1"
+        },
+        "compile": {
+          "bin/placeholder/InsuranceRight.Services.Acceptance.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/InsuranceRight.Services.Acceptance.dll": {}
+        }
+      },
       "InsuranceRight.Services.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -13232,6 +13248,11 @@
         "windowsazure.storage.nuspec"
       ]
     },
+    "InsuranceRight.Services.Acceptance/1.0.0": {
+      "type": "project",
+      "path": "../InsuranceRight.Services.Acceptance/InsuranceRight.Services.Acceptance.csproj",
+      "msbuildProject": "../InsuranceRight.Services.Acceptance/InsuranceRight.Services.Acceptance.csproj"
+    },
     "InsuranceRight.Services.Models/1.0.0": {
       "type": "project",
       "path": "../InsuranceRight.Services.Shared/InsuranceRight.Services.Models.csproj",
@@ -13240,6 +13261,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
+      "InsuranceRight.Services.Acceptance >= 1.0.0",
       "InsuranceRight.Services.Models >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.0",
       "Microsoft.NETCore.App >= 2.0.0",
@@ -13283,6 +13305,9 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
+            "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Acceptance\\InsuranceRight.Services.Acceptance.csproj": {
+              "projectPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Acceptance\\InsuranceRight.Services.Acceptance.csproj"
+            },
             "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Shared\\InsuranceRight.Services.Models.csproj": {
               "projectPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Shared\\InsuranceRight.Services.Models.csproj"
             }
@@ -13323,5 +13348,25 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.AspNetCore.All from 2.0.3 to 2.0.0. Reference the package directly from the project to select a different version. \r\n InsuranceRight.Services.Feature.Car -> InsuranceRight.Services.Acceptance -> Microsoft.AspNetCore.All (>= 2.0.3) \r\n InsuranceRight.Services.Feature.Car -> Microsoft.AspNetCore.All (>= 2.0.0)",
+      "libraryId": "Microsoft.AspNetCore.All",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Detected package downgrade: Microsoft.VisualStudio.Web.CodeGeneration.Design from 2.0.1 to 2.0.0. Reference the package directly from the project to select a different version. \r\n InsuranceRight.Services.Feature.Car -> InsuranceRight.Services.Acceptance -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 2.0.1) \r\n InsuranceRight.Services.Feature.Car -> Microsoft.VisualStudio.Web.CodeGeneration.Design (>= 2.0.0)",
+      "libraryId": "Microsoft.VisualStudio.Web.CodeGeneration.Design",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.0"
+      ]
+    }
+  ]
 }

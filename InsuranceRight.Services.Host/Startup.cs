@@ -10,6 +10,9 @@ using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Feature.Car.Services.Data.Impl;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
+using InsuranceRight.Services.Acceptance.Services;
+using InsuranceRight.Services.Acceptance.Services.Impl;
+using InsuranceRight.Services.Models.Settings;
 
 namespace InsuranceRight.Services.Host
 {
@@ -51,6 +54,9 @@ namespace InsuranceRight.Services.Host
                 c.IncludeXmlComments(xmlPath2);
             });
 
+            services.AddOptions();
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.Configure<PremiumCalculationSettings>(Configuration.GetSection("PremiumConfigurationSettings"));
 
             // DI Address
             services.AddSingleton<IAddressLookup, DefaultAddressLookup>();
@@ -62,10 +68,12 @@ namespace InsuranceRight.Services.Host
             services.AddSingleton<ICarLookup, DefaultCarLookup>();
             services.AddSingleton<ICarDiscountPolicy, DefaultCarDiscountPolicy>();
             services.AddSingleton<ICarPremiumPolicy, DefaultCarPremiumPolicy>();
-
             services.AddSingleton<IPremiumCalculator, DefaultPremiumCalculator>();
-
             services.AddSingleton<ICarDocumentService, DefaultCarDocumentService>();
+
+            // DI Acceptance
+            services.AddSingleton<IAcceptanceCheck, DefaultAcceptanceCheck>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

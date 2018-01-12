@@ -8,6 +8,9 @@ using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Car.ViewModels;
 using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.Models.Coverages;
+using Microsoft.Extensions.Options;
+using InsuranceRight.Services.Models.Settings;
+using InsuranceRight.Services.Acceptance.Services;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -16,10 +19,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
     public class CarPremiumPolicyController : Controller
     {
         private readonly ICarPremiumPolicy _carPremiumPolicy;
+        private readonly IOptions<PremiumCalculationSettings> _settings;
+        private readonly IAcceptanceCheck _acceptanceCheck;
 
-        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy)
+        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, IAcceptanceCheck acceptanceCheck)
         {
             _carPremiumPolicy = carPremiumPolicy;
+            _settings = settings;
+            _acceptanceCheck = acceptanceCheck;
         }
 
         /// <summary>
@@ -31,8 +38,6 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariants_Old([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
-
-
             if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
             {
                 response.ErrorMessages.Add("Viewmodel was null");
@@ -65,7 +70,6 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariants([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
-
 
             if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
             {
@@ -124,6 +128,52 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             response.Object = coverages;
             return Ok(response);
         }
+
+        /// <summary>
+        /// Get Coverages and Variants
+        /// </summary>
+        /// <param name="viewModel">Viewmodel containg licenseplate, driver-age, -damagefreeyears and -residenceaddress zipcode</param>
+        /// <returns></returns>
+        [HttpPost("[action]")]
+        public IActionResult GetVariantsAndCoverages([FromBody] CarViewModel viewModel)
+        {
+            var response = new ReturnObject<VariantsAndCoverages>();
+
+            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            {
+                response.ErrorMessages.Add("Viewmodel was null");
+                return Ok(response);
+            }
+
+            // ACCEPTANCE CHECK
+            if (_settings.Value.IncludeAcceptanceCheck)
+            {
+                //_acceptanceCheck.IsCarSecurityAccepted;
+                // TODO: acceptance check (reference to acceptance service)
+                bool isAccepted = false;
+                string reason = "";
+                if (!isAccepted)
+                {
+                    response.ErrorMessages.Add("Acceptance check failed: " + reason);
+                    return Ok(response);
+                }
+            }
+
+            response.Object = _carPremiumPolicy.GetVariantsAndCoverages(
+                viewModel.PremiumFactors.Car.LicensePlate,
+                viewModel.PremiumFactors.Driver.Age,
+                viewModel.PremiumFactors.Driver.DamageFreeYears,
+                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode,
+                viewModel.PremiumFactors.Driver.KilometersPerYear
+            );
+
+            if (response.Object == null)
+                response.ErrorMessages.Add("Variants/coverages were not found");
+            
+            return Ok(response);
+        }
+
+
 
         /// <summary>
         /// Get the discount based on the payment frequency

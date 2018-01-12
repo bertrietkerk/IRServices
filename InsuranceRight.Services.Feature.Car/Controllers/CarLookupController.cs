@@ -75,6 +75,37 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             return Ok(response);
         }
 
+        /// <summary>
+        /// Get the details (weight and catalog value) of the provided car
+        /// </summary>
+        /// <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the weight for</param>
+        /// <returns>The details of the provided car</returns>
+        [HttpPost("[action]")]
+        public IActionResult GetEditionDetails([FromBody] CarLookupViewModel viewModel)
+        {
+            var response = new ReturnObject<Dictionary<string, decimal>>();
+            var dict = new Dictionary<string, decimal>();
+
+            if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
+            {
+                response.ErrorMessages.Add("Brand, Model and/or Edition was null or empty string");
+                return Ok(response);
+            }
+
+            var weight = _carLookup.GetWeight(viewModel.Brand, viewModel.Model, viewModel.Edition);
+            var catalogValue = _carLookup.GetCatalogValue(viewModel.Brand, viewModel.Model, viewModel.Edition);
+            if (weight == 0 || catalogValue == 0)
+            {
+                response.ErrorMessages.Add("No car was found for the combination of this brand, model and edition");
+                return Ok(response);
+            }
+
+            dict.Add("weight", weight);
+            dict.Add("catalogValue", catalogValue);
+            response.Object = dict;
+            return Ok(response);
+        }
+
 
         /// <summary>
         /// Get the weight of the provided car 

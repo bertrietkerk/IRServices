@@ -10,8 +10,8 @@
       "Edition": "1.8 T",
       "Year": "2012",
       "Price": {
-          "CatalogPrice": 20250,
-          "CurrentPrice": 15000
+        "CatalogPrice": 20250,
+        "CurrentPrice": 15000
       },
       "IsVehicleFound": true
     },
@@ -25,8 +25,8 @@
       "Edition": "2.0",
       "Year": "2015",
       "Price": {
-          "CatalogPrice": 18000,
-          "CurrentPrice": 17000
+        "CatalogPrice": 18000,
+        "CurrentPrice": 17000
       },
       "IsVehicleFound": true
     },
@@ -40,8 +40,8 @@
       "Edition": "1.4 LX",
       "Year": "2014",
       "Price": {
-          "CatalogPrice": 16000,
-          "CurrentPrice": 12000
+        "CatalogPrice": 16000,
+        "CurrentPrice": 12000
       },
       "IsVehicleFound": true
     },
@@ -55,8 +55,8 @@
       "Edition": "4WD",
       "Year": "1983",
       "Price": {
-          "CatalogPrice": 13000,
-          "CurrentPrice": 10000
+        "CatalogPrice": 13000,
+        "CurrentPrice": 10000
       },
       "IsVehicleFound": true
     },
@@ -70,8 +70,8 @@
       "Edition": "Authentique",
       "Year": "2006",
       "Price": {
-          "CatalogPrice": 18000,
-          "CurrentPrice": 13000
+        "CatalogPrice": 18000,
+        "CurrentPrice": 13000
       },
       "IsVehicleFound": true
     },
@@ -85,8 +85,8 @@
       "Edition": "RA31",
       "Year": "2002",
       "Price": {
-          "CatalogPrice": 16000,
-          "CurrentPrice": 4000
+        "CatalogPrice": 16000,
+        "CurrentPrice": 4000
       },
       "IsVehicleFound": true
     },
@@ -100,8 +100,8 @@
       "Edition": "CHILI",
       "Year": "2016",
       "Price": {
-          "CatalogPrice": 29000,
-          "CurrentPrice": 21000
+        "CatalogPrice": 29000,
+        "CurrentPrice": 21000
       },
       "IsVehicleFound": true
     },
@@ -115,8 +115,23 @@
       "Edition": "PEPPER",
       "Year": "2014",
       "Price": {
-          "CatalogPrice": 24000,
-          "CurrentPrice": 18000
+        "CatalogPrice": 24000,
+        "CurrentPrice": 18000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-IR-01",
+      "Brand": "FERRARI",
+      "Model": "F40",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "1235",
+      "Edition": "",
+      "Year": "1988",
+      "Price": {
+        "CatalogPrice": 999000,
+        "CurrentPrice": 800000
       },
       "IsVehicleFound": true
     }

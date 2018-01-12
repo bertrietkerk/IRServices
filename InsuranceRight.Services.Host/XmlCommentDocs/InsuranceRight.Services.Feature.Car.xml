@@ -25,6 +25,13 @@
             <param name="viewModel">Model containing a brand(string) and model(string)</param>
             <returns>A list of editions based on the provided car brand and model</returns>
         </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarLookupController.GetEditionDetails(InsuranceRight.Services.Models.Car.ViewModels.CarLookupViewModel)">
+            <summary>
+            Get the details (weight and catalog value) of the provided car
+            </summary>
+            <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the weight for</param>
+            <returns>The details of the provided car</returns>
+        </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarLookupController.GetWeight(InsuranceRight.Services.Models.Car.ViewModels.CarLookupViewModel)">
             <summary>
             Get the weight of the provided car 

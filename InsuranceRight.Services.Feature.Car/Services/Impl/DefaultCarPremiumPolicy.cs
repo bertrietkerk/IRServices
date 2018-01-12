@@ -120,6 +120,14 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             return variants;
         }
 
+        public VariantsAndCoverages GetVariantsAndCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        {
+            var variants = GetVariants(licensePlate, ageRange, claimFreeYear, zipCode, kmsPerYear);
+            var coverages = GetCoverages(licensePlate, ageRange, claimFreeYear, zipCode);
+
+            return new VariantsAndCoverages() { Variants = variants, Coverages = coverages };
+        }
+
 
         #region HelperMethods
 
@@ -148,6 +156,8 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
             return carAge;
         }
+
+        
         #endregion
     }
 }

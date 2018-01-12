@@ -34,6 +34,10 @@ namespace InsuranceRight.Services.Models.Car
 
         public virtual bool Alarm { get; set; }
 
+        public virtual bool MechanicalSecurity { get; set; }
+
+        public virtual bool SatelliteMonitoring { get; set; }
+
         public virtual string ColorOfCar { get; set; }
 
         public virtual CarPrice Price { get; set; }
