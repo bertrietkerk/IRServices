@@ -12,6 +12,7 @@ using Microsoft.Extensions.Options;
 using InsuranceRight.Services.Models.Settings;
 using InsuranceRight.Services.Acceptance.Services;
 using InsuranceRight.Services.Models.Acceptance;
+using InsuranceRight.Services.Models.Enums;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -71,20 +72,16 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariants([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
             {
                 response.ErrorMessages.Add("Viewmodel was null");
                 return Ok(response);
             }
 
-            var variants = _carPremiumPolicy.GetVariants(
-                viewModel.PremiumFactors.Car.LicensePlate,
-                viewModel.PremiumFactors.Driver.Age,
-                viewModel.PremiumFactors.Driver.DamageFreeYears,
-                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode,
-                viewModel.PremiumFactors.Driver.KilometersPerYear
-            );
+            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
 
             if (variants == null)
             {
@@ -107,18 +104,16 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetCoverages([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<Coverage>>();
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
             {
                 response.ErrorMessages.Add("Viewmodel was null");
                 return Ok(response);
             }
 
-            var coverages = _carPremiumPolicy.GetCoverages(
-                viewModel.PremiumFactors.Car.LicensePlate,
-                viewModel.PremiumFactors.Driver.Age,
-                viewModel.PremiumFactors.Driver.DamageFreeYears,
-                viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode);
+            var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
 
             if (coverages == null)
             {
@@ -182,7 +177,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
 
             if (viewModel == null || viewModel.Payment == null)
             {
-                response.ErrorMessages.Add("Viewmodel was null");
+                response.ErrorMessages.Add("Viewmodel was not complete/correct");
                 response.Object.Amount = 0M;
                 return Ok(response);
             }

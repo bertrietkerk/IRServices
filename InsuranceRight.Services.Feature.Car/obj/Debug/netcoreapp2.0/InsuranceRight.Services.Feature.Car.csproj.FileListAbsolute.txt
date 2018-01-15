@@ -27,3 +27,4 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debu
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Models.pdb
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Acceptance.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Acceptance.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Debug\netcoreapp2.0\netcoreapp2.0\InsuranceRight.Services.Acceptance.xml

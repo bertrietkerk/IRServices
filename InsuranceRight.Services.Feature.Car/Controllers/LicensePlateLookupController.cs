@@ -26,8 +26,8 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetCarDetails([FromBody] LicensePlate licensePlate)
         {
             var response = new ReturnObject<CarObject>();
-            response.ErrorMessages = new List<string>();
             var carDetails = _lpLookup.GetCar(licensePlate.ToString());
+
             if (carDetails == null)
             {
                 response.ErrorMessages.Add("Car not found");

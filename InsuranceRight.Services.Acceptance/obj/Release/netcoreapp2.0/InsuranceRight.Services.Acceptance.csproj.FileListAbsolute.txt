@@ -1,0 +1,13 @@
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.deps.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.runtimeconfig.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.runtimeconfig.dev.json
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Models.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\bin\Release\netcoreapp2.0\InsuranceRight.Services.Models.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.csprojResolveAssemblyReference.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.csproj.CoreCompileInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.AssemblyInfoInputs.cache
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.AssemblyInfo.cs
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Acceptance\obj\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.pdb

@@ -15,3 +15,5 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Any CPU\Rel
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Any CPU\Release\netcoreapp2.0\InsuranceRight.Services.Host.AssemblyInfo.cs
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Any CPU\Release\netcoreapp2.0\InsuranceRight.Services.Host.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Any CPU\Release\netcoreapp2.0\InsuranceRight.Services.Host.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Any CPU\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.dll
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Any CPU\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.pdb

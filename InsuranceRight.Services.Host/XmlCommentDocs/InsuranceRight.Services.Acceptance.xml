@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InsuranceRight.Services.Acceptance</name>
+    </assembly>
+    <members>
+        <member name="M:InsuranceRight.Services.Acceptance.Controllers.AcceptanceController.Check(InsuranceRight.Services.Models.Car.ViewModels.CarViewModel)">
+            <summary>
+            Acceptance check on current data
+            </summary>
+            <param name="viewModel">Current data. Can include -1- Car details (licenseplate, price, security measurements, etc), -2- Most frequent driver details, -3- Risk assesment answers </param>
+            <returns>Acceptance status indicating accepted or not, and if not the reason</returns>
+        </member>
+    </members>
+</doc>

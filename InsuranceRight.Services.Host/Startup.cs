@@ -13,6 +13,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using InsuranceRight.Services.Acceptance.Services;
 using InsuranceRight.Services.Acceptance.Services.Impl;
 using InsuranceRight.Services.Models.Settings;
+using System.IO;
 
 namespace InsuranceRight.Services.Host
 {
@@ -37,6 +38,7 @@ namespace InsuranceRight.Services.Host
                     settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
                 }); ;
 
+            var xmlDocs = Directory.GetFiles(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs");
 
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info 
@@ -48,15 +50,21 @@ namespace InsuranceRight.Services.Host
                         License = new License { Name = "License", Url = "https://en.wikipedia.org/wiki/License" }
                     });
 
-                var xmlPath = @"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\InsuranceRight.Services.AddressService.xml";
-                var xmlPath2 = @"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\XmlCommentDocs\InsuranceRight.Services.Feature.Car.xml";
-                c.IncludeXmlComments(xmlPath);
-                c.IncludeXmlComments(xmlPath2);
+                foreach (var doc in xmlDocs)
+                {
+                    c.IncludeXmlComments(doc);
+                }
             });
 
+            // DI appsettings.json
             services.AddOptions();
-            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            //services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+            services.Configure<AcceptanceSettings>(Configuration.GetSection("AcceptanceSettings"));
             services.Configure<PremiumCalculationSettings>(Configuration.GetSection("PremiumCalculationSettings"));
+            services.Configure<DiscountSettings>((settings) =>
+            {
+                Configuration.GetSection("DiscountSettings").Bind(settings);
+            });
 
             // DI Address
             services.AddSingleton<IAddressLookup, DefaultAddressLookup>();

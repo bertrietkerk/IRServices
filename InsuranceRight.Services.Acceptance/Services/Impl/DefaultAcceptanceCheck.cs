@@ -12,10 +12,12 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
     public class DefaultAcceptanceCheck : IAcceptanceCheck
     {
         private readonly AcceptanceSettings _settings;
+        private readonly ApplicationSettings _sett;
 
-        public DefaultAcceptanceCheck(IOptions<AcceptanceSettings> settings)
+        public DefaultAcceptanceCheck(IOptions<AcceptanceSettings> settings, IOptions<ApplicationSettings> sett)
         {
             _settings = settings.Value;
+            _sett = sett.Value;
         }
 
         public AcceptanceStatus Check(MostFrequentDriverViewModel driver, CarObject car)

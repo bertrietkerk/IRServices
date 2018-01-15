@@ -9,6 +9,6 @@ namespace InsuranceRight.Services.Feature.Car.Services
 {
     public interface ICarDiscountPolicy
     {
-        ReturnObject<CarDiscountPolicy> GetDiscountForGroup(string code);
+        CarDiscountPolicy GetDiscountForGroup(string code);
     }
 }

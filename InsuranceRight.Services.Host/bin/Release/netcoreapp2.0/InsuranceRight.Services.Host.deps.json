@@ -23,6 +23,7 @@
     ".NETCoreApp,Version=v2.0": {
       "InsuranceRight.Services.Host/1.0.0": {
         "dependencies": {
+          "InsuranceRight.Services.Acceptance": "1.0.0",
           "InsuranceRight.Services.AddressService": "1.0.0",
           "InsuranceRight.Services.Feature.Car": "1.0.0",
           "Microsoft.NETCore.App": "2.0.0"
@@ -4113,6 +4114,20 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "InsuranceRight.Services.Acceptance/1.0.0": {
+        "dependencies": {
+          "InsuranceRight.Services.Models": "1.0.0",
+          "Microsoft.AspNetCore.All": "2.0.3",
+          "Microsoft.NETCore.App": "2.0.0",
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0"
+        },
+        "runtime": {
+          "InsuranceRight.Services.Acceptance.dll": {}
+        },
+        "compile": {
+          "InsuranceRight.Services.Acceptance.dll": {}
+        }
+      },
       "InsuranceRight.Services.AddressService/1.0.0": {
         "dependencies": {
           "InsuranceRight.Services.Models": "1.0.0",
@@ -4129,6 +4144,7 @@
       },
       "InsuranceRight.Services.Feature.Car/1.0.0": {
         "dependencies": {
+          "InsuranceRight.Services.Acceptance": "1.0.0",
           "InsuranceRight.Services.Models": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.3",
           "Microsoft.NETCore.App": "2.0.0",
@@ -6492,6 +6508,11 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "InsuranceRight.Services.Acceptance/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "InsuranceRight.Services.AddressService/1.0.0": {
       "type": "project",

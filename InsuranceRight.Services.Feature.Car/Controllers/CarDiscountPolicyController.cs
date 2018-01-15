@@ -29,6 +29,9 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         [HttpPost]
         public IActionResult GroupDiscounts([FromBody] string discountCode)
         {
+            ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>();
+            response.Object = _carDiscountPolicy.GetDiscountForGroup(discountCode);
+            
             return Ok(_carDiscountPolicy.GetDiscountForGroup(discountCode));
         }
 

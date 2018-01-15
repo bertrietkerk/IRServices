@@ -9,6 +9,8 @@ using InsuranceRight.Services.Models.HelperMethods;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Models.Acceptance;
+using Microsoft.Extensions.Options;
+using InsuranceRight.Services.Models.Settings;
 
 namespace InsuranceRight.Services.Acceptance.Controllers
 {
@@ -17,10 +19,12 @@ namespace InsuranceRight.Services.Acceptance.Controllers
     public class AcceptanceController : Controller
     {
         private readonly IAcceptanceCheck _acceptanceCheck;
+        private readonly IOptions<AcceptanceSettings> _settings;
 
-        public AcceptanceController(IAcceptanceCheck acceptanceCheck)
+        public AcceptanceController(IAcceptanceCheck acceptanceCheck, IOptions<AcceptanceSettings> settings)
         {
             _acceptanceCheck= acceptanceCheck;
+            _settings = settings;
         }
 
         /// <summary>
@@ -41,6 +45,11 @@ namespace InsuranceRight.Services.Acceptance.Controllers
             }
 
             var result = _acceptanceCheck.Check(viewModel.PremiumFactors.Driver, car);
+            if (!result.IsAccepted)
+            {
+                response.ErrorMessages.Add("Not accepted: see object for reason");
+            }
+
             response.Object = result;
             return Ok(response);
         }
