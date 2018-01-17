@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Models.Coverages;
-using InsuranceRight.Services.Models.Enums;
-using InsuranceRight.Services.Models.Car;
-using InsuranceRight.Services.Models.HelperMethods;
+using InsuranceRight.Services.Feature.Car.HelperMethods;
+using InsuranceRight.Services.Feature.Car.Models.Enums;
+using InsuranceRight.Services.Feature.Car.Models;
+using InsuranceRight.Services.Feature.Car.Models.Coverages;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Impl
 {

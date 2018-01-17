@@ -119,3 +119,4 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Client\bin\System.Di
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Client\bin\System.Text.Encodings.Web.xml
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Client\bin\InsuranceRight.Services.Models.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Client\bin\InsuranceRight.Services.Models.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Client\bin\Microsoft.Rest.ClientRuntime.dll

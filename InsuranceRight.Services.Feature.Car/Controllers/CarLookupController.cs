@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
-using InsuranceRight.Services.Models.Car.ViewModels;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -27,6 +25,8 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="brand">Brand of the car</param>
         /// <returns>A list of models based on the provided car brand</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<List<string>>))]
+        [SwaggerResponse(400, Type = typeof(ReturnObject<List<string>>))]
         public IActionResult GetModels([FromBody] string brand)
         {
             var response = new ReturnObject<List<string>>();

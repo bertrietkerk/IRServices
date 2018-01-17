@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Models.Car;
+﻿using System.Linq;
+using InsuranceRight.Services.Feature.Car.Models;
 using InsuranceRight.Services.Feature.Car.Services.Data;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Impl

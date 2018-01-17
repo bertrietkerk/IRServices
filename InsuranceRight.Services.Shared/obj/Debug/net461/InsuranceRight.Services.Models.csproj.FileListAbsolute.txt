@@ -48,4 +48,3 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Models.AssemblyInfo.cs
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Models.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Models.pdb
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Shared\obj\Debug\net461\InsuranceRight.Services.Models.csprojResolveAssemblyReference.cache

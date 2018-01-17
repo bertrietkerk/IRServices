@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Models.Car;
-using InsuranceRight.Services.Models.Response;
+﻿using InsuranceRight.Services.Feature.Car.Models;
 using InsuranceRight.Services.Models.Settings;
 using Microsoft.Extensions.Options;
 

@@ -1,10 +1,7 @@
-﻿using InsuranceRight.Services.Models.Coverages;
-using InsuranceRight.Services.Models.Enums;
-using InsuranceRight.Services.Models.Response;
-using System;
+﻿using InsuranceRight.Services.Feature.Car.Models.Coverages;
+using InsuranceRight.Services.Feature.Car.Models.Enums;
+using InsuranceRight.Services.Feature.Car.Models.Response;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace InsuranceRight.Services.Feature.Car.Services
 {

@@ -148,6 +148,9 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=1.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.1.0.3\lib\netstandard1.1\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.2\lib\net45\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -179,6 +182,7 @@
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.0.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.1.1\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
@@ -276,9 +280,32 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="IrServiceHostClient\ApiCarPremiumPolicyGetVariants.cs" />
+    <Compile Include="IrServiceHostClient\ApiCarPremiumPolicyGetVariantsExtensions.cs" />
+    <Compile Include="IrServiceHostClient\IApiCarPremiumPolicyGetVariants.cs" />
+    <Compile Include="IrServiceHostClient\IIrServiceHostClient.cs" />
+    <Compile Include="IrServiceHostClient\IrServiceHostClient.cs" />
+    <Compile Include="IrServiceHostClient\IrServiceHostClientExtensions.cs" />
+    <Compile Include="IrServiceHostClient\Models\Address.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarIdentificationCodes.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarInsuredValue.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarLookupViewModel.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarObject.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarPayment.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarPremiumFactors.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarPrice.cs" />
+    <Compile Include="IrServiceHostClient\Models\CarViewModel.cs" />
+    <Compile Include="IrServiceHostClient\Models\LicensePlate.cs" />
+    <Compile Include="IrServiceHostClient\Models\MostFrequentDriverViewModel.cs" />
+    <Compile Include="IrServiceHostClient\Models\ReturnObjectAddress.cs" />
+    <Compile Include="IrServiceHostClient\Models\ReturnObjectListString.cs" />
+    <Compile Include="IrServiceHostClient\Models\ReturnObjectZipCode.cs" />
+    <Compile Include="IrServiceHostClient\Models\ZipCode.cs" />
     <Compile Include="Models\AddressCheckViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AddressApiCallsRepository.cs" />
+    <Compile Include="Repositories\AnonymousCredentials.cs" />
+    <Compile Include="Repositories\DefaultApiClient.cs" />
     <Compile Include="Repositories\IAddressApiCallsRepository.cs" />
   </ItemGroup>
   <ItemGroup>

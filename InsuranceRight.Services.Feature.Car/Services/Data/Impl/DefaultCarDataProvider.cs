@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using InsuranceRight.Services.Models.Car;
 using System.IO;
 using Newtonsoft.Json;
-using InsuranceRight.Services.Models.JsonRootObjects;
+using InsuranceRight.Services.Feature.Car.Models;
+using InsuranceRight.Services.Feature.Car.Models.RootObject;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
 {

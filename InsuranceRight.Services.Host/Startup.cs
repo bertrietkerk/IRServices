@@ -80,7 +80,7 @@ namespace InsuranceRight.Services.Host
             services.AddSingleton<ICarDocumentService, DefaultCarDocumentService>();
 
             // DI Acceptance
-            services.AddSingleton<IAcceptanceCheck, DefaultAcceptanceCheck>();
+            services.AddSingleton<ICarAcceptance, DefaultCarAcceptance>();
 
         }
 

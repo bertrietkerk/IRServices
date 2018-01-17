@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Feature.Car.Services;
-using InsuranceRight.Services.Models.Car;
 using InsuranceRight.Services.Models.Response;
+using InsuranceRight.Services.Feature.Car.Models;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {

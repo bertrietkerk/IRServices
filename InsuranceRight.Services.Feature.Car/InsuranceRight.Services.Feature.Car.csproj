@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InsuranceRight.Services.Acceptance\InsuranceRight.Services.Acceptance.csproj" />
     <ProjectReference Include="..\InsuranceRight.Services.Shared\InsuranceRight.Services.Models.csproj" />
   </ItemGroup>
 

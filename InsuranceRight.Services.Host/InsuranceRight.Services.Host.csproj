@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\InsuranceRight.Services.Acceptance\InsuranceRight.Services.Acceptance.csproj" />
     <ProjectReference Include="..\InsuranceRight.Services.AddressService\InsuranceRight.Services.AddressService.csproj" />
     <ProjectReference Include="..\InsuranceRight.Services.Feature.Car\InsuranceRight.Services.Feature.Car.csproj" />
   </ItemGroup>

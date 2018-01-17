@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Fea
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceRight.Services.Host", "InsuranceRight.Services.Host\InsuranceRight.Services.Host.csproj", "{BBD33A57-B5A4-4974-A870-34DA60090C27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceRight.Services.Acceptance", "InsuranceRight.Services.Acceptance\InsuranceRight.Services.Acceptance.csproj", "{3FBB20A7-FC1B-44AB-9875-4706B0F2F57E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBD33A57-B5A4-4974-A870-34DA60090C27}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FBB20A7-FC1B-44AB-9875-4706B0F2F57E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FBB20A7-FC1B-44AB-9875-4706B0F2F57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FBB20A7-FC1B-44AB-9875-4706B0F2F57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FBB20A7-FC1B-44AB-9875-4706B0F2F57E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

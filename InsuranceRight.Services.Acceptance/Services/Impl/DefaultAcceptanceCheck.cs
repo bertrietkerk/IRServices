@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using InsuranceRight.Services.Acceptance.HelperMethods;
 using InsuranceRight.Services.Models.Acceptance;
 using InsuranceRight.Services.Models.Car;
 using InsuranceRight.Services.Models.Car.ViewModels;
-using InsuranceRight.Services.Models.HelperMethods;
 using InsuranceRight.Services.Models.Settings;
 using Microsoft.Extensions.Options;
 

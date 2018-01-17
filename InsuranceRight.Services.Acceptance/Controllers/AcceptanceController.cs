@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Acceptance.Services;
+﻿using InsuranceRight.Services.Acceptance.Services;
 using InsuranceRight.Services.Models.Car.ViewModels;
 using InsuranceRight.Services.Models.Response;
-using InsuranceRight.Services.Models.HelperMethods;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Models.Acceptance;
 using Microsoft.Extensions.Options;

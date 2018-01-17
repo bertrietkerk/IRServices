@@ -5093,22 +5093,6 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
-      "InsuranceRight.Services.Acceptance/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v2.0",
-        "dependencies": {
-          "InsuranceRight.Services.Models": "1.0.0",
-          "Microsoft.AspNetCore.All": "2.0.0",
-          "Microsoft.NETCore.App": "2.0.0",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "2.0.0"
-        },
-        "compile": {
-          "bin/placeholder/InsuranceRight.Services.Acceptance.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/InsuranceRight.Services.Acceptance.dll": {}
-        }
-      },
       "InsuranceRight.Services.AddressService/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
@@ -5129,7 +5113,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
-          "InsuranceRight.Services.Acceptance": "1.0.0",
           "InsuranceRight.Services.Models": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.0",
           "Microsoft.NETCore.App": "2.0.0",
@@ -13283,11 +13266,6 @@
         "windowsazure.storage.nuspec"
       ]
     },
-    "InsuranceRight.Services.Acceptance/1.0.0": {
-      "type": "project",
-      "path": "../InsuranceRight.Services.Acceptance/InsuranceRight.Services.Acceptance.csproj",
-      "msbuildProject": "../InsuranceRight.Services.Acceptance/InsuranceRight.Services.Acceptance.csproj"
-    },
     "InsuranceRight.Services.AddressService/1.0.0": {
       "type": "project",
       "path": "../InsuranceRight.Services.AddressService/InsuranceRight.Services.AddressService.csproj",
@@ -13306,7 +13284,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "InsuranceRight.Services.Acceptance >= 1.0.0",
       "InsuranceRight.Services.AddressService >= 1.0.0",
       "InsuranceRight.Services.Feature.Car >= 1.0.0",
       "Microsoft.NETCore.App >= 2.0.0"
@@ -13348,9 +13325,6 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Acceptance\\InsuranceRight.Services.Acceptance.csproj": {
-              "projectPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.Acceptance\\InsuranceRight.Services.Acceptance.csproj"
-            },
             "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.AddressService\\InsuranceRight.Services.AddressService.csproj": {
               "projectPath": "C:\\Projects\\InsuranceRight.Services\\InsuranceRight.Services.AddressService\\InsuranceRight.Services.AddressService.csproj"
             },

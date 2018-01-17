@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
-using InsuranceRight.Services.Models.Car;
+using InsuranceRight.Services.Feature.Car.Models;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {

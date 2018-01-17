@@ -4,6 +4,7 @@ using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.AddressService.Interfaces;
 using System.Collections.Generic;
 using InsuranceRight.Services.Models.Foundation;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,6 +35,8 @@ namespace InsuranceRight.Services.AddressService.Controllers
         /// <param name="ZipCode">The zipcode to validate</param>
         /// <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<ZipCode>))]
+        [SwaggerResponse(400, Type = typeof(ReturnObject<ZipCode>))]
         public IActionResult ValidateZipcode([FromBody]ZipCode ZipCode)
         {
             var response = new ReturnObject<ZipCode>() { ErrorMessages = new List<string>(), Object = ZipCode };
@@ -76,6 +79,8 @@ namespace InsuranceRight.Services.AddressService.Controllers
         /// <param name="address">Incomplete Address to fill with details</param>
         /// <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<Address>))]
+        [SwaggerResponse(400, Type = typeof(ReturnObject<Address>))]
         public IActionResult GetFullAddress([FromBody]Address address)
         {
             var response = new ReturnObject<Address>() { ErrorMessages = new List<string>() , Object = address };

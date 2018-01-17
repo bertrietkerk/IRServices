@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Feature.Car.Services;
-using InsuranceRight.Services.Models.Car.ViewModels;
 using InsuranceRight.Services.Models.Response;
-using InsuranceRight.Services.Models.Coverages;
 using Microsoft.Extensions.Options;
 using InsuranceRight.Services.Models.Settings;
 using InsuranceRight.Services.Acceptance.Services;
 using InsuranceRight.Services.Models.Acceptance;
-using InsuranceRight.Services.Models.Enums;
+using InsuranceRight.Services.Feature.Car.Models.Response;
+using InsuranceRight.Services.Feature.Car.Models.ViewModels;
+using InsuranceRight.Services.Feature.Car.Models.Coverages;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -22,13 +18,13 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
     {
         private readonly ICarPremiumPolicy _carPremiumPolicy;
         private readonly PremiumCalculationSettings _settings;
-        private readonly IAcceptanceCheck _acceptanceCheck;
+        private readonly ICarAcceptance _acceptance;
 
-        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, IAcceptanceCheck acceptanceCheck)
+        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, ICarAcceptance acceptance)
         {
             _carPremiumPolicy = carPremiumPolicy;
             _settings = settings.Value;
-            _acceptanceCheck = acceptanceCheck;
+            _acceptance = acceptance;
         }
 
         /// <summary>
@@ -146,7 +142,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             // ACCEPTANCE CHECK
             if (_settings.IncludeAcceptanceCheck)
             {
-                AcceptanceStatus status = _acceptanceCheck.Check(driver, car);
+                AcceptanceStatus status = _acceptance.Check(driver, car);
                 if (!status.IsAccepted)
                 {
                     response.ErrorMessages.Add("Acceptance check failed: " + status.Reason);

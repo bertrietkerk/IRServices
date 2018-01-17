@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InsuranceRight.Services.Models.Car.ViewModels;
+﻿using System.Collections.Generic;
+using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 using InsuranceRight.Services.Models.Foundation;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Impl
