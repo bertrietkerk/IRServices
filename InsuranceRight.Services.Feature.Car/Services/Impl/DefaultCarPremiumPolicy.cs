@@ -7,18 +7,22 @@ using InsuranceRight.Services.Feature.Car.Models.Response;
 using InsuranceRight.Services.Feature.Car.Models.Enums;
 using InsuranceRight.Services.Feature.Car.Models;
 using InsuranceRight.Services.Feature.Car.Models.Coverages;
+using Microsoft.Extensions.Options;
+using InsuranceRight.Services.Models.Settings;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Impl
 {
-    public class DefaultCarPremiumPolicy : ICarPremiumPolicy
+    public class DefaultCarPremiumPolicy : ICarPremiumPolicy, ICarDiscountPolicy
     {
         private readonly ILicensePlateLookup _licensePlateLookup;
         private readonly IPremiumCalculator _premiumCalculator;
+        private readonly IOptions<DiscountSettings> _settings;
 
-        public DefaultCarPremiumPolicy(ILicensePlateLookup licensePlateLookup, IPremiumCalculator premiumCalculator)
+        public DefaultCarPremiumPolicy(ILicensePlateLookup licensePlateLookup, IPremiumCalculator premiumCalculator, IOptions<DiscountSettings> settings)
         {
             _licensePlateLookup = licensePlateLookup;
             _premiumCalculator = premiumCalculator;
+            _settings = settings;
         }
 
         public List<Coverage> GetCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode)
@@ -119,6 +123,19 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             return new VariantsAndCoverages() { Variants = variants, Coverages = coverages };
         }
 
+        public CarDiscountPolicy GetDiscountForGroup(string code)
+        {
+            CarDiscountPolicy response = new CarDiscountPolicy() { Code = code, IsDiscountFound = false, Amount = 0 };
+            int amount = 0;
+
+            if (!string.IsNullOrWhiteSpace(code) && _settings.Value.DiscountCodes.TryGetValue(code, out amount))
+            {
+                response.IsDiscountFound = true;
+                response.Amount = amount;
+            }
+
+            return response;
+        }
 
         #region HelperMethods
 
@@ -148,7 +165,8 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             return carAge;
         }
 
-        
+
+
         #endregion
     }
 }

@@ -2,11 +2,12 @@
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.Feature.Car.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/Car/Premium")]
     public class CarDiscountPolicyController : Controller
     {
         private readonly ICarDiscountPolicy _carDiscountPolicy;
@@ -17,11 +18,12 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         }
 
         /// <summary>
-        /// Gets the discount amount(decimal) based on the provided code
+        /// Gets the discount amount(decimal) based on the provided group code
         /// </summary>
         /// <param name="discountCode">Discount code</param>
         /// <returns>Amount(decimal) of discount</returns>
-        [HttpPost]
+        [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<CarDiscountPolicy>))]
         public IActionResult GroupDiscounts([FromBody] string discountCode)
         {
             ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>();

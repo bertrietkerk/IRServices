@@ -4,11 +4,12 @@ using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.Models.Foundation;
 using InsuranceRight.Services.Feature.Car.Models.ViewModels;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
     [Produces("application/json")]
-    [Route("api/CarPolicyDocument")]
+    [Route("api/Car/Policy")]
     public class CarPolicyDocumentController : Controller
     {
         private readonly ICarDocumentService _documentService;
@@ -25,7 +26,8 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">CarViewModel</param>
         /// <returns></returns>
         [HttpPost("[action]")]
-        public IActionResult GetDocuments([FromBody] CarViewModel viewModel)
+        [SwaggerResponse(200, Type = typeof(ReturnObject<IEnumerable<PolicyDocument>>))]
+        public IActionResult Documents([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<IEnumerable<PolicyDocument>>();
             var documents = _documentService.GetDocuments(viewModel);

@@ -1,4 +1,4 @@
-﻿using InsuranceRight.Services.AddressService.Interfaces;
+﻿using InsuranceRight.Services.AddressService.Services.Data;
 using InsuranceRight.Services.Models.Foundation;
 using System.Collections.Generic;
 

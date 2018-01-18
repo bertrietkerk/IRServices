@@ -2,18 +2,19 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using InsuranceRight.Services.AddressService.Interfaces;
-using InsuranceRight.Services.AddressService.Repositories;
 using InsuranceRight.Services.Feature.Car.Services.Impl;
 using InsuranceRight.Services.Feature.Car.Services.Data;
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Feature.Car.Services.Data.Impl;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
-using InsuranceRight.Services.Acceptance.Services;
 using InsuranceRight.Services.Acceptance.Services.Impl;
 using InsuranceRight.Services.Models.Settings;
 using System.IO;
+using InsuranceRight.Services.AddressService.Services;
+using InsuranceRight.Services.AddressService.Services.Data;
+using InsuranceRight.Services.AddressService.Services.Data.Impl;
+using InsuranceRight.Services.AddressService.Services.Impl;
 
 namespace InsuranceRight.Services.Host
 {
@@ -78,8 +79,6 @@ namespace InsuranceRight.Services.Host
             services.AddSingleton<ICarPremiumPolicy, DefaultCarPremiumPolicy>();
             services.AddSingleton<IPremiumCalculator, DefaultPremiumCalculator>();
             services.AddSingleton<ICarDocumentService, DefaultCarDocumentService>();
-
-            // DI Acceptance
             services.AddSingleton<ICarAcceptance, DefaultCarAcceptance>();
 
         }

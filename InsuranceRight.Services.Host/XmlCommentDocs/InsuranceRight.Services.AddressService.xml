@@ -9,7 +9,7 @@
             Controller for validating zipcodes and getting full address details
             </summary>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.#ctor(InsuranceRight.Services.AddressService.Interfaces.IAddressLookup)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.#ctor(InsuranceRight.Services.AddressService.Services.IAddressLookup)">
             <summary>
             Constructor injecting IAddressCheck
             </summary>
@@ -29,14 +29,14 @@
             <param name="address">Incomplete Address to fill with details</param>
             <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.IsZipCodeValid(System.String)">
+        <member name="M:InsuranceRight.Services.AddressService.Services.Impl.DefaultAddressLookup.IsZipCodeValid(System.String)">
             <summary>
             Checks if zipCode is valid, based on _validZipCodes list
             </summary>
             <param name="zipCode">The zipcode to check</param>
             <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Repositories.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)">
+        <member name="M:InsuranceRight.Services.AddressService.Services.Impl.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)">
             <summary>
             Get the full address based on the zipcode, housenumber and housenumberextension
             </summary>

@@ -2,11 +2,12 @@
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
 using InsuranceRight.Services.Feature.Car.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
     //[Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/Car/Lookup")]
     public class LicensePlateLookupController : Controller
     {
         private readonly ILicensePlateLookup _lpLookup;
@@ -22,6 +23,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="licensePlate">The license-plate from the car to get the details from</param>
         /// <returns>CarObject with car details</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<CarObject>))]
         public IActionResult GetCarDetails([FromBody] LicensePlate licensePlate)
         {
             var response = new ReturnObject<CarObject>();

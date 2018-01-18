@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 using InsuranceRight.Services.Feature.Car.Models;
-using InsuranceRight.Services.Feature.Car.Models.RootObject;
+using InsuranceRight.Services.Feature.Car.Services.Data.Json;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
 {

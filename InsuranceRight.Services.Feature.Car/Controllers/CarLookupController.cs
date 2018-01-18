@@ -9,7 +9,7 @@ using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/Car/Lookup")]
     public class CarLookupController : Controller
     {
         private readonly ICarLookup _carLookup;
@@ -54,6 +54,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">Model containing a brand(string) and model(string)</param>
         /// <returns>A list of editions based on the provided car brand and model</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<List<string>>))]
         public IActionResult GetEditions([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<List<string>>();
@@ -81,6 +82,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the weight for</param>
         /// <returns>The details of the provided car</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<Dictionary<string, decimal>>))]
         public IActionResult GetEditionDetails([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<Dictionary<string, decimal>>();
@@ -113,9 +115,10 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the weight for</param>
         /// <returns>The weight(decimal) of the provided car</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<decimal>))]
         public IActionResult GetWeight([FromBody] CarLookupViewModel viewModel)
         {
-            var response = new ReturnObject<Decimal>();
+            var response = new ReturnObject<decimal>();
 
             if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
@@ -141,9 +144,10 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the catalog value for</param>
         /// <returns>The catalog value(decimal) of the provided car</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<decimal>))]
         public IActionResult GetCatalogValue([FromBody] CarLookupViewModel viewModel)
         {
-            var response = new ReturnObject<Decimal>();
+            var response = new ReturnObject<decimal>();
             if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
                 response.ErrorMessages.Add("Brand, Model and/or Edition was null or empty string");

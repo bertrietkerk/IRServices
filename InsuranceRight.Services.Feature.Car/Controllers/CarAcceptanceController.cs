@@ -10,11 +10,12 @@ using InsuranceRight.Services.Models.Settings;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Acceptance")]
+    [Route("api/Car/[controller]")]
     public class AcceptanceController : Controller
     {
         private readonly ICarAcceptance _acceptance;
@@ -32,6 +33,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">Current data. Can include -1- Car details (licenseplate, price, security measurements, etc), -2- Most frequent driver details, -3- Risk assesment answers </param>
         /// <returns>Acceptance status indicating accepted or not, and if not the reason</returns>
         [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<AcceptanceStatus>))]
         public IActionResult Check([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<AcceptanceStatus>() { Object = new AcceptanceStatus() { IsAccepted = false } };

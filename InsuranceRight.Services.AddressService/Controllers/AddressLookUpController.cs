@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
 using InsuranceRight.Services.Models.Response;
-using InsuranceRight.Services.AddressService.Interfaces;
 using System.Collections.Generic;
 using InsuranceRight.Services.Models.Foundation;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using InsuranceRight.Services.AddressService.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,7 +13,8 @@ namespace InsuranceRight.Services.AddressService.Controllers
     /// <summary>
     /// Controller for validating zipcodes and getting full address details
     /// </summary>
-    [Route("api/[controller]")]
+    [Produces("application/json")]
+    [Route("api/address/[controller]")]
     public class AddressLookupController : Controller
     {
         private static readonly string _defaultDutchRegexPattern = "^[1-9][0-9]{3}[A-Z]{2}$";
@@ -80,7 +81,6 @@ namespace InsuranceRight.Services.AddressService.Controllers
         /// <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<Address>))]
-        [SwaggerResponse(400, Type = typeof(ReturnObject<Address>))]
         public IActionResult GetFullAddress([FromBody]Address address)
         {
             var response = new ReturnObject<Address>() { ErrorMessages = new List<string>() , Object = address };

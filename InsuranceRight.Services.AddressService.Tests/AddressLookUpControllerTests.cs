@@ -1,9 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using InsuranceRight.Services.AddressService.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using InsuranceRight.Services.AddressService.Repositories;
 using InsuranceRight.Services.Models.Foundation;
 using InsuranceRight.Services.Models.Response;
+using InsuranceRight.Services.AddressService.Services.Impl;
 
 namespace InsuranceRight.Services.AddressService.Tests
 {

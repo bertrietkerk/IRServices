@@ -13,7 +13,7 @@
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarDiscountPolicyController.GroupDiscounts(System.String)">
             <summary>
-            Gets the discount amount(decimal) based on the provided code
+            Gets the discount amount(decimal) based on the provided group code
             </summary>
             <param name="discountCode">Discount code</param>
             <returns>Amount(decimal) of discount</returns>
@@ -53,7 +53,7 @@
             <param name="viewModel">Model containing a brand(string), model(string) and edition(string) of the car to get the catalog value for</param>
             <returns>The catalog value(decimal) of the provided car</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPolicyDocumentController.GetDocuments(InsuranceRight.Services.Feature.Car.Models.ViewModels.CarViewModel)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPolicyDocumentController.Documents(InsuranceRight.Services.Feature.Car.Models.ViewModels.CarViewModel)">
             <summary>
             Get the policy documents for the chosen insurance
             </summary>
@@ -94,6 +94,13 @@
             </summary>
             <param name="viewModel">Viewmodel containing the payment frequency</param>
             <returns></returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarPremiumPolicyController.GroupCodeDiscount(System.String)">
+            <summary>
+            Gets the discount amount(decimal) based on the provided group code
+            </summary>
+            <param name="discountCode">Discount code</param>
+            <returns>Amount(decimal) of discount</returns>
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.LicensePlateLookupController.GetCarDetails(InsuranceRight.Services.Feature.Car.Models.LicensePlate)">
             <summary>
