@@ -72,7 +72,13 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
         {
             var result = new AcceptanceStatus() { IsAccepted = false };
             var zipcode = driver.ResidenceAddress.ZipCode;
-            var claimFree = int.Parse(driver.DamageFreeYears);
+
+            int claimFree;
+            if(!int.TryParse(driver.DamageFreeYears, out claimFree))
+            {
+                claimFree = 0;
+            }
+
             var driverAge = Helpers.GetDriverAge(driver.Age);
             var carPrice = car.Price.CatalogPrice;
             var expensiveCarBoundary = _settings.ExpensiveCarBoundary;   

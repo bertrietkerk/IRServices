@@ -18,6 +18,12 @@
             <param name="discountCode">Discount code</param>
             <returns>Amount(decimal) of discount</returns>
         </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarLookupController.GetBrands">
+            <summary>
+            Get all distinct brands of cars
+            </summary>
+            <returns>List of car-brands (string)</returns>
+        </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Controllers.CarLookupController.GetModels(System.String)">
             <summary>
             Get all possible models of the provided brand car
@@ -102,17 +108,26 @@
             <param name="discountCode">Discount code</param>
             <returns>Amount(decimal) of discount</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.LicensePlateLookupController.GetCarDetails(InsuranceRight.Services.Feature.Car.Models.LicensePlate)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Controllers.LicensePlateLookupController.GetCarDetails(System.String)">
             <summary>
             Returns the Car details of the car corresponding to the give license-plate
             </summary>
             <param name="licensePlate">The license-plate from the car to get the details from</param>
             <returns>CarObject with car details</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultCarLookup.GetModels(System.String)">
+        <member name="M:InsuranceRight.Services.Feature.Car.HelperMethods.Helpers.IsObjectNull(System.Object[])">
             <summary>
-            Get a list of all models of the given brand car
+            Check the given objects for null
             </summary>
+            <param name="objects">Objects to check for null</param>
+            <returns>Dictionary pair. Key: given object, Bool: true if obj is null</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.Feature.Car.HelperMethods.Helpers.IsAnyObjectNull(System.Object[])">
+            <summary>
+            Check the given objects for null
+            </summary>
+            <param name="objects">Objects to check for null</param>
+            <returns>True if any object is null</returns>
         </member>
         <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplPremium(System.Int32,System.String,System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
             <summary>

@@ -29,7 +29,6 @@ namespace InsuranceRight.Services.AddressService.Controllers
             _addressCheckProvider = addressCheck;
         }
 
-        // POST api/addresscheck/validatezipcode
         /// <summary>
         /// Method for validating a zipcode
         /// </summary>
@@ -38,7 +37,44 @@ namespace InsuranceRight.Services.AddressService.Controllers
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<ZipCode>))]
         [SwaggerResponse(400, Type = typeof(ReturnObject<ZipCode>))]
-        public IActionResult ValidateZipcode([FromBody]ZipCode ZipCode)
+        public IActionResult ValidateZipcode([FromBody]string zipCode)
+        {
+            var response = new ReturnObject<string>() { ErrorMessages = new List<string>(), Object = zipCode };
+            if (string.IsNullOrWhiteSpace(zipCode))
+            {
+                response.ErrorMessages.Add("ZipCode was null or empty");
+                return Ok(response);
+            }
+
+            zipCode = zipCode.Replace(" ", "").ToUpper();
+            Regex regex = new Regex(_defaultDutchRegexPattern);
+
+            if (!regex.IsMatch(zipCode))
+            {
+                response.ErrorMessages.Add("Zipcode wasn't in the correct format (e.g. 1111AA)");
+                return Ok(response);
+            }
+
+            if (_addressCheckProvider.IsZipCodeValid(zipCode))
+            {
+                response.ErrorMessages.Clear();
+                return Ok(response);
+            }
+
+            response.ErrorMessages.Add("Zipcode was not found");
+            return Ok(response);
+        }
+
+        
+        /// <summary>
+        /// Method for validating a zipcode
+        /// </summary>
+        /// <param name="ZipCode">The zipcode to validate</param>
+        /// <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
+        [HttpPost("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<ZipCode>))]
+        [SwaggerResponse(400, Type = typeof(ReturnObject<ZipCode>))]
+        public IActionResult ValidateZipcode2([FromBody]ZipCode ZipCode)
         {
             var response = new ReturnObject<ZipCode>() { ErrorMessages = new List<string>(), Object = ZipCode };
             if (ZipCode == null)

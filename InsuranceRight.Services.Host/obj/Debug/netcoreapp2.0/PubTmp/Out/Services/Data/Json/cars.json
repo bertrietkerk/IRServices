@@ -1,0 +1,139 @@
+﻿{
+  "cars": [
+    {
+      "LicensePlate": "ST-IG-13",
+      "Brand": "AUDI",
+      "Model": "TT",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "2510",
+      "Edition": "1.8 T",
+      "Year": "2012",
+      "Price": {
+        "CatalogPrice": 20250,
+        "CurrentPrice": 15000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-GBB-1",
+      "Brand": "VOLVO",
+      "Model": "XC60",
+      "Fuel": "DIESEL",
+      "GearType": "Manual",
+      "Weight": "2400",
+      "Edition": "2.0",
+      "Year": "2015",
+      "Price": {
+        "CatalogPrice": 18000,
+        "CurrentPrice": 17000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "SK-595-AA",
+      "Brand": "NISSAN",
+      "Model": "SUNNY",
+      "Fuel": "DIESEL",
+      "GearType": "Manual",
+      "Weight": "2420",
+      "Edition": "1.4 LX",
+      "Year": "2014",
+      "Price": {
+        "CatalogPrice": 16000,
+        "CurrentPrice": 12000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-AWW-1",
+      "Brand": "JEEP",
+      "Model": "LAND ROVER DEFENDER",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "2900",
+      "Edition": "4WD",
+      "Year": "1983",
+      "Price": {
+        "CatalogPrice": 13000,
+        "CurrentPrice": 10000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-QWE-1",
+      "Brand": "RENAULT",
+      "Model": "CLIO",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "2400",
+      "Edition": "Authentique",
+      "Year": "2006",
+      "Price": {
+        "CatalogPrice": 18000,
+        "CurrentPrice": 13000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "84-LD-KP",
+      "Brand": "MINI",
+      "Model": "ONE",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "1040",
+      "Edition": "RA31",
+      "Year": "2002",
+      "Price": {
+        "CatalogPrice": 16000,
+        "CurrentPrice": 4000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "JV-798-F",
+      "Brand": "MINI",
+      "Model": "COOPER",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "1060",
+      "Edition": "CHILI",
+      "Year": "2016",
+      "Price": {
+        "CatalogPrice": 29000,
+        "CurrentPrice": 21000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "14-BR-14",
+      "Brand": "MINI",
+      "Model": "COOPER",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "1414",
+      "Edition": "PEPPER",
+      "Year": "2014",
+      "Price": {
+        "CatalogPrice": 24000,
+        "CurrentPrice": 18000
+      },
+      "IsVehicleFound": true
+    },
+    {
+      "LicensePlate": "01-IR-01",
+      "Brand": "FERRARI",
+      "Model": "F40",
+      "Fuel": "BENZINE",
+      "GearType": "Manual",
+      "Weight": "1235",
+      "Edition": "",
+      "Year": "1988",
+      "Price": {
+        "CatalogPrice": 999000,
+        "CurrentPrice": 800000
+      },
+      "IsVehicleFound": true
+    }
+  ]
+}

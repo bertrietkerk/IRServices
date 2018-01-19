@@ -7,6 +7,8 @@ namespace InsuranceRight.Services.Feature.Car.Services
 {
     public interface ICarLookup
     {
+        List<string> GetBrands();
+
         List<string> GetModels(string brand);
 
         List<string> GetEditions(string brand, string model);

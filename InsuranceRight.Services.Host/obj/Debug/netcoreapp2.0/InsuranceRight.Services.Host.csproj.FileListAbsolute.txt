@@ -9,6 +9,7 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netco
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.pdb
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.AddressService.xml
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
+C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.xml
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Models.pdb
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Host.csprojResolveAssemblyReference.cache
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Host.csproj.CoreCompileInputs.cache
@@ -16,4 +17,3 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netco
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Host.AssemblyInfo.cs
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Host.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\obj\Debug\netcoreapp2.0\InsuranceRight.Services.Host.pdb
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Host\bin\Debug\netcoreapp2.0\InsuranceRight.Services.Feature.Car.xml

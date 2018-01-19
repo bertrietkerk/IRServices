@@ -20,13 +20,36 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         }
 
         /// <summary>
+        /// Get all distinct brands of cars
+        /// </summary>
+        /// <returns>List of car-brands (string)</returns>
+        [HttpGet("[action]")]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<List<string>>))]
+        //[SwaggerResponse(400, Type = typeof(ReturnObject<List<string>>))]
+        public IActionResult GetBrands()
+        {
+            var response = new ReturnObject<List<string>>();
+
+            var brands = _carLookup.GetBrands();
+            if (brands == null || brands.Count < 1)
+            {
+                response.ErrorMessages.Add("No brands were found");
+                return Ok(response);
+            }
+
+            response.Object = brands;
+            return Ok(response);
+        }
+
+
+        /// <summary>
         /// Get all possible models of the provided brand car
         /// </summary>
         /// <param name="brand">Brand of the car</param>
         /// <returns>A list of models based on the provided car brand</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<List<string>>))]
-        [SwaggerResponse(400, Type = typeof(ReturnObject<List<string>>))]
+        //[SwaggerResponse(400, Type = typeof(ReturnObject<List<string>>))]
         public IActionResult GetModels([FromBody] string brand)
         {
             var response = new ReturnObject<List<string>>();
@@ -40,7 +63,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             var models = _carLookup.GetModels(brand);
             if (models == null)
             {
-                response.ErrorMessages.Add("No models were found for that car");
+                response.ErrorMessages.Add("No models were found for the given brand name '" + brand + "'");
                 return Ok(response);
             }
 
@@ -55,6 +78,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <returns>A list of editions based on the provided car brand and model</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<List<string>>))]
+        //[SwaggerResponse(400, Type = typeof(ReturnObject<List<string>>))]
         public IActionResult GetEditions([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<List<string>>();
@@ -83,6 +107,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <returns>The details of the provided car</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<Dictionary<string, decimal>>))]
+        //[SwaggerResponse(400, Type = typeof(ReturnObject<Dictionary<string, decimal>>))]
         public IActionResult GetEditionDetails([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<Dictionary<string, decimal>>();
@@ -116,6 +141,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <returns>The weight(decimal) of the provided car</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<decimal>))]
+        //[SwaggerResponse(400, Type = typeof(ReturnObject<decimal>))]
         public IActionResult GetWeight([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<decimal>();

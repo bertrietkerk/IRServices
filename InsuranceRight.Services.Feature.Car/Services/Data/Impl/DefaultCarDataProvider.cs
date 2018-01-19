@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using InsuranceRight.Services.Feature.Car.Models;
 using InsuranceRight.Services.Feature.Car.Services.Data.Json;
+using System;
 
 namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
 {
@@ -12,9 +13,18 @@ namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
         {
             List<CarObject> carsList = new List<CarObject>();
             CarJsonRootObject rootObject;
-
             // must use relative path to Host project
-            using (StreamReader sr = File.OpenText(@"..\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json"))
+
+            string carsFile = @"..\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json";
+            var root = AppDomain.CurrentDomain.BaseDirectory;
+            if (root.StartsWith("C:\\publish"))
+            {
+                carsFile = @"C:\publish\InsuranceRight\Services.Host\Services\Data\Json\cars.json";
+                string fileLocation = @".\";
+            }
+
+
+            using (StreamReader sr = File.OpenText(carsFile))   //@"..\InsuranceRight.Services.Feature.Car\Services\Data\Json\cars.json"))
             {
                 JsonSerializer ser = new JsonSerializer();
                 rootObject = (CarJsonRootObject)ser.Deserialize(sr, typeof(CarJsonRootObject));

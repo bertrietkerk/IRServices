@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Response;
@@ -30,10 +31,17 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult Documents([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<IEnumerable<PolicyDocument>>();
+
+            if(HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.Payment, viewModel?.PremiumFactors, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress, viewModel?.PremiumFactors?.Car?.Price }))
+            {
+                response.ErrorMessages.Add("Viewmodel wasn't complete");
+                return Ok(response);
+            }
+
             var documents = _documentService.GetDocuments(viewModel);
             if (documents == null)
             {
-                response.ErrorMessages.Add("Provided viewmodel was null");
+                response.ErrorMessages.Add("Something went wrong generating the documents");
             }
 
             response.Object = documents;

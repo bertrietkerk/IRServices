@@ -37,6 +37,12 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult Check([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<AcceptanceStatus>() { Object = new AcceptanceStatus() { IsAccepted = false } };
+            if (viewModel == null || viewModel.PremiumFactors == null)
+            {
+                response.ErrorMessages.Add("Viewmodel was not complete");
+                return Ok(response);
+            }
+
             var car = viewModel.PremiumFactors.Car;
 
             if (car == null || car.Price == null || car.Price.CatalogPrice == 0)

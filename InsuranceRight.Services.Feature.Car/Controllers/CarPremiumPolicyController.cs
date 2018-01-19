@@ -11,6 +11,7 @@ using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 using InsuranceRight.Services.Feature.Car.Models.Coverages;
 using InsuranceRight.Services.Feature.Car.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -38,12 +39,13 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <returns></returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<List<ProductVariant>>))]
+        [Obsolete("This action is not supported anymore. Please use 'GetVariants' action")]
         public IActionResult GetVariants_Old([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
-            if (viewModel == null || viewModel.PremiumFactors.Car == null || viewModel.PremiumFactors.Driver == null || viewModel.PremiumFactors.Driver.ResidenceAddress == null)
+            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
-                response.ErrorMessages.Add("Viewmodel was null");
+                response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
             }
 
@@ -74,17 +76,17 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariants([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
-            var car = viewModel.PremiumFactors.Car;
-            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
+            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
                 response.ErrorMessages.Add("Viewmodel was null");
                 return Ok(response);
             }
 
-            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
 
+            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
             if (variants == null)
             {
                 response.ErrorMessages.Add("Variants were not found");
@@ -107,15 +109,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetCoverages([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<Coverage>>();
-            var car = viewModel.PremiumFactors.Car;
-            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
+            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
-                response.ErrorMessages.Add("Viewmodel was null");
+                response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
             }
-
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
             var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
 
             if (coverages == null)
@@ -138,16 +139,16 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariantsAndCoverages([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<VariantsAndCoverages>();
-            var car = viewModel.PremiumFactors.Car;
-            var driver = viewModel.PremiumFactors.Driver;
 
-            if (viewModel == null || car == null || driver == null || driver.ResidenceAddress == null)
+            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
-                response.ErrorMessages.Add("Viewmodel was null");
+                response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
             }
 
-            // ACCEPTANCE CHECK
+            var car = viewModel.PremiumFactors.Car;
+            var driver = viewModel.PremiumFactors.Driver;
+
             if (_settings.IncludeAcceptanceCheck)
             {
                 AcceptanceStatus status = _acceptance.Check(driver, car);
@@ -157,7 +158,6 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                     return Ok(response);
                 }
             }
-
             response.Object = _carPremiumPolicy.GetVariantsAndCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ZipCode, driver.KilometersPerYear);
 
             if (response.Object == null)
@@ -177,20 +177,22 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         [SwaggerResponse(200, Type = typeof(ReturnObject<PaymentFrequencyDiscountModel>))]
         public IActionResult PaymentFrequencyDiscount([FromBody] CarViewModel viewModel)
         {
-            var response = new ReturnObject<PaymentFrequencyDiscountModel>();
-            response.Object = new PaymentFrequencyDiscountModel();
+            var response = new ReturnObject<PaymentFrequencyDiscountModel> { Object = new PaymentFrequencyDiscountModel() { Amount = 0M } };
 
-            if (viewModel == null || viewModel.Payment == null)
+            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.Payment }))
             {
-                response.ErrorMessages.Add("Viewmodel was not complete/correct");
-                response.Object.Amount = 0M;
+                response.ErrorMessages.Add("Viewmodel/payment was null");
                 return Ok(response);
             }
 
-            var discount = _carPremiumPolicy.GetPaymentFrequencyDiscount((int)viewModel.Payment.PaymentFrequency);
+            if (viewModel.Payment.PaymentFrequency == InsuranceRight.Services.Models.Enums.PaymentFrequency.Unknown)
+            {
+                response.ErrorMessages.Add("Payment frequency was Unknown");
+                return Ok(response);
+            }
 
             response.Object.Frequency = viewModel.Payment.PaymentFrequency;
-            response.Object.Amount = discount;
+            response.Object.Amount = _carPremiumPolicy.GetPaymentFrequencyDiscount((int)viewModel.Payment.PaymentFrequency);
             return Ok(response);
         }
 
@@ -204,9 +206,18 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GroupCodeDiscount([FromBody] string discountCode)
         {
             ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>();
+            if (string.IsNullOrWhiteSpace(discountCode))
+            {
+                response.ErrorMessages.Add("Discount code was null or empty");
+                return Ok(response);
+            }
+
             response.Object = _carDiscountPolicy.GetDiscountForGroup(discountCode);
 
-            return Ok(_carDiscountPolicy.GetDiscountForGroup(discountCode));
+            if (!response.Object.IsDiscountFound)
+                response.ErrorMessages.Add("Discount was not found");
+
+            return Ok(response);
         }
     }
 }

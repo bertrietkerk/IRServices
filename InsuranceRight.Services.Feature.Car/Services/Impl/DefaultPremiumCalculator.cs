@@ -105,17 +105,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 
         private decimal? GetDriverAgePremium(string ageRange)
         {
-            var driverAge = 99;
-
-            if (!string.IsNullOrWhiteSpace(ageRange))
-            {
-                var ageRangeArray = ageRange.Split(new[] { "-", "+", " " }, StringSplitOptions.RemoveEmptyEntries);
-                if (ageRangeArray.Length > 0)
-                {
-                    var ageRangeLast = int.Parse(ageRangeArray.LastOrDefault().Trim());
-                    driverAge = Math.Min(driverAge, ageRangeLast);
-                }
-            }
+            var driverAge = Helpers.GetDriverAge(ageRange);
 
             if (driverAge < 18)
                 return null;

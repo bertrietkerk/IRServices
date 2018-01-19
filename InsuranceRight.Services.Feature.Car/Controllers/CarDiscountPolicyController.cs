@@ -27,9 +27,18 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GroupDiscounts([FromBody] string discountCode)
         {
             ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>();
+            if (string.IsNullOrWhiteSpace(discountCode))
+            {
+                response.ErrorMessages.Add("Discount code was null or empty");
+                return Ok(response);
+            }
+
             response.Object = _carDiscountPolicy.GetDiscountForGroup(discountCode);
+
+            if (!response.Object.IsDiscountFound)
+                response.ErrorMessages.Add("Discount was not found");
             
-            return Ok(_carDiscountPolicy.GetDiscountForGroup(discountCode));
+            return Ok(response);
         }
 
     }

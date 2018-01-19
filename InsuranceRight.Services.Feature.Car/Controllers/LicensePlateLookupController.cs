@@ -6,7 +6,7 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
-    //[Produces("application/json")]
+    [Produces("application/json")]
     [Route("api/Car/Lookup")]
     public class LicensePlateLookupController : Controller
     {
@@ -24,11 +24,17 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <returns>CarObject with car details</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<CarObject>))]
-        public IActionResult GetCarDetails([FromBody] LicensePlate licensePlate)
+        public IActionResult GetCarDetails([FromBody] string licensePlate)
         {
             var response = new ReturnObject<CarObject>();
-            var carDetails = _lpLookup.GetCar(licensePlate.ToString());
 
+            if (string.IsNullOrWhiteSpace(licensePlate))
+            {
+                response.ErrorMessages.Add("Licenseplate was null or empty");
+                return Ok(response);
+            }
+
+            var carDetails = _lpLookup.GetCar(licensePlate.ToString());
             if (carDetails == null)
             {
                 response.ErrorMessages.Add("Car not found");

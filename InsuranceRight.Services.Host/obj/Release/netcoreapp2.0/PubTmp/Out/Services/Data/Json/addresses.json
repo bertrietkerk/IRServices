@@ -1,0 +1,76 @@
+﻿{
+  "addresses": [
+    {
+      "zipCode": "1012NX",
+      "houseNumber": "1",
+      "houseNumberExtension": "A",
+      "street": "Kalverstraat",
+      "city": "Amsterdam",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "1111AA",
+      "houseNumber": "1",
+      "houseNumberExtension": "A",
+      "street": "Diemerkade",
+      "city": "Diemen",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "2222BB",
+      "houseNumber": "2",
+      "houseNumberExtension": "",
+      "street": "Ververstraat",
+      "city": "Katwijk",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "2511CL",
+      "houseNumber": "1",
+      "houseNumberExtension": "",
+      "street": "Lange Poten",
+      "city": "Den Haag",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "3013AA",
+      "houseNumber": "11",
+      "houseNumberExtension": "A",
+      "street": "Coolsingel",
+      "city": "Rotterdam",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "3333CC",
+      "houseNumber": "3",
+      "houseNumberExtension": "",
+      "street": "Kapitein Rietbergenflat",
+      "city": "Zwijndrecht",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "3512AD",
+      "houseNumber": "1",
+      "houseNumberExtension": "",
+      "street": "Neude",
+      "city": "'Utrecht",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "6211GB",
+      "houseNumber": "1",
+      "houseNumberExtension": "",
+      "street": "Stokstraat",
+      "city": "'Maastricht",
+      "country": "Netherlands"
+    },
+    {
+      "zipCode": "9711LA",
+      "houseNumber": "1",
+      "houseNumberExtension": "",
+      "street": "Herestraat",
+      "city": "'Groningen",
+      "country": "Netherlands"
+    }
+  ]
+}

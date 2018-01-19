@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>InsuranceRight.Services.AddressService</name>
+    </assembly>
+    <members>
+        <member name="T:InsuranceRight.Services.AddressService.Controllers.AddressLookupController">
+            <summary>
+            Controller for validating zipcodes and getting full address details
+            </summary>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.#ctor(InsuranceRight.Services.AddressService.Services.IAddressLookup)">
+            <summary>
+            Constructor injecting IAddressCheck
+            </summary>
+            <param name="addressCheck">IAddressCheck</param>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode(InsuranceRight.Services.Models.Foundation.ZipCode)">
+            <summary>
+            Method for validating a zipcode
+            </summary>
+            <param name="ZipCode">The zipcode to validate</param>
+            <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.GetFullAddress(InsuranceRight.Services.Models.Foundation.Address)">
+            <summary>
+            Method for getting the full details of an address
+            </summary>
+            <param name="address">Incomplete Address to fill with details</param>
+            <returns>ReturnObject including ErrorMessage(s) if request was invalid, and an object which will include all details if request is valid</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Services.Impl.DefaultAddressLookup.IsZipCodeValid(System.String)">
+            <summary>
+            Checks if zipCode is valid, based on _validZipCodes list
+            </summary>
+            <param name="zipCode">The zipcode to check</param>
+            <returns>True: zipcode is valid || False: if invalid or doesn't match regex pattern </returns>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Services.Impl.DefaultAddressLookup.GetFullAddress(System.String,System.String,System.String)">
+            <summary>
+            Get the full address based on the zipcode, housenumber and housenumberextension
+            </summary>
+            <param name="zipCode">The zipcode of the full address</param>
+            <param name="houseNumber">The housenumber of the full address</param>
+            <param name="houseNumberExtension">The housenumberextension of the full address</param>
+            <returns>The full address based on zipcode, housenumber and housenumberextension, or null if not found in _validAddressList</returns>
+        </member>
+    </members>
+</doc>

@@ -48,7 +48,7 @@ namespace InsuranceRight.Services.Host
                         Version = "1.0.0.0",
                         Description = "Documentation on the services for InsuranceRight",
                         Contact = new Contact { Name = "Virtual Affairs", Email = "", Url = "http://wwww.virtual-affairs.com/" },
-                        License = new License { Name = "License", Url = "https://en.wikipedia.org/wiki/License" }
+                        License = new License { Name = "MIT", Url = "https://opensource.org/licenses/MIT" }
                     });
 
                 foreach (var doc in xmlDocs)

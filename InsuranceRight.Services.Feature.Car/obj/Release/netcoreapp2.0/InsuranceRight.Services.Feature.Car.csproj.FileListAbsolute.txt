@@ -11,5 +11,3 @@ C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Rele
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Release\netcoreapp2.0\InsuranceRight.Services.Feature.Car.AssemblyInfo.cs
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Release\netcoreapp2.0\InsuranceRight.Services.Feature.Car.dll
 C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\obj\Release\netcoreapp2.0\InsuranceRight.Services.Feature.Car.pdb
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.dll
-C:\Projects\InsuranceRight.Services\InsuranceRight.Services.Feature.Car\bin\Release\netcoreapp2.0\InsuranceRight.Services.Acceptance.pdb

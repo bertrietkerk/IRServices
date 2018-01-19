@@ -15,7 +15,14 @@
             </summary>
             <param name="addressCheck">IAddressCheck</param>
         </member>
-        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode(InsuranceRight.Services.Models.Foundation.ZipCode)">
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode(System.String)">
+            <summary>
+            Method for validating a zipcode
+            </summary>
+            <param name="ZipCode">The zipcode to validate</param>
+            <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
+        </member>
+        <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode2(InsuranceRight.Services.Models.Foundation.ZipCode)">
             <summary>
             Method for validating a zipcode
             </summary>

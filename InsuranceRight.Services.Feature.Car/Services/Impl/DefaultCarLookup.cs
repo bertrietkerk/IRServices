@@ -15,10 +15,25 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             _carData = carDataProvider;
         }
 
+        public List<string> GetBrands()
+        {
+            var brands = new List<string>();
+            var cars = _carData.GetCars();
+            if (cars != null && cars.Count() > 0)
+            {
+                foreach (var c in cars)
+                {
+                    if (!brands.Contains(c.Brand))
+                    {
+                        brands.Add(c.Brand);
+                    }
+                }
+                return brands;
+            }
+            //null if no car was found
+            return null;
+        }
 
-        /// <summary>
-        /// Get a list of all models of the given brand car
-        /// </summary>
         public List<string> GetModels(string brand)
         {
             if (string.IsNullOrWhiteSpace(brand))
@@ -27,7 +42,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
 
             var cars = _carData.GetCars().Where(c => c.Brand == brand.ToUpper().Trim());
-            if (cars != null)
+            if (cars != null && cars.Count() > 0)
             {
                 List<string> models = new List<string>();
                 foreach (var c in cars)
@@ -52,7 +67,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
 
             var cars = _carData.GetCars().Where(c => c.Brand == brand.ToUpper().Trim() && c.Model == model.ToUpper().Trim());
-            if (cars != null)
+            if (cars != null && cars.Count() > 0)
             {
                 List<string> editions = new List<string>();
                 foreach (var c in cars)

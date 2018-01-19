@@ -3,6 +3,7 @@ using System.IO;
 using Newtonsoft.Json;
 using InsuranceRight.Services.Models.Foundation;
 using InsuranceRight.Services.AddressService.Services.Data.Json;
+using System;
 
 namespace InsuranceRight.Services.AddressService.Services.Data.Impl
 {
@@ -19,8 +20,15 @@ namespace InsuranceRight.Services.AddressService.Services.Data.Impl
         {
             AddressJsonRootObject rootObject;
 
-            //using (StreamReader sr = File.OpenText(@".\Json\addresses.json"))
-            using (StreamReader sr = File.OpenText(@"C:\Projects\InsuranceRight.Services\InsuranceRight.Services.AddressService\Json\addresses.json"))
+            string addressFile = @"..\InsuranceRight.Services.AddressService\Services\Data\Json\addresses.json";
+            var root = AppDomain.CurrentDomain.BaseDirectory;
+            if (root.StartsWith("C:\\publish"))
+            {
+                addressFile = @"C:\publish\InsuranceRight\Services.Host\Services\Data\Json\addresses.json";
+                string fileLocation = @".\";
+            }
+            // must use relative path to Host project
+            using (StreamReader sr = File.OpenText(addressFile))
             {
                 JsonSerializer ser = new JsonSerializer();
                 rootObject = (AddressJsonRootObject)ser.Deserialize(sr, typeof(AddressJsonRootObject));
