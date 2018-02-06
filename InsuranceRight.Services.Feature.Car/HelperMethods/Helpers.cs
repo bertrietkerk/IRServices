@@ -64,34 +64,39 @@ namespace InsuranceRight.Services.Feature.Car.HelperMethods
         }
 
 
-        public static int GetDriverAge(string ageRange)
-        {
-            var driverAge = 99;
+        //public static int GetDriverAge(string ageRange)
+        //{
+        //    var driverAge = 99;
 
-            if (!string.IsNullOrWhiteSpace(ageRange))
-            {
-                var ageRangeArray = ageRange.Split(new[] { "-", "+", " " }, StringSplitOptions.RemoveEmptyEntries);
-                if (ageRangeArray.Length > 0)
-                {
-                    int ageRangeLast;
-                    if (int.TryParse(ageRangeArray.LastOrDefault().Trim(), out ageRangeLast))
-                    {
-                        driverAge = Math.Min(driverAge, ageRangeLast);
-                    };
-                }
-            }
-            return driverAge;
-        }
+        //    if (!string.IsNullOrWhiteSpace(ageRange))
+        //    {
+        //        var ageRangeArray = ageRange.Split(new[] { "-", "+", " " }, StringSplitOptions.RemoveEmptyEntries);
+        //        if (ageRangeArray.Length > 0)
+        //        {
+        //            int ageRangeLast;
+        //            if (int.TryParse(ageRangeArray.LastOrDefault().Trim(), out ageRangeLast))
+        //            {
+        //                driverAge = Math.Min(driverAge, ageRangeLast);
+        //            };
+        //        }
+        //    }
+        //    return driverAge;
+        //}
 
-        public static int CalculateDriverAge(DateTime dateOfBirth)
+        public static int CalculateDriverAge(DateTime? dateOfBirth)
         {
             return CalculateDriverAge(dateOfBirth, DateTime.Now);
         }
 
-        public static int CalculateDriverAge(DateTime dateOfBirth, DateTime reference)
+        public static int CalculateDriverAge(DateTime? dateOfBirth, DateTime reference)
         {
-            int age = reference.Year - dateOfBirth.Year;
-            if (reference < dateOfBirth.AddYears(age))
+            if (!dateOfBirth.HasValue)
+            {
+                return 99;
+            }
+
+            int age = reference.Year - dateOfBirth.Value.Year;
+            if (reference < dateOfBirth.Value.AddYears(age))
                 age--;
             return age;
         }

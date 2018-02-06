@@ -19,7 +19,7 @@
             <summary>
             Method for validating a zipcode
             </summary>
-            <param name="ZipCode">The zipcode to validate</param>
+            <param name="zipCode">The zipcode to validate</param>
             <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         </member>
         <member name="M:InsuranceRight.Services.AddressService.Controllers.AddressLookupController.ValidateZipcode2(InsuranceRight.Services.Models.Foundation.ZipCode)">

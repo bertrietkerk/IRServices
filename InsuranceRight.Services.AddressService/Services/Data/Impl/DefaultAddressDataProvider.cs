@@ -25,7 +25,6 @@ namespace InsuranceRight.Services.AddressService.Services.Data.Impl
             if (root.StartsWith("C:\\publish"))
             {
                 addressFile = @"C:\publish\InsuranceRight\Services.Host\Services\Data\Json\addresses.json";
-                string fileLocation = @".\";
             }
             // must use relative path to Host project
             using (StreamReader sr = File.OpenText(addressFile))

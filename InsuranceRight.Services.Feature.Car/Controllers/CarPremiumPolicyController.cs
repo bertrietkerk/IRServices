@@ -51,7 +51,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
 
             var variants = _carPremiumPolicy.GetVariants_Old(
                 viewModel.PremiumFactors.Car.LicensePlate,
-                viewModel.PremiumFactors.Driver.Age,
+                viewModel.PremiumFactors.Driver.BirthDate,
                 viewModel.PremiumFactors.Driver.DamageFreeYears,
                 viewModel.PremiumFactors.Driver.ResidenceAddress.ZipCode);
 
@@ -86,7 +86,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
 
-            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
+            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
             if (variants == null)
             {
                 response.ErrorMessages.Add("Variants were not found");
@@ -117,7 +117,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             }
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
-            var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
+            var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
 
             if (coverages == null)
             {
@@ -158,7 +158,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                     return Ok(response);
                 }
             }
-            response.Object = _carPremiumPolicy.GetVariantsAndCoverages(car.LicensePlate, driver.Age, driver.DamageFreeYears, driver.ZipCode, driver.KilometersPerYear);
+            response.Object = _carPremiumPolicy.GetVariantsAndCoverages(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ZipCode, driver.KilometersPerYear);
 
             if (response.Object == null)
                 response.ErrorMessages.Add("Variants/coverages were not found");

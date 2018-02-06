@@ -79,7 +79,7 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
                 claimFree = 0;
             }
 
-            var driverAge = Helpers.GetDriverAge(driver.Age);
+            var driverAge = Helpers.CalculateDriverAge(driver.DateOfBirth);
             var carPrice = car.Price.CatalogPrice;
             var expensiveCarBoundary = _settings.ExpensiveCarBoundary;   
 

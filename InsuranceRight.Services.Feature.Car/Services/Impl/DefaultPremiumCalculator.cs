@@ -14,14 +14,14 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         /// Calculates the premium for the - MTPL - package based on the given parameters
         /// </summary>
         /// <param name="carAge">Age of the car in years</param> 
-        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="birthDate">Date of birth of the applicant</param>
         /// <param name="claimFreeYear">Amount of years without claim</param>
         /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
         /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
         /// <returns>The Product variant including calculated premium</returns>
-        public ProductVariant CalculateMtplPremium(int carAge, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public ProductVariant CalculateMtplPremium(int carAge, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
-            var totalPremium = GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear);
+            var totalPremium = GetBaseTotalPremium(carAge, birthDate, claimFreeYear, zipCode, kmsPerYear);
             var mtplPremium = decimal.Round((totalPremium * 0.551M), 2, MidpointRounding.AwayFromZero);
 
             var variant = new ProductVariant()
@@ -37,15 +37,15 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         /// </summary>
         /// <param name="carAge">Age of the car in years</param> 
         /// <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
-        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="birthDate">Date of birth of the applicant</param>
         /// <param name="claimFreeYear">Amount of years without claim</param>
         /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
         /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
         /// <returns>The Product variant including calculated premium</returns>
-        public ProductVariant CalculateMtplLimitedCascoPremium(int carAge, CarPrice carPrice, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public ProductVariant CalculateMtplLimitedCascoPremium(int carAge, CarPrice carPrice, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
             var carPricePremium = GetCarPricePremium(carPrice);
-            var totalPremium = (GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear) + carPricePremium);
+            var totalPremium = (GetBaseTotalPremium(carAge, birthDate, claimFreeYear, zipCode, kmsPerYear) + carPricePremium);
             var limitedCascoPremium = decimal.Round((totalPremium * 0.705M), 2, MidpointRounding.AwayFromZero);
             
             var variant = new ProductVariant()
@@ -62,15 +62,15 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         /// </summary>
         /// <param name="carAge">Age of the car in years</param>
         /// <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
-        /// <param name="ageRange">Age range of the applicant</param>
+        /// <param name="birthDate">Date of birth of the applicant</param>
         /// <param name="claimFreeYear">Amount of years without claim</param>
         /// <param name="zipCode">Zipcode of the residence-address of the applicant</param>
         /// <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
         /// <returns>The Product variant including calculated premium</returns>
-        public ProductVariant CalculateMtplAllRiskPremium(int carAge, CarPrice carPrice, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public ProductVariant CalculateMtplAllRiskPremium(int carAge, CarPrice carPrice, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
             var carPricePremium = 1.21M * (GetCarPricePremium(carPrice));
-            var totalPremium = (GetBaseTotalPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear) + carPricePremium);
+            var totalPremium = (GetBaseTotalPremium(carAge, birthDate, claimFreeYear, zipCode, kmsPerYear) + carPricePremium);
             var allRiskPremium = decimal.Round((totalPremium * 0.851M), 2, MidpointRounding.AwayFromZero);
 
             var variant = new ProductVariant()
@@ -103,9 +103,9 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 
         
 
-        private decimal? GetDriverAgePremium(string ageRange)
+        private decimal? GetDriverAgePremium(DateTime? birthDate)
         {
-            var driverAge = Helpers.GetDriverAge(ageRange);
+            var driverAge = Helpers.CalculateDriverAge(birthDate);
 
             if (driverAge < 18)
                 return null;
@@ -122,24 +122,24 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             else
                 return 44M;
         }
-        private decimal? GetDriverAgePremiumV2(DateTime dateOfBirth)
-        {
-            var driverAge = Helpers.CalculateDriverAge(dateOfBirth);
-            if (driverAge < 18)
-                return null;
-            else if (driverAge < 20)
-                return 50M;
-            else if (driverAge < 25)
-                return 35M;
-            else if (driverAge < 35)
-                return 15M;
-            else if (driverAge < 55)
-                return 30M;
-            else if (driverAge < 65)
-                return 38M;
-            else
-                return 45M;
-        }
+        //private decimal? GetDriverAgePremiumV2(DateTime dateOfBirth)
+        //{
+        //    var driverAge = Helpers.CalculateDriverAge(dateOfBirth);
+        //    if (driverAge < 18)
+        //        return null;
+        //    else if (driverAge < 20)
+        //        return 50M;
+        //    else if (driverAge < 25)
+        //        return 35M;
+        //    else if (driverAge < 35)
+        //        return 15M;
+        //    else if (driverAge < 55)
+        //        return 30M;
+        //    else if (driverAge < 65)
+        //        return 38M;
+        //    else
+        //        return 45M;
+        //}
 
         private decimal GetCarAgePremium(int carAge)
         {
@@ -229,13 +229,13 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
                 return null;
         }
 
-        private decimal GetBaseTotalPremium(int carAge, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        private decimal GetBaseTotalPremium(int carAge, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
             var carAgePremium = GetCarAgePremium(carAge);
             var claimPremium = GetClaimPremium(claimFreeYear);
             var addressPremium = GetAddressPremium(zipCode);
             var kmsPerYearPremium = GetKmsPerYearPremium(kmsPerYear);
-            var driverAgePremium = GetDriverAgePremium(ageRange);
+            var driverAgePremium = GetDriverAgePremium(birthDate);
 
             return (decimal)(carAgePremium + claimPremium + driverAgePremium + addressPremium + kmsPerYearPremium);
         }

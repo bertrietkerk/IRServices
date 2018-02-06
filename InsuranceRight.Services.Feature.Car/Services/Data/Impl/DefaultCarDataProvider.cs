@@ -20,7 +20,6 @@ namespace InsuranceRight.Services.Feature.Car.Services.Data.Impl
             if (root.StartsWith("C:\\publish"))
             {
                 carsFile = @"C:\publish\InsuranceRight\Services.Host\Services\Data\Json\cars.json";
-                string fileLocation = @".\";
             }
 
 

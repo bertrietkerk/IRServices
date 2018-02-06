@@ -25,11 +25,11 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             _settings = settings;
         }
 
-        public List<Coverage> GetCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode)
+        public List<Coverage> GetCoverages(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode)
         {
             var carAge = GetCarAge(licensePlate);
             var carAgePremium = (carAge / 10M);
-            var driverAge = Helpers.GetDriverAge(ageRange);
+            var driverAge = Helpers.CalculateDriverAge(birthDate);
 
             var driverAgePremium = (driverAge < 30 ? ((30 - driverAge) / 3M) : (driverAge > 50 ? ((driverAge - 50) / 5M) : 0));
             var claimPremium = 0M;
@@ -68,26 +68,26 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
         }
 
-        public List<ProductVariant> GetVariants(string licensePlate, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public List<ProductVariant> GetVariants(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
             int carAge = GetCarAge(licensePlate);
             CarPrice carPrice = GetCarPrice(licensePlate);
 
-            var mtpl = _premiumCalculator.CalculateMtplPremium(carAge, ageRange, claimFreeYear, zipCode, kmsPerYear);
-            var mtplLimitedCasco = _premiumCalculator.CalculateMtplLimitedCascoPremium(carAge, carPrice, ageRange, claimFreeYear, zipCode, kmsPerYear);
-            var mtplAllRisk = _premiumCalculator.CalculateMtplAllRiskPremium(carAge, carPrice, ageRange, claimFreeYear, zipCode, kmsPerYear);
+            var mtpl = _premiumCalculator.CalculateMtplPremium(carAge, birthDate, claimFreeYear, zipCode, kmsPerYear);
+            var mtplLimitedCasco = _premiumCalculator.CalculateMtplLimitedCascoPremium(carAge, carPrice, birthDate, claimFreeYear, zipCode, kmsPerYear);
+            var mtplAllRisk = _premiumCalculator.CalculateMtplAllRiskPremium(carAge, carPrice, birthDate, claimFreeYear, zipCode, kmsPerYear);
 
             return new List<ProductVariant>() {
                 mtpl, mtplLimitedCasco, mtplAllRisk
             };
         }
 
-        public List<ProductVariant> GetVariants_Old(string licensePlate, string ageRange, string claimFreeYear, string zipCode)
+        public List<ProductVariant> GetVariants_Old(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode)
         {
             var carAge = GetCarAge(licensePlate);
             var carAgePremium = (carAge / 5M);
 
-            var driverAge = Helpers.GetDriverAge(ageRange);
+            var driverAge = Helpers.CalculateDriverAge(birthDate);
 
             var driverAgePremium = (driverAge < 30 ? ((30 - driverAge) / 2M) : (driverAge > 50 ? ((driverAge - 50) / 3M) : 0));
             var claimPremium = 1M;
@@ -106,10 +106,10 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             return variants;
         }
 
-        public VariantsAndCoverages GetVariantsAndCoverages(string licensePlate, string ageRange, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public VariantsAndCoverages GetVariantsAndCoverages(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
         {
-            var variants = GetVariants(licensePlate, ageRange, claimFreeYear, zipCode, kmsPerYear);
-            var coverages = GetCoverages(licensePlate, ageRange, claimFreeYear, zipCode);
+            var variants = GetVariants(licensePlate, birthDate, claimFreeYear, zipCode, kmsPerYear);
+            var coverages = GetCoverages(licensePlate, birthDate, claimFreeYear, zipCode);
 
             return new VariantsAndCoverages() { Variants = variants, Coverages = coverages };
         }

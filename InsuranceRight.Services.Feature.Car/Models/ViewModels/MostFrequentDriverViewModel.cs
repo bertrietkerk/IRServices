@@ -10,7 +10,7 @@ namespace InsuranceRight.Services.Feature.Car.Models.ViewModels
 {
     public class MostFrequentDriverViewModel : PersonViewModel
     {
-        public virtual string Age { get; set; }
+        public virtual DateTime? DateOfBirth { get; set; }
         public virtual bool? HadDamageOrTheftBefore{ get; set; }
         public virtual string DamageFreeYears { get; set; }
         public virtual KilometersPerYear KilometersPerYear { get; set; }
@@ -20,6 +20,5 @@ namespace InsuranceRight.Services.Feature.Car.Models.ViewModels
         public override Address ResidenceAddress { get; set; }
         public override bool IsCorrespondenceAddressDifferent { get; set; }
         public override Address CorrespondenceAddress { get ; set; }
-
     }
 }

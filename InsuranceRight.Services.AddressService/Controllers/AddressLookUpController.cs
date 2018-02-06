@@ -32,7 +32,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
         /// <summary>
         /// Method for validating a zipcode
         /// </summary>
-        /// <param name="ZipCode">The zipcode to validate</param>
+        /// <param name="zipCode">The zipcode to validate</param>
         /// <returns>ReturnObject including ErrorMessage(s) if the request was invalid</returns>
         [HttpPost("[action]")]
         [SwaggerResponse(200, Type = typeof(ReturnObject<ZipCode>))]
