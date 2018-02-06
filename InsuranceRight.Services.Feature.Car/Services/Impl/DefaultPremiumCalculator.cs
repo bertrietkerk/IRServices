@@ -122,24 +122,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             else
                 return 44M;
         }
-        //private decimal? GetDriverAgePremiumV2(DateTime dateOfBirth)
-        //{
-        //    var driverAge = Helpers.CalculateDriverAge(dateOfBirth);
-        //    if (driverAge < 18)
-        //        return null;
-        //    else if (driverAge < 20)
-        //        return 50M;
-        //    else if (driverAge < 25)
-        //        return 35M;
-        //    else if (driverAge < 35)
-        //        return 15M;
-        //    else if (driverAge < 55)
-        //        return 30M;
-        //    else if (driverAge < 65)
-        //        return 38M;
-        //    else
-        //        return 45M;
-        //}
+       
 
         private decimal GetCarAgePremium(int carAge)
         {

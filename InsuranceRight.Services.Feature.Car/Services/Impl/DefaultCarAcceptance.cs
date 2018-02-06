@@ -11,12 +11,10 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
     public class DefaultCarAcceptance : ICarAcceptance
     {
         private readonly AcceptanceSettings _settings;
-        private readonly ApplicationSettings _sett;
 
-        public DefaultCarAcceptance(IOptions<AcceptanceSettings> settings, IOptions<ApplicationSettings> sett)
+        public DefaultCarAcceptance(IOptions<AcceptanceSettings> settings)
         {
             _settings = settings.Value;
-            _sett = sett.Value;
         }
 
         public AcceptanceStatus Check(MostFrequentDriverViewModel driver, CarObject car)
@@ -73,17 +71,21 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
             var result = new AcceptanceStatus() { IsAccepted = false };
             var zipcode = driver.ResidenceAddress.ZipCode;
 
-            int claimFree;
-            if(!int.TryParse(driver.DamageFreeYears, out claimFree))
+            if (!int.TryParse(driver.DamageFreeYears, out int claimFree))
             {
                 claimFree = 0;
             }
 
-            var driverAge = Helpers.CalculateDriverAge(driver.DateOfBirth);
             var carPrice = car.Price.CatalogPrice;
-            var expensiveCarBoundary = _settings.ExpensiveCarBoundary;   
+            var expensiveCarBoundary = _settings.ExpensiveCarBoundary;
+            var driverAge = Helpers.CalculateDriverAge(driver.BirthDate);
 
-            
+            // CHECKS
+            if (driverAge < 18)
+            {
+                result.Reason = string.Format("Cannot be {0} years or younger and get car insurance", driverAge);
+                return result;
+            }
             if ((driverAge - claimFree) < 18)
             {
                 result.Reason = string.Format("Cannot be {0} years old and have {1} claimfree years", driverAge, claimFree);

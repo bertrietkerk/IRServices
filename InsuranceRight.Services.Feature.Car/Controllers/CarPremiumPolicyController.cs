@@ -12,6 +12,7 @@ using InsuranceRight.Services.Feature.Car.Models.Coverages;
 using InsuranceRight.Services.Feature.Car.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
+using InsuranceRight.Services.Feature.Car.HelperMethods;
 
 namespace InsuranceRight.Services.Feature.Car.Controllers
 {
@@ -43,7 +44,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetVariants_Old([FromBody] CarViewModel viewModel)
         {
             var response = new ReturnObject<List<ProductVariant>>();
-            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
+            if (Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
                 response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
@@ -77,14 +78,22 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<List<ProductVariant>>();
 
-            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
+            if (Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress, viewModel?.PremiumFactors?.Driver?.BirthDate }))
             {
-                response.ErrorMessages.Add("Viewmodel was null");
+                response.ErrorMessages.Add("Viewmodel was null or not complete");
                 return Ok(response);
             }
 
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
+            var driverAge = Helpers.CalculateDriverAge(driver.BirthDate);
+
+            if (driverAge <18)
+            {
+                response.ErrorMessages.Add("Driver cannot be younger than 18");
+                return Ok(response);
+            }
+
 
             var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
             if (variants == null)
@@ -117,8 +126,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             }
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
-            var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
 
+            if (Helpers.CalculateDriverAge(driver.BirthDate) < 18)
+            {
+                response.ErrorMessages.Add("Driver cannot be younger than 18");
+                return Ok(response);
+            }
+
+            var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
             if (coverages == null)
             {
                 response.ErrorMessages.Add("Coverages were not found");

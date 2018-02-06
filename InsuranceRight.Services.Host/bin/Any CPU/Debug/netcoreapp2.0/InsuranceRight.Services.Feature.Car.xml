@@ -129,36 +129,36 @@
             <param name="objects">Objects to check for null</param>
             <returns>True if any object is null</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplPremium(System.Int32,System.String,System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplPremium(System.Int32,System.Nullable{System.DateTime},System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
             <summary>
             Calculates the premium for the - MTPL - package based on the given parameters
             </summary>
             <param name="carAge">Age of the car in years</param> 
-            <param name="ageRange">Age range of the applicant</param>
+            <param name="birthDate">Date of birth of the applicant</param>
             <param name="claimFreeYear">Amount of years without claim</param>
             <param name="zipCode">Zipcode of the residence-address of the applicant</param>
             <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
             <returns>The Product variant including calculated premium</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplLimitedCascoPremium(System.Int32,InsuranceRight.Services.Feature.Car.Models.CarPrice,System.String,System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplLimitedCascoPremium(System.Int32,InsuranceRight.Services.Feature.Car.Models.CarPrice,System.Nullable{System.DateTime},System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
             <summary>
              Calculates the premium for the - MTPL Limited Casco - package based on the given parameters
             </summary>
             <param name="carAge">Age of the car in years</param> 
             <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
-            <param name="ageRange">Age range of the applicant</param>
+            <param name="birthDate">Date of birth of the applicant</param>
             <param name="claimFreeYear">Amount of years without claim</param>
             <param name="zipCode">Zipcode of the residence-address of the applicant</param>
             <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>
             <returns>The Product variant including calculated premium</returns>
         </member>
-        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplAllRiskPremium(System.Int32,InsuranceRight.Services.Feature.Car.Models.CarPrice,System.String,System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
+        <member name="M:InsuranceRight.Services.Feature.Car.Services.Impl.DefaultPremiumCalculator.CalculateMtplAllRiskPremium(System.Int32,InsuranceRight.Services.Feature.Car.Models.CarPrice,System.Nullable{System.DateTime},System.String,System.String,InsuranceRight.Services.Feature.Car.Models.Enums.KilometersPerYear)">
             <summary>
             Calculates the premium for the - MTPL All Risk - package based on the given parameters
             </summary>
             <param name="carAge">Age of the car in years</param>
             <param name="carPrice">Price of the car including CatalogPrice and CurrentPrice</param>
-            <param name="ageRange">Age range of the applicant</param>
+            <param name="birthDate">Date of birth of the applicant</param>
             <param name="claimFreeYear">Amount of years without claim</param>
             <param name="zipCode">Zipcode of the residence-address of the applicant</param>
             <param name="kmsPerYear">Estimate of the amount of km's the applicant will drive per year</param>

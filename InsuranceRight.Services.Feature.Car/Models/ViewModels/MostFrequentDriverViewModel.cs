@@ -10,7 +10,6 @@ namespace InsuranceRight.Services.Feature.Car.Models.ViewModels
 {
     public class MostFrequentDriverViewModel : PersonViewModel
     {
-        public virtual DateTime? DateOfBirth { get; set; }
         public virtual bool? HadDamageOrTheftBefore{ get; set; }
         public virtual string DamageFreeYears { get; set; }
         public virtual KilometersPerYear KilometersPerYear { get; set; }
