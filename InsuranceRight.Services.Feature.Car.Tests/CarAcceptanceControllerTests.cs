@@ -9,9 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InsuranceRight.Services.Feature.Car.Tests
 {

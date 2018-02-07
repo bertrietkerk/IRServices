@@ -5,9 +5,6 @@ using InsuranceRight.Services.Models.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace InsuranceRight.Services.Feature.Car.Tests
 {
@@ -30,7 +27,6 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             Assert.IsNotNull(response);
             Assert.AreEqual(200, okResult.StatusCode);
             Assert.IsInstanceOfType(result, typeof(OkObjectResult));
-            
         }
     }
 }

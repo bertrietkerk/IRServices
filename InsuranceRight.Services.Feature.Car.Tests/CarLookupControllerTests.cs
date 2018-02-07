@@ -1,7 +1,6 @@
 using InsuranceRight.Services.Feature.Car.Controllers;
 using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 using InsuranceRight.Services.Feature.Car.Services;
-using InsuranceRight.Services.Feature.Car.Services.Data;
 using InsuranceRight.Services.Models.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
