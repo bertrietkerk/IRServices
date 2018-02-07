@@ -1,4 +1,5 @@
-﻿using InsuranceRight.Services.Feature.Car.Models.Coverages;
+﻿using InsuranceRight.Services.Feature.Car.Models;
+using InsuranceRight.Services.Feature.Car.Models.Coverages;
 using InsuranceRight.Services.Feature.Car.Models.Enums;
 using InsuranceRight.Services.Feature.Car.Models.Response;
 using System;
@@ -14,5 +15,6 @@ namespace InsuranceRight.Services.Feature.Car.Services
         List<Coverage> GetCoverages(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode);
         
         decimal GetPaymentFrequencyDiscount(int? paymentFrequency);
+        CarDiscountPolicy GetDiscountForGroup(string code);
     }
 }

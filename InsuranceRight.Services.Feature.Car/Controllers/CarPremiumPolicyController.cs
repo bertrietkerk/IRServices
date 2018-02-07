@@ -21,14 +21,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
     public class CarPremiumPolicyController : Controller
     {
         private readonly ICarPremiumPolicy _carPremiumPolicy;
-        private readonly ICarDiscountPolicy _carDiscountPolicy;
+        //private readonly ICarDiscountPolicy _carDiscountPolicy;
         private readonly PremiumCalculationSettings _settings;
         private readonly ICarAcceptance _acceptance;
 
-        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, ICarDiscountPolicy carDiscountPolicy, IOptions<PremiumCalculationSettings> settings, ICarAcceptance acceptance)
+        public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, ICarAcceptance acceptance)
         {
             _carPremiumPolicy = carPremiumPolicy;
-            _carDiscountPolicy = carDiscountPolicy;
+            //_carDiscountPolicy = carDiscountPolicy;
             _settings = settings.Value;
             _acceptance = acceptance;
         }
@@ -227,7 +227,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                 return Ok(response);
             }
 
-            response.Object = _carDiscountPolicy.GetDiscountForGroup(discountCode);
+            response.Object = _carPremiumPolicy.GetDiscountForGroup(discountCode); //_carDiscountPolicy.GetDiscountForGroup(discountCode);
 
             if (!response.Object.IsDiscountFound)
                 response.ErrorMessages.Add("Discount was not found");

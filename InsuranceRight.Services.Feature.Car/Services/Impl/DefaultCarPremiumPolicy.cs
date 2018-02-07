@@ -117,9 +117,8 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         public CarDiscountPolicy GetDiscountForGroup(string code)
         {
             CarDiscountPolicy response = new CarDiscountPolicy() { Code = code, IsDiscountFound = false, Amount = 0 };
-            int amount = 0;
 
-            if (!string.IsNullOrWhiteSpace(code) && _settings.Value.DiscountCodes.TryGetValue(code, out amount))
+            if (!string.IsNullOrWhiteSpace(code) && _settings.Value.DiscountCodes.TryGetValue(code, out int amount))
             {
                 response.IsDiscountFound = true;
                 response.Amount = amount;
@@ -147,8 +146,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             var car = _licensePlateLookup.GetCar(licensePlate);
             if (car != null)
             {
-                int carYear;
-                if (int.TryParse(car.Year, out carYear))
+                if (int.TryParse(car.Year, out int carYear))
                 {
                     carAge = Math.Min(carAge, (DateTime.Today.Year - carYear));
                 }

@@ -6,6 +6,6 @@ namespace InsuranceRight.Services.Models.Settings
 {
     public class PremiumCalculationSettings
     {
-        public bool IncludeAcceptanceCheck { get; set; }
+        public virtual bool IncludeAcceptanceCheck { get; set; }
     }
 }

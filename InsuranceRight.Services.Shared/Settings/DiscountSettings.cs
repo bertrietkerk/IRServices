@@ -6,6 +6,6 @@ namespace InsuranceRight.Services.Models.Settings
 {
     public class DiscountSettings
     {
-        public Dictionary<string, int> DiscountCodes { get; set; }
+        public virtual Dictionary<string, int> DiscountCodes { get; set; }
     }
 }

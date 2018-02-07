@@ -30,9 +30,8 @@ namespace InsuranceRight.Services.AddressService.Tests
         [DataRow("9999ZZ", true, "Zipcode was not found")]
         public void ValidateZipCode__ValidAndInvalidZipcodes__ReturnsBoolAndMessage(string inputZipcode, bool expectedHasErrors, string expectedMessage)
         {
-
             var result = _controller.ValidateZipcode(inputZipcode) as OkObjectResult;
-            var response = (ReturnObject<ZipCode>)result.Value;
+            var response = (ReturnObject<string>)result.Value;
 
             var actualHasErrors = response.HasErrors;
             if (response.ErrorMessages.Count > 0)

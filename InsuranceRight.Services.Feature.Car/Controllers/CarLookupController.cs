@@ -111,7 +111,6 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetEditionDetails([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<Dictionary<string, decimal>>();
-            var dict = new Dictionary<string, decimal>();
 
             if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
@@ -119,17 +118,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                 return Ok(response);
             }
 
-            var weight = _carLookup.GetWeight(viewModel.Brand, viewModel.Model, viewModel.Edition);
-            var catalogValue = _carLookup.GetCatalogValue(viewModel.Brand, viewModel.Model, viewModel.Edition);
-            if (weight == 0 || catalogValue == 0)
+            var details = _carLookup.GetEditionDetails(viewModel.Brand, viewModel.Model, viewModel.Edition);
+            if (details.ContainsValue(0))
             {
                 response.ErrorMessages.Add("No car was found for the combination of this brand, model and edition");
                 return Ok(response);
             }
-
-            dict.Add("weight", weight);
-            dict.Add("catalogValue", catalogValue);
-            response.Object = dict;
+            
+            response.Object = details;
             return Ok(response);
         }
 

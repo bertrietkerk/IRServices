@@ -17,9 +17,8 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
         public CarDiscountPolicy GetDiscountForGroup(string code)
         {
             CarDiscountPolicy response = new CarDiscountPolicy() { Code = code, IsDiscountFound = false, Amount = 0 };
-            int amount = 0;
 
-            if (!string.IsNullOrWhiteSpace(code) && _settings.Value.DiscountCodes.TryGetValue(code, out amount))
+            if (!string.IsNullOrWhiteSpace(code) && _settings.Value.DiscountCodes.TryGetValue(code, out int amount))
             {
                 response.IsDiscountFound = true;
                 response.Amount = amount;

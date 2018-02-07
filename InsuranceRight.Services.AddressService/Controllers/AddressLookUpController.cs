@@ -42,7 +42,7 @@ namespace InsuranceRight.Services.AddressService.Controllers
             var response = new ReturnObject<string>() { ErrorMessages = new List<string>(), Object = zipCode };
             if (string.IsNullOrWhiteSpace(zipCode))
             {
-                response.ErrorMessages.Add("ZipCode was null or empty");
+                response.ErrorMessages.Add("Zipcode was null or empty");
                 return Ok(response);
             }
 

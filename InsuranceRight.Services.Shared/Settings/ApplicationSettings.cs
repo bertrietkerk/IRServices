@@ -6,7 +6,7 @@ namespace InsuranceRight.Services.Models.Settings
 {
     public class ApplicationSettings
     {
-        public AcceptanceSettings AcceptanceSettings { get; set; }
-        public PremiumCalculationSettings PremiumCalculationSettings { get; set; }
+        public virtual AcceptanceSettings AcceptanceSettings { get; set; }
+        public virtual PremiumCalculationSettings PremiumCalculationSettings { get; set; }
     }
 }

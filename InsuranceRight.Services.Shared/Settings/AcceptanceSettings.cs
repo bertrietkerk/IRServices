@@ -6,7 +6,7 @@ namespace InsuranceRight.Services.Models.Settings
 {
     public class AcceptanceSettings
     {
-        public int ExpensiveCarBoundary { get; set; }
-        public bool AcceptAlways { get; set; }
+        public virtual int ExpensiveCarBoundary { get; set; }
+        public virtual bool AcceptAlways { get; set; }
     }
 }

@@ -194,8 +194,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 
         private decimal? GetClaimPremium(string claimFreeYear)
         {
-            decimal claimFree;
-            if (!decimal.TryParse(claimFreeYear.Trim(), out claimFree))
+            if (!decimal.TryParse(claimFreeYear.Trim(), out decimal claimFree))
             { claimFree = (claimFreeYear == "15 or more" ? 15 : 0); }
 
             if (claimFree <= 3)

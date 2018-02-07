@@ -17,5 +17,6 @@ namespace InsuranceRight.Services.Feature.Car.Services
 
         decimal GetCatalogValue(string brand, string model, string edition);
 
+        Dictionary<string, decimal> GetEditionDetails(string brand, string model, string edition);
     }
 }

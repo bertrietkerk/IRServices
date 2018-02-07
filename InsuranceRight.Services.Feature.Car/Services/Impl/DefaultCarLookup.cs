@@ -121,5 +121,18 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
             return catalogValue;
         }
+
+
+        public Dictionary<string, decimal> GetEditionDetails(string brand, string model, string edition)
+        {
+            var dictionary = new Dictionary<string, decimal>();
+            var weight = GetWeight(brand, model, edition);
+            var catalogValue = GetCatalogValue(brand, model, edition);
+            dictionary.Add("weight", weight);
+            dictionary.Add("catalogValue", catalogValue);
+
+            return dictionary;
+        }
+
     }
 }
