@@ -83,9 +83,9 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<List<string>>();
 
-            if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model))
+            if (viewModel == null || string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model))
             {
-                response.ErrorMessages.Add("Brand and/or Model was null or empty string");
+                response.ErrorMessages.Add("Viewmodel or Brand and/or Model was null or empty string");
                 return Ok(response);
             }
 
@@ -114,7 +114,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
 
             if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
-                response.ErrorMessages.Add("Brand, Model and/or Edition was null or empty string");
+                response.ErrorMessages.Add("Viewmodel or Brand, Model and/or Edition was null or empty string");
                 return Ok(response);
             }
 
@@ -142,9 +142,9 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<decimal>();
 
-            if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
+            if (viewModel == null || string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
-                response.ErrorMessages.Add("Brand, Model and/or Edition was null or empty string");
+                response.ErrorMessages.Add("ViewModel or Brand, Model and/or Edition was null or empty string");
                 return Ok(response);
             }
 
@@ -170,9 +170,9 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         public IActionResult GetCatalogValue([FromBody] CarLookupViewModel viewModel)
         {
             var response = new ReturnObject<decimal>();
-            if (string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
+            if (viewModel == null || string.IsNullOrWhiteSpace(viewModel.Brand) || string.IsNullOrWhiteSpace(viewModel.Model) || string.IsNullOrWhiteSpace(viewModel.Edition))
             {
-                response.ErrorMessages.Add("Brand, Model and/or Edition was null or empty string");
+                response.ErrorMessages.Add("ViewModel or Brand, Model and/or Edition was null or empty string");
                 return Ok(response);
             }
 

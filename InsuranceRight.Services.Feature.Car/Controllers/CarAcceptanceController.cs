@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InsuranceRight.Services.Feature.Car.HelperMethods;
 using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 using InsuranceRight.Services.Feature.Car.Services;
 using InsuranceRight.Services.Models.Acceptance;
@@ -50,6 +51,11 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
                 response.ErrorMessages.Add("Car or price was null");
                 return Ok(response);
             }
+
+            //if (car.Alarm == null && car.Immobilizer == null && car.MechanicalSecurity == null && car.SatelliteMonitoring == null)
+            //{
+
+            //}
 
             var result = _acceptance.Check(viewModel.PremiumFactors.Driver, car);
             if (!result.IsAccepted)

@@ -21,12 +21,13 @@ namespace InsuranceRight.Services.Feature.Car.Tests
         private readonly decimal Weight = 1000m;
         private readonly decimal CatalogValue = 5000m;
         private readonly Dictionary<string, decimal> EditionDetails = new Dictionary<string, decimal>() { { "weight", 1000m }, { "catalogValue", 5000m } };
+        private readonly string CorrectBrandString = "MINI";
 
         public CarLookupControllerTests()
         {
             Mock<ICarLookup> mockDataProvider = new Mock<ICarLookup>();
             mockDataProvider.Setup(x => x.GetBrands()).Returns(Brands);
-            mockDataProvider.Setup(x => x.GetModels(It.IsAny<string>())).Returns(Models);
+            mockDataProvider.Setup(x => x.GetModels(CorrectBrandString)).Returns(Models);
             mockDataProvider.Setup(x => x.GetEditions(It.IsAny<string>(), It.IsAny<string>())).Returns(Editions);
             mockDataProvider.Setup(x => x.GetWeight(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(Weight);
             mockDataProvider.Setup(x => x.GetCatalogValue(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(CatalogValue);
@@ -45,21 +46,47 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             var response = okResult.Value as ReturnObject<List<string>>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.AreEqual(expected.Count, actual.Count);
             Assert.AreEqual(expected[0], actual[0]);
         }
 
         [TestMethod]
-        public void GetModels__AnyStringBrand__ReturnsOkIncludingReturnObjectWithModels()
+        public void GetModels__CorrectBrandString__ReturnsOkIncludingReturnObjectWithModels()
         {
             var expected = Models;
-            var result = _controller.GetModels("MINI");
+            var result = _controller.GetModels(CorrectBrandString);
             var okResult = result as OkObjectResult;
             var response = okResult.Value as ReturnObject<List<string>>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.AreEqual(expected.Count, actual.Count);
             Assert.AreEqual(expected[0], actual[0]);
+            Assert.IsFalse(response.HasErrors);
+        }
+
+        [TestMethod]
+        public void GetModels__IncorrectString__ReturnsOkIncludingReturnObjectWithError()
+        {
+            var incorrectBrandString = "IncorrectBrandString";
+            var result = _controller.GetModels(incorrectBrandString);
+            var okResult = result as OkObjectResult;
+            var response = okResult.Value as ReturnObject<List<string>>;
+
+            Assert.IsNotNull(okResult);
+            Assert.IsTrue(response.HasErrors);
+        }
+
+        [TestMethod]
+        public void GetModels__NullInput__ReturnsOkIncludingReturnObjectWithErrors()
+        {
+            var result = _controller.GetModels(null);
+            var okResult = result as OkObjectResult;
+            var response = okResult.Value as ReturnObject<List<string>>;
+
+            Assert.IsNotNull(okResult);
+            Assert.IsTrue(response.HasErrors);
         }
 
         [TestMethod]
@@ -71,8 +98,21 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             var response = okResult.Value as ReturnObject<List<string>>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.AreEqual(expected.Count, actual.Count);
             Assert.AreEqual(expected[0], actual[0]);
+        }
+
+        [TestMethod]
+        public void GetEditions__EmptyViewModel__ReturnsOkIncludingReturnObjectWithErrors()
+        {
+            CarLookupViewModel nullModel = null;
+            var result = _controller.GetEditions(nullModel);
+            var okResult = result as OkObjectResult;
+            var response = okResult.Value as ReturnObject<List<string>>;
+
+            Assert.IsNotNull(okResult);
+            Assert.IsTrue(response.HasErrors);
         }
 
         [TestMethod]
@@ -84,6 +124,7 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             var response = okResult.Value as ReturnObject<decimal>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.AreEqual(expected, actual);
         }
 
@@ -96,6 +137,7 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             var response = okResult.Value as ReturnObject<decimal>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.AreEqual(expected, actual);
         }
 
@@ -107,6 +149,7 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             var response = okResult.Value as ReturnObject<Dictionary<string, decimal>>;
             var actual = response.Object;
 
+            Assert.IsNotNull(okResult);
             Assert.IsNotNull(actual);
             Assert.AreEqual(EditionDetails.Count, actual.Count);
             Assert.AreEqual(EditionDetails["weight"], actual["weight"]);

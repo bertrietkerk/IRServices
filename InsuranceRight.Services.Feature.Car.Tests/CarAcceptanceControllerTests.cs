@@ -52,5 +52,32 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             Assert.IsNotNull(response);
             Assert.IsTrue(response.Object.IsAccepted);
         }
+
+
+        //[TestMethod]
+        //public void Check__EmptyCarAndDriver__Returns__()
+        //{
+        //    var carVM = new CarViewModel()
+        //    {
+        //        PremiumFactors = new CarPremiumFactors()
+        //        {
+        //            Car = new CarObject()
+        //            {
+        //                Price = new CarPrice()
+        //                {
+        //                    CatalogPrice = 100
+        //                }
+        //            }
+        //        }
+        //    };
+
+        //    var result = _controller.Check(carVM);
+        //    var okResult = result as OkObjectResult;
+        //    var response = okResult.Value as ReturnObject<AcceptanceStatus>;
+
+        //    Assert.IsNotNull(result);
+        //    Assert.IsNotNull(response);
+        //    Assert.IsFalse(response.Object.IsAccepted);
+        //}
     }
 }
