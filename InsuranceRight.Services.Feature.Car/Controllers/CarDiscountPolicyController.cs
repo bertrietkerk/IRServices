@@ -28,7 +28,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         [Obsolete("Not supported anymore. Use api/Car/Premium/GroupCodeDiscount")]
         public IActionResult GroupDiscounts([FromBody] string discountCode)
         {
-            ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>();
+            ReturnObject<CarDiscountPolicy> response = new ReturnObject<CarDiscountPolicy>() { Object = new CarDiscountPolicy() { IsDiscountFound = false, Code = discountCode, Amount = 0 } };
             if (string.IsNullOrWhiteSpace(discountCode))
             {
                 response.ErrorMessages.Add("Discount code was null or empty");

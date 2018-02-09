@@ -21,14 +21,12 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
     public class CarPremiumPolicyController : Controller
     {
         private readonly ICarPremiumPolicy _carPremiumPolicy;
-        //private readonly ICarDiscountPolicy _carDiscountPolicy;
         private readonly PremiumCalculationSettings _settings;
         private readonly ICarAcceptance _acceptance;
 
         public CarPremiumPolicyController(ICarPremiumPolicy carPremiumPolicy, IOptions<PremiumCalculationSettings> settings, ICarAcceptance acceptance)
         {
             _carPremiumPolicy = carPremiumPolicy;
-            //_carDiscountPolicy = carDiscountPolicy;
             _settings = settings.Value;
             _acceptance = acceptance;
         }
@@ -86,16 +84,18 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
 
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
-            var driverAge = Helpers.CalculateDriverAge(driver.BirthDate);
-
-            if (driverAge <18)
+            
+            if (_settings.IncludeAcceptanceCheck)
             {
-                response.ErrorMessages.Add("Driver cannot be younger than 18");
-                return Ok(response);
+                AcceptanceStatus status = _acceptance.Check(driver, car);
+                if (!status.IsAccepted)
+                {
+                    response.ErrorMessages.Add("Acceptance check failed: " + status.Reason);
+                    return Ok(response);
+                }
             }
 
-
-            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear);
+            var variants = _carPremiumPolicy.GetVariants(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode, driver.KilometersPerYear, viewModel.PremiumFactors.GroupDiscountCode, viewModel.Payment.PaymentFrequency);
             if (variants == null)
             {
                 response.ErrorMessages.Add("Variants were not found");
@@ -119,7 +119,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<List<Coverage>>();
 
-            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
+            if (Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
                 response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
@@ -127,10 +127,14 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
             var car = viewModel.PremiumFactors.Car;
             var driver = viewModel.PremiumFactors.Driver;
 
-            if (Helpers.CalculateDriverAge(driver.BirthDate) < 18)
+            if (_settings.IncludeAcceptanceCheck)
             {
-                response.ErrorMessages.Add("Driver cannot be younger than 18");
-                return Ok(response);
+                AcceptanceStatus status = _acceptance.Check(driver, car);
+                if (!status.IsAccepted)
+                {
+                    response.ErrorMessages.Add("Acceptance check failed: " + status.Reason);
+                    return Ok(response);
+                }
             }
 
             var coverages = _carPremiumPolicy.GetCoverages(car.LicensePlate, driver.BirthDate, driver.DamageFreeYears, driver.ResidenceAddress.ZipCode);
@@ -155,7 +159,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<VariantsAndCoverages>();
 
-            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
+            if (Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress }))
             {
                 response.ErrorMessages.Add("Viewmodel/premiumfactors/car/driver/residenceaddress was null");
                 return Ok(response);
@@ -194,7 +198,7 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         {
             var response = new ReturnObject<PaymentFrequencyDiscountModel> { Object = new PaymentFrequencyDiscountModel() { Amount = 0M } };
 
-            if (HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.Payment }))
+            if (Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.Payment }))
             {
                 response.ErrorMessages.Add("Viewmodel/payment was null");
                 return Ok(response);

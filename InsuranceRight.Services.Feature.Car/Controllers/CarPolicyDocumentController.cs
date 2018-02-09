@@ -27,10 +27,10 @@ namespace InsuranceRight.Services.Feature.Car.Controllers
         /// <param name="viewModel">CarViewModel</param>
         /// <returns></returns>
         [HttpPost("[action]")]
-        [SwaggerResponse(200, Type = typeof(ReturnObject<IEnumerable<PolicyDocument>>))]
+        [SwaggerResponse(200, Type = typeof(ReturnObject<List<PolicyDocument>>))]
         public IActionResult Documents([FromBody] CarViewModel viewModel)
         {
-            var response = new ReturnObject<IEnumerable<PolicyDocument>>();
+            var response = new ReturnObject<List<PolicyDocument>>();
 
             if(HelperMethods.Helpers.IsAnyObjectNull(new object[] { viewModel, viewModel?.Payment, viewModel?.PremiumFactors, viewModel?.PremiumFactors?.Car, viewModel?.PremiumFactors?.Driver, viewModel?.PremiumFactors?.Driver?.ResidenceAddress, viewModel?.PremiumFactors?.Car?.Price }))
             {

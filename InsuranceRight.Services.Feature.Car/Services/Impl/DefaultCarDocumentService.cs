@@ -6,7 +6,7 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
 {
     public class DefaultCarDocumentService : ICarDocumentService
     {
-        public IEnumerable<PolicyDocument> GetDocuments(CarViewModel model)
+        public List<PolicyDocument> GetDocuments(CarViewModel model)
         {
             List<PolicyDocument> result = null;
             

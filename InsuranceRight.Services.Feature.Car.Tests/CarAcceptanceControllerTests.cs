@@ -16,9 +16,12 @@ namespace InsuranceRight.Services.Feature.Car.Tests
     public class CarAcceptanceControllerTests
     {
         private readonly AcceptanceController _controller;
+        private readonly CarViewModel CorrectCarViewModel;
 
         public CarAcceptanceControllerTests()
         {
+            CorrectCarViewModel = new CarViewModel() { PremiumFactors = new CarPremiumFactors() { Car = new CarObject() { Price = new CarPrice() { CatalogPrice = 5000 } }, Driver = new MostFrequentDriverViewModel() { } } };
+
             // Mock ICarAcceptance
             Mock<ICarAcceptance> mockAcceptance = new Mock<ICarAcceptance>();
             mockAcceptance.Setup(x => x.Check(It.IsAny<MostFrequentDriverViewModel>(), It.IsAny<CarObject>())).Returns(new AcceptanceStatus() { IsAccepted = true });
@@ -29,22 +32,7 @@ namespace InsuranceRight.Services.Feature.Car.Tests
         [TestMethod]
         public void Check__ValidDriverViewModel__ReturnsOkIncludingReturnObjectAcceptanceStatus()
         {
-            var carViewModel = new CarViewModel()
-            {
-                PremiumFactors = new CarPremiumFactors()
-                {
-                    Car = new CarObject()
-                    {
-                        Price = new CarPrice()
-                        {
-                            CatalogPrice = 5000
-                        }
-                    },
-                    Driver = new MostFrequentDriverViewModel() { }
-                }
-            };
-
-            var result = _controller.Check(carViewModel);
+            var result = _controller.Check(CorrectCarViewModel);
             var okResult = result as OkObjectResult;
             var response = okResult.Value as ReturnObject<AcceptanceStatus>;
 
@@ -54,30 +42,15 @@ namespace InsuranceRight.Services.Feature.Car.Tests
         }
 
 
-        //[TestMethod]
-        //public void Check__EmptyCarAndDriver__Returns__()
-        //{
-        //    var carVM = new CarViewModel()
-        //    {
-        //        PremiumFactors = new CarPremiumFactors()
-        //        {
-        //            Car = new CarObject()
-        //            {
-        //                Price = new CarPrice()
-        //                {
-        //                    CatalogPrice = 100
-        //                }
-        //            }
-        //        }
-        //    };
+        [TestMethod]
+        public void Check__NullViewModel__ReturnsOkIncludingReturnObjectWithError()
+        {
+            var okResult = _controller.Check(null) as OkObjectResult;
+            var response = okResult.Value as ReturnObject<AcceptanceStatus>;
 
-        //    var result = _controller.Check(carVM);
-        //    var okResult = result as OkObjectResult;
-        //    var response = okResult.Value as ReturnObject<AcceptanceStatus>;
-
-        //    Assert.IsNotNull(result);
-        //    Assert.IsNotNull(response);
-        //    Assert.IsFalse(response.Object.IsAccepted);
-        //}
+            Assert.IsNotNull(okResult);
+            Assert.IsNotNull(response);
+            Assert.IsTrue(response.HasErrors);
+        }
     }
 }

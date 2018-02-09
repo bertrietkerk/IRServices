@@ -68,8 +68,17 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             }
         }
 
-        public List<ProductVariant> GetVariants(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear)
+        public List<ProductVariant> GetVariants(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode, KilometersPerYear kmsPerYear, string groupCodeDiscount = "", PaymentFrequency? paymentFrequency = PaymentFrequency.Monthly)
         {
+            decimal groupDiscount = 0m;
+            decimal paymentDiscount = GetPaymentFrequencyDiscount((int)paymentFrequency);
+
+            if (!string.IsNullOrWhiteSpace(groupCodeDiscount))
+            {
+                groupDiscount = GetDiscountForGroup(groupCodeDiscount).Amount;
+            }
+
+
             int carAge = GetCarAge(licensePlate);
             CarPrice carPrice = GetCarPrice(licensePlate);
 
@@ -77,9 +86,22 @@ namespace InsuranceRight.Services.Feature.Car.Services.Impl
             var mtplLimitedCasco = _premiumCalculator.CalculateMtplLimitedCascoPremium(carAge, carPrice, birthDate, claimFreeYear, zipCode, kmsPerYear);
             var mtplAllRisk = _premiumCalculator.CalculateMtplAllRiskPremium(carAge, carPrice, birthDate, claimFreeYear, zipCode, kmsPerYear);
 
+            if (groupDiscount > 0m || paymentDiscount > 0m)
+            {
+                mtpl = GetVariantWithDiscount(mtpl, groupDiscount, paymentDiscount);
+                mtplLimitedCasco = GetVariantWithDiscount(mtplLimitedCasco, groupDiscount, paymentDiscount);
+                mtplAllRisk = GetVariantWithDiscount(mtplAllRisk, groupDiscount, paymentDiscount);
+            }
+
             return new List<ProductVariant>() {
                 mtpl, mtplLimitedCasco, mtplAllRisk
             };
+        }
+
+        private ProductVariant GetVariantWithDiscount(ProductVariant mtpl, decimal groupDiscount, decimal paymentDiscount)
+        {
+            mtpl.Premium = (mtpl.Premium * ((100-groupDiscount)/100)) * ((100 - paymentDiscount) / 100);
+            return mtpl;
         }
 
         public List<ProductVariant> GetVariants_Old(string licensePlate, DateTime? birthDate, string claimFreeYear, string zipCode)

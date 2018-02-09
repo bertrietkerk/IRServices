@@ -6,6 +6,6 @@ namespace InsuranceRight.Services.Feature.Car.Services
 {
     public interface ICarDocumentService
     {
-        IEnumerable<PolicyDocument> GetDocuments(CarViewModel model);
+        List<PolicyDocument> GetDocuments(CarViewModel model);
     }
 }

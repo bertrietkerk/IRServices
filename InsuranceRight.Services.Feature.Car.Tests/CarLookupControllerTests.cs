@@ -14,18 +14,31 @@ namespace InsuranceRight.Services.Feature.Car.Tests
     {
         private readonly CarLookupController _controller;
 
-        private readonly CarLookupViewModel CorrectCarLookupViewModel = new CarLookupViewModel() { Brand = "Brand", Model = "Model", Edition = "Edition" };
-        private readonly CarLookupViewModel IncorrectViewModel = new CarLookupViewModel() { Brand = "Incorrect", Model = "Incorrect", Edition = "Incorrect"};
-        private readonly List<string> Brands = new List<string>() { "Brand1", "Brand2" };
-        private readonly List<string> Models = new List<string>() { "Model1", "Model2" };
-        private readonly List<string> Editions = new List<string>() { "Edition1", "Edition2" };
-        private readonly decimal Weight = 1000m;
-        private readonly decimal CatalogValue = 5000m;
-        private readonly Dictionary<string, decimal> EditionDetails = new Dictionary<string, decimal>() { { "weight", 1000m }, { "catalogValue", 5000m } };
-        private readonly string CorrectBrandString = "MINI";
+        private readonly CarLookupViewModel CorrectCarLookupViewModel;
+        private readonly CarLookupViewModel IncorrectViewModel;
+        private readonly List<string> Brands;
+        private readonly List<string> Models;
+        private readonly List<string> Editions;
+        private readonly Dictionary<string, decimal> EditionDetails;
+        private readonly decimal Weight;
+        private readonly decimal CatalogValue;
+        private readonly string CorrectBrandString;
+
 
         public CarLookupControllerTests()
         {
+            // Variables setup
+            CorrectCarLookupViewModel = new CarLookupViewModel() { Brand = "Brand", Model = "Model", Edition = "Edition" };
+            IncorrectViewModel = new CarLookupViewModel() { Brand = "Incorrect", Model = "Incorrect", Edition = "Incorrect" };
+            Brands = new List<string>() { "Brand1", "Brand2" };
+            Models = new List<string>() { "Model1", "Model2" };
+            Editions = new List<string>() { "Edition1", "Edition2" };
+            EditionDetails = new Dictionary<string, decimal>() { { "weight", 1000m }, { "catalogValue", 5000m } };
+            Weight = 1000m;
+            CatalogValue = 5000m;
+            CorrectBrandString = "MINI";
+
+            // Mock setup
             Mock<ICarLookup> mockDataProvider = new Mock<ICarLookup>();
             mockDataProvider.Setup(x => x.GetBrands()).Returns(Brands);
             mockDataProvider.Setup(x => x.GetModels(CorrectBrandString)).Returns(Models);
@@ -33,11 +46,9 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             mockDataProvider.Setup(x => x.GetWeight(CorrectCarLookupViewModel.Brand, CorrectCarLookupViewModel.Model, CorrectCarLookupViewModel.Edition)).Returns(Weight);
             mockDataProvider.Setup(x => x.GetCatalogValue(CorrectCarLookupViewModel.Brand, CorrectCarLookupViewModel.Model, CorrectCarLookupViewModel.Edition)).Returns(CatalogValue);
             mockDataProvider.Setup(x => x.GetEditionDetails(CorrectCarLookupViewModel.Brand, CorrectCarLookupViewModel.Model, CorrectCarLookupViewModel.Edition)).Returns(EditionDetails);
-            // more setup
-
+            
             _controller = new CarLookupController(mockDataProvider.Object);
         }
-
 
         #region GetBrands test
         [TestMethod]
