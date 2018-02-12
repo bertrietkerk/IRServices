@@ -96,10 +96,13 @@ namespace InsuranceRight.Services.Acceptance.Services.Impl
                 result.Reason = string.Format("Cannot be {0} years old and insure a car that has a catalog value of {1}", driverAge, car.Price.CatalogPrice);
                 return result;
             }
-            if (carPrice >= expensiveCarBoundary && zipcode.StartsWith("1"))
+            if (zipcode != null)
             {
-                result.Reason = string.Format("Cannot insure a car that has a catalog value of {0} in area with zipcode {1}", carPrice, zipcode);
-                return result;
+                if (carPrice >= expensiveCarBoundary && zipcode.StartsWith("1"))
+                {
+                    result.Reason = string.Format("Cannot insure a car that has a catalog value of {0} in area with zipcode {1}", carPrice, zipcode);
+                    return result;
+                }
             }
 
             result.IsAccepted = true;
