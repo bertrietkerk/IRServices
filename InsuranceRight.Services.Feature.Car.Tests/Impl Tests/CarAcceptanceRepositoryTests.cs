@@ -4,12 +4,9 @@ using InsuranceRight.Services.Feature.Car.Models.ViewModels;
 using InsuranceRight.Services.Models.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace InsuranceRight.Services.Feature.Car.Tests
+namespace InsuranceRight.Services.Feature.Car.Tests.Impl_Tests
 {
     [TestClass]
     public class CarAcceptanceRepositoryTests
@@ -38,17 +35,10 @@ namespace InsuranceRight.Services.Feature.Car.Tests
             _sut = new DefaultCarAcceptance(Options.Create(new AcceptanceSettings() { AcceptAlways = false, ExpensiveCarBoundary = ExpensiveCarBoundary }));
         }
 
-        //[TestMethod]
-        //public void Check__EmptyCarAndDriver__Returns__()
-        //{
-        //    var driver = new MostFrequentDriverViewModel();
-        //    var car = new CarObject();
-        //    var result = _sut.Check(driver, car);
+        // no check for null input to Check(null), since null check is caught in controller 
 
-        //    Assert.IsFalse(result.IsAccepted);
-        //} 
-        /// THE ABOVE WILL FAIL SINCE NO NULL CHECK (DONE IN CONTROLLER)
- 
+
+        #region SecurityMeasurements Check tests
 
         // exp car without security and normal driver = not accepted
         [TestMethod]
@@ -58,6 +48,8 @@ namespace InsuranceRight.Services.Feature.Car.Tests
 
             Assert.IsFalse(result.IsAccepted);
         }
+
+        #endregion
 
         // exp car with security and driver = accept
         [TestMethod]
